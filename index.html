@@ -120,7 +120,6 @@
   .wp-day { display: grid; grid-template-columns: 80px 1fr; gap: 16px; padding: 14px 0; border-bottom: 0.5px solid var(--border); align-items: start; }
   .wp-day:last-child { border-bottom: none; }
   .wp-day-name { font-weight: 500; font-size: 14px; }
-  .wp-day-date { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; }
   .wp-day-today .wp-day-name { color: var(--info-fg); }
   .wp-slots { display: flex; flex-direction: column; gap: 6px; }
   .wp-slot { display: flex; gap: 10px; align-items: center; font-size: 13px; }
@@ -167,7 +166,7 @@
   .lf-card-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
   .lf-question { font-size: 14px; font-weight: 500; line-height: 1.5; flex: 1; }
   .lf-card-actions { display: flex; gap: 4px; flex-shrink: 0; }
-  .lf-answer { margin-top: 8px; padding: 10px 12px; background: var(--surface-2); border-radius: var(--radius-md); font-size: 14px; line-height: 1.6; white-space: pre-wrap; }
+  .lf-answer { margin-top: 8px; padding: 10px 12px; background: var(--surface-2); border-radius: var(--radius-md); font-size: 14px; line-height: 1.6; }
   .lf-answer-empty { color: var(--text-tertiary); font-style: italic; font-size: 13px; }
   .lf-reveal-btn { margin-top: 8px; }
   .lf-rate { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
@@ -179,8 +178,6 @@
   .lf-rate-btn.active { font-weight: 500; }
   .lf-last-rate { font-size: 11px; color: var(--text-tertiary); margin-left: 8px; }
   .lf-add-form { display: flex; flex-direction: column; gap: 8px; margin-top: 1rem; padding-top: 1rem; border-top: 0.5px dashed var(--border); }
-  .lf-add-row { display: flex; gap: 8px; align-items: flex-start; }
-  .lf-add-row textarea { min-height: 50px; }
   .lf-edit-form { display: flex; flex-direction: column; gap: 8px; padding: 8px 0; }
   .lf-edit-actions { display: flex; gap: 8px; }
 
@@ -204,6 +201,41 @@
   .lk-field-hint { font-size: 12px; color: var(--text-tertiary); margin-top: 4px; line-height: 1.4; }
   .lk-detail-actions { display: flex; gap: 8px; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 0.5px solid var(--border); flex-wrap: wrap; align-items: center; }
   .lk-saved-indicator { font-size: 12px; color: var(--text-tertiary); }
+
+  /* Rich-Text-Editor */
+  .rte-wrap { border: 0.5px solid var(--border-strong); border-radius: var(--radius-md); background: var(--surface); overflow: hidden; }
+  .rte-wrap:focus-within { outline: 2px solid var(--accent); outline-offset: -1px; }
+  .rte-toolbar { display: flex; gap: 2px; padding: 4px 6px; background: var(--surface-2); border-bottom: 0.5px solid var(--border); flex-wrap: wrap; }
+  .rte-tool { padding: 4px 8px; font-size: 12px; font-family: inherit; background: transparent; border: 0.5px solid transparent; border-radius: 4px; cursor: pointer; color: var(--text); min-width: 28px; }
+  .rte-tool:hover { background: var(--surface); border-color: var(--border); }
+  .rte-tool:active { transform: scale(0.95); }
+  .rte-tool.bold { font-weight: 700; }
+  .rte-tool.italic { font-style: italic; }
+  .rte-tool.underline { text-decoration: underline; }
+  .rte-tool-sep { width: 1px; background: var(--border); margin: 4px 4px; }
+  .rte-content { padding: 10px 12px; min-height: 80px; font-size: 14px; line-height: 1.6; outline: none; }
+  .rte-content[contenteditable="true"]:empty::before { content: attr(data-placeholder); color: var(--text-tertiary); pointer-events: none; }
+  .rte-content table { border-collapse: collapse; margin: 8px 0; max-width: 100%; }
+  .rte-content table td, .rte-content table th { border: 1px solid var(--border-strong); padding: 6px 10px; vertical-align: top; min-width: 40px; }
+  .rte-content table th { background: var(--surface-2); font-weight: 500; text-align: left; }
+  .rte-content table tr:nth-child(even) td { background: var(--surface-2); }
+  .rte-content ul, .rte-content ol { margin: 6px 0; padding-left: 24px; }
+  .rte-content li { margin: 2px 0; }
+  .rte-content p { margin: 6px 0; }
+  .rte-content p:first-child { margin-top: 0; }
+  .rte-content p:last-child { margin-bottom: 0; }
+  .rte-content strong { font-weight: 600; }
+
+  /* Lese-Ansicht (rendert HTML) */
+  .rendered { font-size: 14px; line-height: 1.6; }
+  .rendered table { border-collapse: collapse; margin: 8px 0; max-width: 100%; }
+  .rendered table td, .rendered table th { border: 1px solid var(--border-strong); padding: 6px 10px; vertical-align: top; }
+  .rendered table th { background: var(--surface); font-weight: 500; text-align: left; }
+  .rendered ul, .rendered ol { margin: 6px 0; padding-left: 24px; }
+  .rendered p { margin: 6px 0; }
+  .rendered p:first-child { margin-top: 0; }
+  .rendered p:last-child { margin-bottom: 0; }
+  .rendered strong { font-weight: 600; }
 
   @media (max-width: 600px) {
     .tracker-row { grid-template-columns: 32px 1fr auto; grid-template-rows: auto auto; }
@@ -269,7 +301,7 @@
   </section>
 
   <section id="view-tracker" class="hidden">
-    <p class="card-hint" style="margin-bottom: 1rem;">Reihenfolge angepasst: Methodik → Öffentliches Recht (passt zum Seminar und Schwerpunkt) → Zivilrecht → Strafrecht → Rest.</p>
+    <p class="card-hint" style="margin-bottom: 1rem;">Reihenfolge angepasst: Methodik → Öffentliches Recht → Zivilrecht → Strafrecht → Rest.</p>
     <div class="filters">
       <button class="filter-btn active" data-filter="all">Alle</button>
       <button class="filter-btn" data-filter="open">Offen</button>
@@ -295,7 +327,7 @@
       </div>
       <span class="lf-stats" id="lf-stats"></span>
     </div>
-    <p class="card-hint" style="margin-bottom: 1rem;" id="lf-mode-hint">Im Lesemodus sind Frage und Antwort gemeinsam sichtbar — gut für die strukturierte Wiederholung.</p>
+    <p class="card-hint" style="margin-bottom: 1rem;" id="lf-mode-hint">Im Lesemodus sind Frage und Antwort gemeinsam sichtbar.</p>
     <div id="lf-blocks"></div>
   </section>
 
@@ -425,7 +457,6 @@
   ];
 
   const BADGE_CLASS = { 'Methodik':'methodik', 'Zivilrecht':'zivil', 'Strafrecht':'straf', 'Öffentliches Recht':'oeff' };
-
   const WEEKPLAN = {
     1: { name: 'Mo', slots: [{ time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' }, { time: '12:00–16:00', activity: 'Examenskurs Zivilrecht', tag: 'kurs' }]},
     2: { name: 'Di', slots: [{ time: 'Vormittag', activity: '100-Tage-Plan (heutiger Tag)', tag: 'stex' }, { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' }, { time: 'Nachmittag', activity: 'Schwerpunkt oder Stex (variabel)', tag: 'sp' }]},
@@ -435,19 +466,16 @@
     6: { name: 'Sa', slots: [{ time: '09:00–14:00', activity: 'Klausuren (wenn angeboten)', tag: 'kurs' }, { time: '12:00–13:00', activity: 'Mittagspause (wenn frei)', tag: 'pause' }]},
     0: { name: 'So', slots: [{ time: 'ganztägig', activity: 'Frei – Erholung', tag: 'frei' }]}
   };
-
   const SP_DATE = '2026-07-29';
   const EX_DATE = '2027-10-01';
   const DEFAULT_START = '2026-05-11';
   const STEX_LERNTAGE = [2, 5];
-
   const SP_BLOCKS_DEFAULT = [
     { id: 'umweltAT', title: 'Umweltrecht AT', items: [] },
     { id: 'umweltBT', title: 'Umweltrecht BT', items: [] },
     { id: 'klimaEnergie', title: 'Klima- und Energierecht', items: [] },
     { id: 'infraPlanung', title: 'Infrastruktur- und Planungsrecht', items: [] }
   ];
-
   const LF_BLOCKS_DEFAULT = [
     { id: 'umweltAT', title: 'Umweltrecht AT', items: [] },
     { id: 'umweltBT', title: 'Umweltrecht BT', items: [] },
@@ -462,8 +490,8 @@
   let lkSortBy = 'norm';
   let saveTimer = null;
   let lfMode = 'lesen';
-  let lfRevealed = {};   // id -> bool, in dieser Sitzung aufgedeckt
-  let lfEditing = null;  // id der Frage, die gerade bearbeitet wird
+  let lfRevealed = {};
+  let lfEditing = null;
 
   function loadState() {
     try {
@@ -472,9 +500,7 @@
         const p = JSON.parse(raw);
         return {
           startDate: p.startDate || DEFAULT_START,
-          done: p.done || {},
-          notes: p.notes || {},
-          lk: p.lk || {},
+          done: p.done || {}, notes: p.notes || {}, lk: p.lk || {},
           sp: p.sp || SP_BLOCKS_DEFAULT.map(b => ({...b, items: []})),
           lf: p.lf || LF_BLOCKS_DEFAULT.map(b => ({...b, items: []}))
         };
@@ -484,10 +510,7 @@
   }
   function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {} }
 
-  function todayISO() {
-    const d = new Date();
-    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-  }
+  function todayISO() { const d = new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
   function daysBetween(a,b) { return Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/86400000); }
   function dateForDay(tag) { const d = new Date(state.startDate+'T00:00:00'); d.setDate(d.getDate()+(tag-1)); return d.toISOString().slice(0,10); }
   function formatDateDE(iso) { return new Date(iso+'T00:00:00').toLocaleDateString('de-DE', {day:'2-digit',month:'2-digit',year:'numeric'}); }
@@ -495,6 +518,241 @@
   function currentDayNumber() { const o = daysBetween(state.startDate, todayISO())+1; if (o<1) return 0; if (o>100) return 101; return o; }
   function countDone() { return Object.values(state.done).filter(Boolean).length; }
   function nextOpenPlanDay() { for (let i=0; i<PLAN.length; i++) if (!state.done[PLAN[i].tag]) return PLAN[i]; return null; }
+
+  /* ---------- HTML-Sanitizer (für Word-Einfügen) ---------- */
+
+  // Entfernt Word-/Office-spezifische Inline-Styles, MS-Tags, Klassen, leere Spans
+  // Behält: <p>, <br>, <strong>, <b>, <em>, <i>, <u>, <ul>, <ol>, <li>, <table>, <thead>, <tbody>, <tr>, <td>, <th>
+  function sanitizeHtml(html) {
+    if (!html) return '';
+    const ALLOWED_TAGS = ['P','BR','STRONG','B','EM','I','U','UL','OL','LI','TABLE','THEAD','TBODY','TR','TD','TH','DIV','SPAN'];
+    // KEINE Attribute zulassen, ausser bei TD/TH: rowspan/colspan
+    const ALLOWED_ATTRS_BY_TAG = { 'TD': ['colspan','rowspan'], 'TH': ['colspan','rowspan'] };
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    // Entferne Word-spezifische <o:p>, <w:*>, <m:*> per Regex vorab
+    tmp.innerHTML = tmp.innerHTML
+      .replace(/<\/?o:p[^>]*>/gi, '')
+      .replace(/<\/?w:[a-z]+[^>]*>/gi, '')
+      .replace(/<\/?m:[a-z]+[^>]*>/gi, '')
+      .replace(/<!--\[if[\s\S]*?endif\]-->/gi, '')
+      .replace(/<style[\s\S]*?<\/style>/gi, '')
+      .replace(/<meta[^>]*>/gi, '')
+      .replace(/<link[^>]*>/gi, '')
+      .replace(/\sclass="[^"]*"/gi, '')
+      .replace(/\sstyle="[^"]*"/gi, '')
+      .replace(/\slang="[^"]*"/gi, '')
+      .replace(/\sxml:lang="[^"]*"/gi, '')
+      .replace(/\sxmlns[^=]*="[^"]*"/gi, '');
+
+    // Walker, um Knoten zu prüfen
+    function clean(node) {
+      const children = Array.from(node.childNodes);
+      children.forEach(child => {
+        if (child.nodeType === 1) { // Element
+          const tag = child.tagName;
+          if (ALLOWED_TAGS.indexOf(tag) === -1) {
+            // Tag entfernen, Kinder erhalten
+            const parent = child.parentNode;
+            while (child.firstChild) parent.insertBefore(child.firstChild, child);
+            parent.removeChild(child);
+          } else {
+            // Attribute filtern
+            const allowed = ALLOWED_ATTRS_BY_TAG[tag] || [];
+            Array.from(child.attributes).forEach(attr => {
+              if (allowed.indexOf(attr.name) === -1) child.removeAttribute(attr.name);
+            });
+            // Bei DIV/SPAN: in Inhalte auflösen, wenn keine Attribute mehr
+            if ((tag === 'DIV' || tag === 'SPAN') && child.attributes.length === 0) {
+              const parent = child.parentNode;
+              while (child.firstChild) parent.insertBefore(child.firstChild, child);
+              parent.removeChild(child);
+              return;
+            }
+            clean(child);
+          }
+        } else if (child.nodeType === 8) { // Kommentar
+          child.parentNode.removeChild(child);
+        }
+      });
+    }
+    clean(tmp);
+    return tmp.innerHTML;
+  }
+
+  /* ---------- Rich-Text-Editor ---------- */
+
+  function createRTE(initialHtml, placeholder, onChange) {
+    const wrap = document.createElement('div');
+    wrap.className = 'rte-wrap';
+
+    const tb = document.createElement('div');
+    tb.className = 'rte-toolbar';
+
+    const editor = document.createElement('div');
+    editor.className = 'rte-content';
+    editor.contentEditable = 'true';
+    editor.spellcheck = true;
+    editor.setAttribute('data-placeholder', placeholder || '');
+    editor.innerHTML = initialHtml || '';
+
+    function exec(cmd, val) {
+      editor.focus();
+      try { document.execCommand(cmd, false, val || null); } catch(e) {}
+      onChange(editor.innerHTML);
+    }
+    function tool(label, title, cmd, cls) {
+      const b = document.createElement('button');
+      b.className = 'rte-tool' + (cls ? ' '+cls : '');
+      b.type = 'button';
+      b.textContent = label;
+      b.title = title;
+      b.onmousedown = function(e) { e.preventDefault(); }; // erhält Selektion
+      b.onclick = function() { exec(cmd); };
+      return b;
+    }
+    function sep() { const s = document.createElement('div'); s.className='rte-tool-sep'; return s; }
+
+    tb.appendChild(tool('F', 'Fett (Strg+B)', 'bold', 'bold'));
+    tb.appendChild(tool('K', 'Kursiv (Strg+I)', 'italic', 'italic'));
+    tb.appendChild(tool('U', 'Unterstrichen', 'underline', 'underline'));
+    tb.appendChild(sep());
+    tb.appendChild(tool('• Liste', 'Aufzählung', 'insertUnorderedList'));
+    tb.appendChild(tool('1. Liste', 'Nummerierte Liste', 'insertOrderedList'));
+    tb.appendChild(sep());
+
+    // Tabelle einfügen
+    const tblBtn = document.createElement('button');
+    tblBtn.className = 'rte-tool'; tblBtn.type = 'button'; tblBtn.textContent = '⊞ Tabelle'; tblBtn.title = 'Tabelle einfügen';
+    tblBtn.onmousedown = function(e) { e.preventDefault(); };
+    tblBtn.onclick = function() {
+      const r = parseInt(prompt('Anzahl Zeilen (inkl. Kopfzeile):', '3'), 10);
+      const c = parseInt(prompt('Anzahl Spalten:', '2'), 10);
+      if (!r || !c || r < 1 || c < 1) return;
+      let html = '<table><thead><tr>';
+      for (let i=0;i<c;i++) html += '<th>&nbsp;</th>';
+      html += '</tr></thead><tbody>';
+      for (let i=0;i<r-1;i++) {
+        html += '<tr>';
+        for (let j=0;j<c;j++) html += '<td>&nbsp;</td>';
+        html += '</tr>';
+      }
+      html += '</tbody></table><p>&nbsp;</p>';
+      exec('insertHTML', html);
+    };
+    tb.appendChild(tblBtn);
+
+    // Zeile/Spalte einfügen/löschen
+    const rowAdd = document.createElement('button');
+    rowAdd.className = 'rte-tool'; rowAdd.type = 'button'; rowAdd.textContent = '+Z'; rowAdd.title = 'Zeile darunter einfügen';
+    rowAdd.onmousedown = function(e) { e.preventDefault(); };
+    rowAdd.onclick = function() { tableEdit('rowAdd'); };
+    tb.appendChild(rowAdd);
+
+    const rowDel = document.createElement('button');
+    rowDel.className = 'rte-tool'; rowDel.type = 'button'; rowDel.textContent = '−Z'; rowDel.title = 'Zeile löschen';
+    rowDel.onmousedown = function(e) { e.preventDefault(); };
+    rowDel.onclick = function() { tableEdit('rowDel'); };
+    tb.appendChild(rowDel);
+
+    const colAdd = document.createElement('button');
+    colAdd.className = 'rte-tool'; colAdd.type = 'button'; colAdd.textContent = '+S'; colAdd.title = 'Spalte rechts einfügen';
+    colAdd.onmousedown = function(e) { e.preventDefault(); };
+    colAdd.onclick = function() { tableEdit('colAdd'); };
+    tb.appendChild(colAdd);
+
+    const colDel = document.createElement('button');
+    colDel.className = 'rte-tool'; colDel.type = 'button'; colDel.textContent = '−S'; colDel.title = 'Spalte löschen';
+    colDel.onmousedown = function(e) { e.preventDefault(); };
+    colDel.onclick = function() { tableEdit('colDel'); };
+    tb.appendChild(colDel);
+
+    tb.appendChild(sep());
+
+    const clearBtn = document.createElement('button');
+    clearBtn.className = 'rte-tool'; clearBtn.type = 'button'; clearBtn.textContent = '⌫ Format'; clearBtn.title = 'Formatierung entfernen';
+    clearBtn.onmousedown = function(e) { e.preventDefault(); };
+    clearBtn.onclick = function() { exec('removeFormat'); };
+    tb.appendChild(clearBtn);
+
+    function getCellAtSelection() {
+      const sel = window.getSelection();
+      if (!sel.rangeCount) return null;
+      let n = sel.anchorNode;
+      while (n && n !== editor) {
+        if (n.nodeType === 1 && (n.tagName === 'TD' || n.tagName === 'TH')) return n;
+        n = n.parentNode;
+      }
+      return null;
+    }
+    function tableEdit(action) {
+      const cell = getCellAtSelection();
+      if (!cell) { alert('Cursor zuerst in eine Tabellenzelle setzen.'); return; }
+      const row = cell.parentNode;
+      const table = cell.closest('table');
+      if (!table) return;
+      if (action === 'rowAdd') {
+        const newRow = document.createElement('tr');
+        const len = row.children.length;
+        for (let i=0; i<len; i++) {
+          const td = document.createElement('td'); td.innerHTML = '&nbsp;';
+          newRow.appendChild(td);
+        }
+        if (row.nextSibling) row.parentNode.insertBefore(newRow, row.nextSibling);
+        else row.parentNode.appendChild(newRow);
+      } else if (action === 'rowDel') {
+        if (row.parentNode.children.length <= 1) {
+          if (confirm('Letzte Zeile löschen entfernt die ganze Tabelle. Fortfahren?')) table.parentNode.removeChild(table);
+        } else row.parentNode.removeChild(row);
+      } else if (action === 'colAdd') {
+        const idx = Array.from(row.children).indexOf(cell);
+        Array.from(table.querySelectorAll('tr')).forEach(r => {
+          const cellTag = r.children[0] && r.children[0].tagName === 'TH' ? 'th' : 'td';
+          const nc = document.createElement(cellTag); nc.innerHTML = '&nbsp;';
+          if (r.children[idx+1]) r.insertBefore(nc, r.children[idx+1]);
+          else r.appendChild(nc);
+        });
+      } else if (action === 'colDel') {
+        const idx = Array.from(row.children).indexOf(cell);
+        const cols = row.children.length;
+        if (cols <= 1) {
+          if (confirm('Letzte Spalte löschen entfernt die ganze Tabelle. Fortfahren?')) table.parentNode.removeChild(table);
+        } else {
+          Array.from(table.querySelectorAll('tr')).forEach(r => {
+            if (r.children[idx]) r.removeChild(r.children[idx]);
+          });
+        }
+      }
+      onChange(editor.innerHTML);
+    }
+
+    // Word-Einfügen abfangen und säubern
+    editor.addEventListener('paste', function(e) {
+      const html = e.clipboardData.getData('text/html');
+      const text = e.clipboardData.getData('text/plain');
+      if (html && html.length > 0) {
+        e.preventDefault();
+        const cleaned = sanitizeHtml(html);
+        document.execCommand('insertHTML', false, cleaned);
+        onChange(editor.innerHTML);
+      } else if (text) {
+        // Plain Text einfügen ohne Browser-Default (das fügt sonst manchmal Styles ein)
+        e.preventDefault();
+        document.execCommand('insertText', false, text);
+        onChange(editor.innerHTML);
+      }
+    });
+
+    editor.addEventListener('input', function() {
+      onChange(editor.innerHTML);
+    });
+
+    wrap.appendChild(tb);
+    wrap.appendChild(editor);
+    return wrap;
+  }
+
+  /* ---------- Dashboard ---------- */
 
   function tempoText() {
     const today = todayISO();
@@ -541,15 +799,14 @@
     const topicEl = document.getElementById('today-topic');
     const actionsEl = document.getElementById('today-actions');
     const hintEl = document.getElementById('today-hint');
-    actionsEl.innerHTML = '';
-    hintEl.textContent = '';
+    actionsEl.innerHTML = ''; hintEl.textContent = '';
     const day = currentDayNumber();
     const isStexLerntag = STEX_LERNTAGE.indexOf(wd) !== -1;
-    if (wd === 1) { titleEl.textContent = 'Examenskurs Zivilrecht'; topicEl.textContent = '12–16 Uhr · Bringt das Stex-Training mit'; hintEl.textContent = 'Kein 100-Tage-Plan-Tag. Fall- und Klausurarbeit ist hier die Hauptaufgabe.'; return; }
-    if (wd === 3) { titleEl.textContent = 'Lehrstuhl + Seminar Öffentliches Recht'; topicEl.textContent = '10–12:30 Lehrstuhl · 14–16 Seminar'; hintEl.textContent = 'Das Seminar-Thema baut sich gut in den Lernkommentar (Reiter rechts) ein.'; return; }
-    if (wd === 4) { titleEl.textContent = 'Examenskurs Öffentliches Recht'; topicEl.textContent = '10–14 Uhr · Stoffüberschneidung mit Schwerpunkt nutzen'; hintEl.textContent = 'Wenn etwas Neues kommt: kurz im 100-Tage-Tracker nachsehen, ob es zu einem Tag passt.'; return; }
-    if (wd === 6) { titleEl.textContent = 'Samstagsklausur (wenn angeboten)'; topicEl.textContent = '9–14 Uhr · sonst freier Tag'; hintEl.textContent = 'Schreiben ist die wichtigste Übung. Nach der Klausur: Pause, nicht direkt nachbearbeiten.'; return; }
-    if (wd === 0) { titleEl.textContent = 'Sonntag — Erholung'; topicEl.textContent = 'Nicht lernen ist auch Lernen.'; hintEl.textContent = 'Dr. Hügel empfiehlt einen vollständig freien Tag pro Woche. Heute keine Aufgaben.'; return; }
+    if (wd === 1) { titleEl.textContent = 'Examenskurs Zivilrecht'; topicEl.textContent = '12–16 Uhr'; hintEl.textContent = 'Kein 100-Tage-Plan-Tag.'; return; }
+    if (wd === 3) { titleEl.textContent = 'Lehrstuhl + Seminar Öffentliches Recht'; topicEl.textContent = '10–12:30 Lehrstuhl · 14–16 Seminar'; hintEl.textContent = 'Seminar-Themen in den Lernkommentar einbauen.'; return; }
+    if (wd === 4) { titleEl.textContent = 'Examenskurs Öffentliches Recht'; topicEl.textContent = '10–14 Uhr'; hintEl.textContent = 'Stoffüberschneidung mit Schwerpunkt nutzen.'; return; }
+    if (wd === 6) { titleEl.textContent = 'Samstagsklausur (wenn angeboten)'; topicEl.textContent = '9–14 Uhr'; hintEl.textContent = 'Schreiben ist die wichtigste Übung.'; return; }
+    if (wd === 0) { titleEl.textContent = 'Sonntag — Erholung'; topicEl.textContent = 'Nicht lernen ist auch Lernen.'; hintEl.textContent = 'Heute keine Aufgaben.'; return; }
     if (isStexLerntag && day >= 1 && day <= 100) {
       const planItem = nextOpenPlanDay();
       if (planItem) {
@@ -576,7 +833,7 @@
     if (currentFilter==='done') items = items.filter(p=>!!state.done[p.tag]);
     if (currentFilter==='today') { const next = nextOpenPlanDay(); items = next ? items.filter(p=>p.tag===next.tag) : []; }
     list.innerHTML = '';
-    if (items.length===0) { const e = document.createElement('p'); e.className='empty'; e.textContent='Keine Einträge für diesen Filter.'; list.appendChild(e); return; }
+    if (items.length===0) { const e = document.createElement('p'); e.className='empty'; e.textContent='Keine Einträge.'; list.appendChild(e); return; }
     items.forEach(it => {
       const isDone = !!state.done[it.tag];
       const next = nextOpenPlanDay();
@@ -633,8 +890,7 @@
         const text = document.createElement('div'); text.className='sp-item-text'+(item.status==='fertig'?' fertig':''); text.textContent = item.text;
         const sel = document.createElement('select'); sel.className='sp-item-status-select';
         ['offen','arbeit','fertig'].forEach(s => {
-          const opt = document.createElement('option'); opt.value=s;
-          opt.textContent = ({offen:'offen',arbeit:'in Arbeit',fertig:'fertig'})[s];
+          const opt = document.createElement('option'); opt.value=s; opt.textContent = ({offen:'offen',arbeit:'in Arbeit',fertig:'fertig'})[s];
           if (item.status===s) opt.selected = true; sel.appendChild(opt);
         });
         sel.onchange = function() { item.status = sel.value; saveState(); renderSp(); };
@@ -667,8 +923,8 @@
     const wrap = document.getElementById('lf-blocks'); wrap.innerHTML = '';
     document.querySelectorAll('.lf-mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === lfMode));
     document.getElementById('lf-mode-hint').textContent = lfMode === 'lesen'
-      ? 'Im Lesemodus sind Frage und Antwort gemeinsam sichtbar — gut für die strukturierte Wiederholung.'
-      : 'Im Abfragemodus ist die Antwort verdeckt. Versuchen Sie sie erst zu beantworten, dann aufdecken und sich selbst bewerten.';
+      ? 'Im Lesemodus sind Frage und Antwort gemeinsam sichtbar.'
+      : 'Im Abfragemodus ist die Antwort verdeckt. Erst beantworten, dann aufdecken und bewerten.';
     renderLfStats();
 
     state.lf.forEach(block => {
@@ -684,32 +940,33 @@
       block.items.forEach((item, idx) => {
         const card = document.createElement('div'); card.className='lf-card';
         if (lfEditing === item.id) {
-          // Bearbeiten-Modus
           const form = document.createElement('div'); form.className='lf-edit-form';
           const qInp = document.createElement('textarea'); qInp.value = item.question; qInp.placeholder = 'Frage';
-          const aInp = document.createElement('textarea'); aInp.value = item.answer || ''; aInp.placeholder = 'Antwort'; aInp.style.minHeight = '100px';
+          form.appendChild(qInp);
+          const aLabel = document.createElement('label'); aLabel.className='lk-field-label'; aLabel.textContent = 'Antwort'; form.appendChild(aLabel);
+          const rte = createRTE(item.answer || '', 'Antwort eingeben...', function(html) { item._draftAnswer = html; });
+          form.appendChild(rte);
           const btnRow = document.createElement('div'); btnRow.className='lf-edit-actions';
           const save = document.createElement('button'); save.className='primary small'; save.textContent='Speichern';
           save.onclick = function() {
             item.question = qInp.value.trim();
-            item.answer = aInp.value.trim();
+            item.answer = item._draftAnswer !== undefined ? item._draftAnswer : (item.answer || '');
+            delete item._draftAnswer;
             item.updatedAt = Date.now();
             lfEditing = null; saveState(); renderLf();
           };
           const cancel = document.createElement('button'); cancel.className='small'; cancel.textContent='Abbrechen';
-          cancel.onclick = function() { lfEditing = null; renderLf(); };
+          cancel.onclick = function() { delete item._draftAnswer; lfEditing = null; renderLf(); };
           btnRow.appendChild(save); btnRow.appendChild(cancel);
-          form.appendChild(qInp); form.appendChild(aInp); form.appendChild(btnRow);
+          form.appendChild(btnRow);
           card.appendChild(form);
         } else {
-          // Anzeigen
           const qWrap = document.createElement('div'); qWrap.className='lf-card-q';
           const q = document.createElement('div'); q.className='lf-question'; q.textContent = item.question;
           const acts = document.createElement('div'); acts.className='lf-card-actions';
           const edit = document.createElement('button'); edit.className='small'; edit.textContent='Bearbeiten';
           edit.onclick = function() { lfEditing = item.id; renderLf(); };
-          const del = document.createElement('button'); del.className='small'; del.textContent='✕';
-          del.title = 'Frage löschen';
+          const del = document.createElement('button'); del.className='small'; del.textContent='✕'; del.title = 'Frage löschen';
           del.onclick = function() { if (confirm('Frage löschen?')) { block.items.splice(idx, 1); saveState(); renderLf(); } };
           acts.appendChild(edit); acts.appendChild(del);
           qWrap.appendChild(q); qWrap.appendChild(acts);
@@ -718,8 +975,13 @@
           const isRevealed = lfMode === 'lesen' || !!lfRevealed[item.id];
           if (isRevealed) {
             const a = document.createElement('div'); a.className='lf-answer';
-            if (item.answer && item.answer.trim()) a.textContent = item.answer;
-            else { a.classList.add('lf-answer-empty'); a.textContent = '(noch keine Antwort hinterlegt — bearbeiten Sie die Karte, um eine zu ergänzen)'; }
+            if (item.answer && item.answer.replace(/<[^>]*>/g, '').trim()) {
+              const inner = document.createElement('div'); inner.className = 'rendered'; inner.innerHTML = item.answer;
+              a.appendChild(inner);
+            } else {
+              a.classList.add('lf-answer-empty');
+              a.textContent = '(noch keine Antwort hinterlegt — bearbeiten Sie die Karte, um eine zu ergänzen)';
+            }
             card.appendChild(a);
           } else {
             const reveal = document.createElement('button'); reveal.className='lf-reveal-btn small';
@@ -732,17 +994,12 @@
             const rate = document.createElement('div'); rate.className='lf-rate';
             const lbl = document.createElement('span'); lbl.className='lf-rate-label'; lbl.textContent = 'Selbsteinschätzung:';
             rate.appendChild(lbl);
-            [
-              { key:'known', label:'gewusst', cls:'success' },
-              { key:'unsure', label:'unsicher', cls:'warn' },
-              { key:'unknown', label:'nicht gewusst', cls:'danger' }
-            ].forEach(r => {
+            [{key:'known',label:'gewusst',cls:'success'},{key:'unsure',label:'unsicher',cls:'warn'},{key:'unknown',label:'nicht gewusst',cls:'danger'}].forEach(r => {
               const b = document.createElement('button');
               b.className = 'lf-rate-btn '+r.cls + (item.lastRating === r.key ? ' active' : '');
               b.textContent = r.label;
               b.onclick = function() {
-                item.lastRating = r.key;
-                item.lastRatedAt = Date.now();
+                item.lastRating = r.key; item.lastRatedAt = Date.now();
                 if (!item.history) item.history = [];
                 item.history.push({ rating: r.key, at: Date.now() });
                 saveState(); renderLf();
@@ -760,18 +1017,20 @@
         bx.appendChild(card);
       });
 
-      // Add-Form
+      // Add-Form: Frage als textarea, Antwort als RTE
       const addForm = document.createElement('div'); addForm.className='lf-add-form';
       const qInp = document.createElement('textarea'); qInp.placeholder = 'Neue Lernfrage...'; qInp.style.minHeight = '50px';
-      const aInp = document.createElement('textarea'); aInp.placeholder = 'Antwort (kann später ergänzt werden)'; aInp.style.minHeight = '50px';
+      addForm.appendChild(qInp);
+      let draft = '';
+      const rte = createRTE('', 'Antwort (Tabellen aus Word einfügbar)...', function(html) { draft = html; });
+      addForm.appendChild(rte);
       const addBtn = document.createElement('button'); addBtn.className='primary small'; addBtn.textContent='+ Frage hinzufügen';
-      const add = function() {
+      addBtn.onclick = function() {
         const q = qInp.value.trim(); if (!q) return;
-        block.items.push({ id: lfNewId(), question: q, answer: aInp.value.trim(), createdAt: Date.now(), updatedAt: Date.now(), history: [] });
-        qInp.value = ''; aInp.value = ''; saveState(); renderLf();
+        block.items.push({ id: lfNewId(), question: q, answer: draft, createdAt: Date.now(), updatedAt: Date.now(), history: [] });
+        qInp.value = ''; saveState(); renderLf();
       };
-      addBtn.onclick = add;
-      addForm.appendChild(qInp); addForm.appendChild(aInp); addForm.appendChild(addBtn);
+      addForm.appendChild(addBtn);
       bx.appendChild(addForm);
 
       wrap.appendChild(bx);
@@ -783,11 +1042,21 @@
   function newId() { return 'lk_'+Date.now()+'_'+Math.random().toString(36).slice(2,7); }
   function compareNorms(a,b) { return (a.norm||'').toLowerCase().localeCompare((b.norm||'').toLowerCase(), 'de', {numeric:true}); }
   function getLkArray() { return Object.keys(state.lk).map(id => Object.assign({id:id}, state.lk[id])); }
+
+  function htmlToText(html) {
+    if (!html) return '';
+    const tmp = document.createElement('div'); tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+
   function getFilteredSorted() {
     let items = getLkArray();
     if (lkSearchTerm) {
       const q = lkSearchTerm.toLowerCase();
-      items = items.filter(it => [it.norm,it.rechtsfolge,it.tatbestand,it.notizen].filter(Boolean).join(' ').toLowerCase().includes(q));
+      items = items.filter(it => {
+        const blob = (it.norm||'') + ' ' + htmlToText(it.rechtsfolge||'') + ' ' + htmlToText(it.tatbestand||'') + ' ' + htmlToText(it.notizen||'');
+        return blob.toLowerCase().includes(q);
+      });
     }
     if (lkSortBy==='recent') items.sort((a,b) => (b.updatedAt||0)-(a.updatedAt||0));
     else items.sort(compareNorms);
@@ -812,24 +1081,36 @@
     const detail = document.getElementById('lk-detail'); detail.innerHTML = '';
     if (!currentLkId || !state.lk[currentLkId]) { const e = document.createElement('p'); e.className='lk-detail-empty'; e.textContent = 'Wählen Sie links eine Norm aus oder legen Sie eine neue an.'; detail.appendChild(e); return; }
     const entry = state.lk[currentLkId];
-    const fields = [
-      {key:'norm', label:'Norm', placeholder:'z.B. § 107 BGB', hint:'Die zentrale Vorschrift.', type:'input'},
-      {key:'rechtsfolge', label:'Rechtsfolge (RF)', placeholder:'z.B. § 108 Abs. 1 BGB "erforderlich"', hint:'Wohin verweist die Norm?', type:'textarea'},
-      {key:'tatbestand', label:'Tatbestand (TB)', placeholder:'Voraussetzungen', hint:'Aufzählung mit kurzer Auslegung.', type:'textarea'},
-      {key:'notizen', label:'Auslegung, Streit, Schemata, Beispiele', placeholder:'Freier Text', hint:'Alles, was nicht in die festen Felder passt.', type:'textarea'}
+
+    // Norm: einfaches Input (kein RTE)
+    const normWrap = document.createElement('div'); normWrap.className='lk-field';
+    const normLabel = document.createElement('label'); normLabel.className='lk-field-label'; normLabel.textContent = 'Norm';
+    normWrap.appendChild(normLabel);
+    const normInp = document.createElement('input'); normInp.type='text';
+    normInp.placeholder = 'z.B. § 107 BGB'; normInp.value = entry.norm || '';
+    normInp.oninput = function() { entry.norm = normInp.value; entry.updatedAt = Date.now(); scheduleSave(); };
+    normWrap.appendChild(normInp);
+    const normHint = document.createElement('p'); normHint.className='lk-field-hint'; normHint.textContent = 'Die zentrale Vorschrift.'; normWrap.appendChild(normHint);
+    detail.appendChild(normWrap);
+
+    // Rechtsfolge, Tatbestand, Notizen: RTE
+    const rteFields = [
+      {key:'rechtsfolge', label:'Rechtsfolge (RF)', placeholder:'z.B. § 108 Abs. 1 BGB "erforderlich"', hint:'Wohin verweist die Norm?'},
+      {key:'tatbestand', label:'Tatbestand (TB)', placeholder:'Voraussetzungen — gerne als Tabelle aus Word einfügen', hint:'Aufzählung mit kurzer Auslegung. Tabellen werden unterstützt.'},
+      {key:'notizen', label:'Auslegung, Streit, Schemata, Beispiele', placeholder:'Tabellen aus Word, Listen, Fettungen — alles möglich', hint:'Hier ist Platz für alles. Tabellen aus Word einfach kopieren und einfügen.'}
     ];
-    fields.forEach(f => {
+    rteFields.forEach(f => {
       const wrap = document.createElement('div'); wrap.className='lk-field';
-      const label = document.createElement('label'); label.className='lk-field-label'; label.textContent = f.label; wrap.appendChild(label);
-      let input;
-      if (f.type==='input') { input = document.createElement('input'); input.type='text'; }
-      else { input = document.createElement('textarea'); if (f.key==='notizen') input.style.minHeight='160px'; }
-      input.placeholder = f.placeholder; input.value = entry[f.key] || '';
-      input.oninput = function() { entry[f.key] = input.value; entry.updatedAt = Date.now(); scheduleSave(); };
-      wrap.appendChild(input);
-      if (f.hint) { const h = document.createElement('p'); h.className='lk-field-hint'; h.textContent=f.hint; wrap.appendChild(h); }
+      const label = document.createElement('label'); label.className='lk-field-label'; label.textContent = f.label;
+      wrap.appendChild(label);
+      const rte = createRTE(entry[f.key] || '', f.placeholder, function(html) {
+        entry[f.key] = html; entry.updatedAt = Date.now(); scheduleSave();
+      });
+      wrap.appendChild(rte);
+      const hint = document.createElement('p'); hint.className='lk-field-hint'; hint.textContent = f.hint; wrap.appendChild(hint);
       detail.appendChild(wrap);
     });
+
     const actions = document.createElement('div'); actions.className='lk-detail-actions';
     const saved = document.createElement('span'); saved.className='lk-saved-indicator'; saved.id='lk-saved'; saved.textContent='Automatisch gespeichert';
     const del = document.createElement('button'); del.className='danger'; del.textContent='Eintrag löschen';
@@ -844,7 +1125,7 @@
       saveState();
       const i = document.getElementById('lk-saved'); if (i) i.textContent = 'Automatisch gespeichert';
       renderLkList();
-    }, 400);
+    }, 500);
   }
 
   function renderAll() { renderDashboard(); renderTracker(); renderWochenplan(); renderSp(); renderLf(); renderLk(); }
@@ -869,13 +1150,8 @@
       this.classList.add('active'); renderTracker();
     };
   });
-
   document.querySelectorAll('.lf-mode-btn').forEach(b => {
-    b.onclick = function() {
-      lfMode = this.dataset.mode;
-      lfRevealed = {}; // beim Moduswechsel alles wieder verdecken
-      renderLf();
-    };
+    b.onclick = function() { lfMode = this.dataset.mode; lfRevealed = {}; renderLf(); };
   });
 
   document.getElementById('lk-new').onclick = function() {
@@ -888,7 +1164,7 @@
   document.getElementById('lk-sort').onchange = function(e) { lkSortBy = e.target.value; renderLkList(); };
 
   document.getElementById('start-date').onchange = function(e) { state.startDate = e.target.value; saveState(); renderAll(); };
-  document.getElementById('reset-btn').onclick = function() { if (confirm('Wirklich allen 100-Tage-Fortschritt zurücksetzen? (Alle anderen Daten bleiben erhalten.)')) { state.done = {}; saveState(); renderAll(); } };
+  document.getElementById('reset-btn').onclick = function() { if (confirm('Wirklich allen 100-Tage-Fortschritt zurücksetzen?')) { state.done = {}; saveState(); renderAll(); } };
   document.getElementById('export-btn').onclick = function() {
     const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
     const url = URL.createObjectURL(blob);
