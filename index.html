@@ -15,6 +15,13 @@
     --border: rgba(0,0,0,0.12);
     --border-strong: rgba(0,0,0,0.25);
     --accent: #1a1a1a;
+    --danger: #791F1F;
+    --info-bg: #E6F1FB;
+    --info-fg: #0C447C;
+    --warn-bg: #FAEEDA;
+    --warn-fg: #854F0B;
+    --success-bg: #EAF3DE;
+    --success-fg: #27500A;
     --radius-md: 8px;
     --radius-lg: 12px;
     --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
@@ -30,214 +37,66 @@
       --border: rgba(255,255,255,0.12);
       --border-strong: rgba(255,255,255,0.25);
       --accent: #f0eee8;
+      --danger: #F09595;
+      --info-bg: #0C447C;
+      --info-fg: #B5D4F4;
+      --warn-bg: #633806;
+      --warn-fg: #FAC775;
+      --success-bg: #27500A;
+      --success-fg: #C0DD97;
     }
   }
   * { box-sizing: border-box; }
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-sans);
-    line-height: 1.5;
-  }
-  .app {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
-  }
-  header {
-    margin-bottom: 2rem;
-  }
-  h1 {
-    font-size: 22px;
-    font-weight: 500;
-    margin: 0 0 4px;
-  }
-  .subtitle {
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-  .tabs {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 1.5rem;
-    border-bottom: 0.5px solid var(--border);
-  }
-  .tab-btn {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid transparent;
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: 400;
-    cursor: pointer;
-    color: var(--text-secondary);
-    font-family: inherit;
-    border-radius: 0;
-    transition: color 0.15s;
-  }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: var(--font-sans); line-height: 1.5; }
+  .app { max-width: 880px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  header { margin-bottom: 2rem; }
+  h1 { font-size: 22px; font-weight: 500; margin: 0 0 4px; }
+  h2 { font-size: 18px; font-weight: 500; margin: 1.5rem 0 1rem; }
+  h3 { font-size: 14px; font-weight: 500; margin: 0 0 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.04em; }
+  .subtitle { font-size: 14px; color: var(--text-secondary); margin: 0; }
+  .tabs { display: flex; gap: 4px; margin-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); flex-wrap: wrap; }
+  .tab-btn { background: transparent; border: none; border-bottom: 2px solid transparent; padding: 10px 14px; font-size: 14px; font-weight: 400; cursor: pointer; color: var(--text-secondary); font-family: inherit; border-radius: 0; transition: color 0.15s; }
   .tab-btn:hover { color: var(--text); }
-  .tab-btn.active {
-    border-bottom-color: var(--accent);
-    color: var(--text);
-    font-weight: 500;
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 12px;
-    margin-bottom: 1.5rem;
-  }
-  .stat {
-    background: var(--surface-2);
-    border-radius: var(--radius-md);
-    padding: 1rem;
-  }
-  .stat-label {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin: 0 0 6px;
-  }
-  .stat-value {
-    font-size: 24px;
-    font-weight: 500;
-    margin: 0;
-  }
-  .progress-wrap {
-    margin-bottom: 1.5rem;
-  }
-  .progress-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 6px;
-  }
-  .progress-label {
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-  .progress-pct {
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .progress-bar-bg {
-    height: 8px;
-    background: var(--surface-2);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .progress-bar {
-    height: 100%;
-    width: 0%;
-    background: var(--accent);
-    transition: width 0.3s ease;
-  }
-  .card {
-    background: var(--surface);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.25rem;
-    margin-bottom: 1rem;
-  }
-  .card-label {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin: 0 0 8px;
-  }
-  .card-title {
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0 0 4px;
-  }
-  .card-topic {
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin: 0 0 12px;
-  }
-  button {
-    background: transparent;
-    border: 0.5px solid var(--border-strong);
-    padding: 6px 14px;
-    font-size: 13px;
-    font-family: inherit;
-    color: var(--text);
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  button:hover {
-    background: var(--surface-2);
-  }
+  .tab-btn.active { border-bottom-color: var(--accent); color: var(--text); font-weight: 500; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+  .stat { background: var(--surface-2); border-radius: var(--radius-md); padding: 1rem; }
+  .stat.priority { background: var(--info-bg); color: var(--info-fg); }
+  .stat-label { font-size: 13px; color: var(--text-secondary); margin: 0 0 6px; }
+  .stat.priority .stat-label { color: var(--info-fg); opacity: 0.85; }
+  .stat-value { font-size: 24px; font-weight: 500; margin: 0; }
+  .progress-wrap { margin-bottom: 1.5rem; }
+  .progress-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .progress-label { font-size: 14px; color: var(--text-secondary); }
+  .progress-pct { font-size: 14px; font-weight: 500; }
+  .progress-bar-bg { height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+  .progress-bar { height: 100%; width: 0%; background: var(--accent); transition: width 0.3s ease; }
+  .card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
+  .card-label { font-size: 13px; color: var(--text-secondary); margin: 0 0 8px; }
+  .card-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .card-topic { font-size: 14px; color: var(--text-secondary); margin: 0 0 12px; }
+  .card-hint { font-size: 12px; color: var(--text-tertiary); margin-top: 8px; line-height: 1.5; }
+  button { background: transparent; border: 0.5px solid var(--border-strong); padding: 6px 14px; font-size: 13px; font-family: inherit; color: var(--text); border-radius: var(--radius-md); cursor: pointer; transition: all 0.15s; }
+  button:hover { background: var(--surface-2); }
   button:active { transform: scale(0.98); }
-  button.primary {
-    background: var(--accent);
-    color: var(--bg);
-    border-color: var(--accent);
-  }
-  input[type="date"], input[type="text"] {
-    border: 0.5px solid var(--border-strong);
-    padding: 6px 10px;
-    font-size: 13px;
-    font-family: inherit;
-    color: var(--text);
-    background: var(--surface);
-    border-radius: var(--radius-md);
-  }
-  .filters {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-  }
-  .filter-btn.active {
-    background: var(--accent);
-    color: var(--bg);
-    border-color: var(--accent);
-  }
-  .tracker-row {
-    display: grid;
-    grid-template-columns: 32px 70px 90px 1fr auto;
-    gap: 12px;
-    align-items: center;
-    padding: 10px 12px;
-    border-bottom: 0.5px solid var(--border);
-  }
-  .tracker-row.today {
-    background: var(--surface-2);
-  }
-  .tracker-row input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-  }
-  .tracker-tag {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-secondary);
-  }
-  .tracker-date {
-    font-size: 12px;
-    color: var(--text-tertiary);
-  }
-  .tracker-topic {
-    font-size: 13px;
-  }
-  .tracker-topic.done {
-    text-decoration: line-through;
-    color: var(--text-tertiary);
-  }
-  .tracker-topic .teil {
-    color: var(--text-secondary);
-    margin-right: 6px;
-  }
-  .badge {
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: var(--radius-md);
-    white-space: nowrap;
-  }
+  button.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  button.primary:hover { opacity: 0.85; background: var(--accent); }
+  button.danger { color: var(--danger); border-color: var(--danger); }
+  button.danger:hover { background: var(--danger); color: var(--bg); }
+  button.small { padding: 4px 10px; font-size: 12px; }
+  input[type="date"], input[type="text"], textarea, select { border: 0.5px solid var(--border-strong); padding: 8px 10px; font-size: 14px; font-family: inherit; color: var(--text); background: var(--surface); border-radius: var(--radius-md); width: 100%; }
+  textarea { resize: vertical; min-height: 60px; line-height: 1.6; }
+  input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+  .filters { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .filter-btn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .tracker-row { display: grid; grid-template-columns: 32px 70px 90px 1fr auto; gap: 12px; align-items: center; padding: 10px 12px; border-bottom: 0.5px solid var(--border); }
+  .tracker-row.today { background: var(--surface-2); }
+  .tracker-row input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
+  .tracker-tag { font-size: 13px; font-weight: 500; color: var(--text-secondary); }
+  .tracker-date { font-size: 12px; color: var(--text-tertiary); }
+  .tracker-topic { font-size: 13px; }
+  .tracker-topic.done { text-decoration: line-through; color: var(--text-tertiary); }
+  .tracker-topic .teil { color: var(--text-secondary); margin-right: 6px; }
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: var(--radius-md); white-space: nowrap; }
   .badge.methodik { background: #FAEEDA; color: #854F0B; }
   .badge.zivil { background: #E6F1FB; color: #0C447C; }
   .badge.straf { background: #FCEBEB; color: #791F1F; }
@@ -248,27 +107,68 @@
     .badge.straf { background: #791F1F; color: #F7C1C1; }
     .badge.oeff { background: #27500A; color: #C0DD97; }
   }
-  .settings-row {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .settings-row label {
-    font-size: 13px;
-  }
-  .empty {
-    text-align: center;
-    padding: 2rem;
-    color: var(--text-secondary);
-    font-size: 14px;
-  }
+  .settings-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .settings-row label { font-size: 13px; }
+  .empty { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 14px; }
   .hidden { display: none; }
+
+  /* Wochenplan */
+  .wp-day { display: grid; grid-template-columns: 80px 1fr; gap: 16px; padding: 14px 0; border-bottom: 0.5px solid var(--border); align-items: start; }
+  .wp-day:last-child { border-bottom: none; }
+  .wp-day-name { font-weight: 500; font-size: 14px; }
+  .wp-day-date { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; }
+  .wp-day-today .wp-day-name { color: var(--info-fg); }
+  .wp-slots { display: flex; flex-direction: column; gap: 6px; }
+  .wp-slot { display: flex; gap: 10px; align-items: center; font-size: 13px; }
+  .wp-time { font-variant-numeric: tabular-nums; color: var(--text-secondary); min-width: 88px; font-size: 12px; }
+  .wp-activity { flex: 1; }
+  .wp-tag { font-size: 11px; padding: 2px 8px; border-radius: var(--radius-md); }
+  .wp-tag.stex { background: var(--info-bg); color: var(--info-fg); }
+  .wp-tag.sp { background: var(--warn-bg); color: var(--warn-fg); }
+  .wp-tag.kurs { background: var(--success-bg); color: var(--success-fg); }
+  .wp-tag.frei { background: var(--surface-2); color: var(--text-tertiary); }
+  .wp-tag.pause { background: var(--surface-2); color: var(--text-tertiary); }
+
+  /* Schwerpunkt */
+  .sp-block { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
+  .sp-block-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; gap: 12px; flex-wrap: wrap; }
+  .sp-block-title { font-size: 15px; font-weight: 500; margin: 0; }
+  .sp-block-progress { font-size: 12px; color: var(--text-secondary); white-space: nowrap; }
+  .sp-item { display: grid; grid-template-columns: auto 1fr auto auto; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 0.5px solid var(--border); }
+  .sp-item:last-of-type { border-bottom: none; }
+  .sp-item-status { width: 10px; height: 10px; border-radius: 50%; }
+  .sp-item-status.offen { background: var(--surface-2); border: 1px solid var(--border-strong); }
+  .sp-item-status.arbeit { background: var(--warn-fg); }
+  .sp-item-status.fertig { background: var(--success-fg); }
+  .sp-item-text { font-size: 14px; }
+  .sp-item-text.fertig { text-decoration: line-through; color: var(--text-tertiary); }
+  .sp-item-status-select { font-size: 12px; padding: 4px 6px; width: auto; }
+  .sp-add-row { display: flex; gap: 8px; margin-top: 0.75rem; }
+  .sp-add-row input { flex: 1; }
+
+  /* Lernkommentar */
+  .lk-toolbar { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
+  .lk-toolbar input[type="text"] { flex: 1; min-width: 180px; width: auto; }
+  .lk-toolbar select { width: auto; padding: 6px 10px; font-size: 13px; }
+  .lk-grid { display: grid; grid-template-columns: 280px 1fr; gap: 1.5rem; align-items: start; }
+  @media (max-width: 700px) { .lk-grid { grid-template-columns: 1fr; } }
+  .lk-list { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; max-height: 600px; overflow-y: auto; }
+  .lk-list-item { padding: 10px 14px; border-bottom: 0.5px solid var(--border); cursor: pointer; transition: background 0.1s; }
+  .lk-list-item:hover { background: var(--surface-2); }
+  .lk-list-item.active { background: var(--surface-2); }
+  .lk-list-item:last-child { border-bottom: none; }
+  .lk-list-norm { font-size: 14px; font-weight: 500; margin: 0 0 2px; }
+  .lk-list-meta { font-size: 12px; color: var(--text-tertiary); margin: 0; }
+  .lk-detail { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; }
+  .lk-detail-empty { color: var(--text-secondary); text-align: center; padding: 3rem 1rem; font-size: 14px; }
+  .lk-field { margin-bottom: 1.25rem; }
+  .lk-field-label { display: block; font-size: 12px; font-weight: 500; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .lk-field-hint { font-size: 12px; color: var(--text-tertiary); margin-top: 4px; line-height: 1.4; }
+  .lk-detail-actions { display: flex; gap: 8px; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 0.5px solid var(--border); flex-wrap: wrap; align-items: center; }
+  .lk-saved-indicator { font-size: 12px; color: var(--text-tertiary); }
+
   @media (max-width: 600px) {
-    .tracker-row {
-      grid-template-columns: 32px 1fr auto;
-      grid-template-rows: auto auto;
-    }
+    .tracker-row { grid-template-columns: 32px 1fr auto; grid-template-rows: auto auto; }
     .tracker-tag, .tracker-date { grid-column: 2; font-size: 12px; }
     .tracker-tag { grid-row: 1; }
     .tracker-date { grid-row: 1; justify-self: end; grid-column: 3; }
@@ -279,30 +179,33 @@
 </head>
 <body>
 <div class="app">
-
   <header>
     <h1>Examensvorbereitung</h1>
-    <p class="subtitle">Lernplan nach Dr. Hügel · Staatsexamen Oktober 2027</p>
+    <p class="subtitle">Lernplan nach Dr. Hügel · Schwerpunktklausur 29.07.2026 · Staatsexamen Oktober 2027</p>
   </header>
 
   <div class="tabs">
     <button id="tab-dashboard" class="tab-btn active">Dashboard</button>
+    <button id="tab-wochenplan" class="tab-btn">Wochenplan</button>
     <button id="tab-tracker" class="tab-btn">100-Tage-Tracker</button>
+    <button id="tab-sp" class="tab-btn">Schwerpunkt</button>
+    <button id="tab-lk" class="tab-btn">Lernkommentar</button>
   </div>
 
+  <!-- DASHBOARD -->
   <section id="view-dashboard">
     <div class="stats-grid">
+      <div class="stat priority">
+        <p class="stat-label">Schwerpunktklausur (29.07.)</p>
+        <p class="stat-value" id="stat-sp">–</p>
+      </div>
       <div class="stat">
-        <p class="stat-label">Tag im Lernplan</p>
+        <p class="stat-label">Tag im 100-Tage-Plan</p>
         <p class="stat-value" id="stat-day">–</p>
       </div>
       <div class="stat">
-        <p class="stat-label">Erledigt</p>
+        <p class="stat-label">Stex-Plan erledigt</p>
         <p class="stat-value" id="stat-done">0 / 100</p>
-      </div>
-      <div class="stat">
-        <p class="stat-label">Schwerpunktklausur</p>
-        <p class="stat-value" id="stat-sp">–</p>
       </div>
       <div class="stat">
         <p class="stat-label">Staatsexamen</p>
@@ -310,40 +213,48 @@
       </div>
     </div>
 
-    <div class="progress-wrap">
-      <div class="progress-head">
-        <span class="progress-label">Fortschritt 100-Tage-Plan</span>
-        <span class="progress-pct" id="progress-pct">0%</span>
-      </div>
-      <div class="progress-bar-bg">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
-    </div>
-
     <div class="card">
-      <p class="card-label">Heute (<span id="today-date">–</span>)</p>
+      <p class="card-label">Heute (<span id="today-date">–</span>) · <span id="today-weekday">–</span></p>
       <p class="card-title" id="today-title">–</p>
       <p class="card-topic" id="today-topic">–</p>
-      <div style="display: flex; gap: 8px; align-items: center;">
-        <button id="today-toggle">Als erledigt markieren</button>
-        <span id="today-status" style="font-size: 13px; color: var(--text-secondary);"></span>
-      </div>
+      <div id="today-actions" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"></div>
+      <p class="card-hint" id="today-hint"></p>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-head"><span class="progress-label">Fortschritt 100-Tage-Plan</span><span class="progress-pct" id="progress-pct">0%</span></div>
+      <div class="progress-bar-bg"><div class="progress-bar" id="progress-bar"></div></div>
+      <p class="card-hint" id="tempo-hint" style="margin-top: 8px;"></p>
     </div>
 
     <div class="card">
       <p class="card-label">Einstellungen</p>
       <div class="settings-row">
-        <label for="start-date">Starttag:</label>
-        <input type="date" id="start-date" />
+        <label for="start-date">Starttag 100-Tage-Plan:</label>
+        <input type="date" id="start-date" style="width: auto;" />
         <button id="export-btn">Daten exportieren</button>
         <button id="import-btn">Daten importieren</button>
         <input type="file" id="import-file" accept="application/json" class="hidden" />
-        <button id="reset-btn">Fortschritt zurücksetzen</button>
+        <button id="reset-btn" class="danger">Stex-Fortschritt zurücksetzen</button>
       </div>
     </div>
   </section>
 
+  <!-- WOCHENPLAN -->
+  <section id="view-wochenplan" class="hidden">
+    <p class="card-hint" style="margin-bottom: 1rem;">
+      Feste Wochenstruktur. Di und Fr sind Ihre Haupttage für 100-Tage-Plan und Schwerpunkt.
+      Auf welches Thema Sie den Schwerpunkt am freien Tag legen, entscheiden Sie bewusst pro Woche —
+      die Faustregel: solange die Schwerpunktklausur näher ist als das Examen, eher Schwerpunkt.
+    </p>
+    <div id="wochenplan-list"></div>
+  </section>
+
+  <!-- TRACKER -->
   <section id="view-tracker" class="hidden">
+    <p class="card-hint" style="margin-bottom: 1rem;">
+      Reihenfolge angepasst: Methodik → Öffentliches Recht (passt zum Seminar und Schwerpunkt) → Zivilrecht → Strafrecht → Rest.
+    </p>
     <div class="filters">
       <button class="filter-btn active" data-filter="all">Alle</button>
       <button class="filter-btn" data-filter="open">Offen</button>
@@ -353,92 +264,126 @@
     <div id="tracker-list"></div>
   </section>
 
+  <!-- SCHWERPUNKT -->
+  <section id="view-sp" class="hidden">
+    <h2 style="margin-top: 0;">Umwelt-, Energie- und Infrastrukturrecht</h2>
+    <p class="card-hint" style="margin-bottom: 1rem;">
+      Klausur am 29. Juli 2026 · Status pro Thema setzen, Notizen frei ergänzen.
+      Neue Unterthemen können Sie pro Block hinzufügen.
+    </p>
+    <div id="sp-blocks"></div>
+  </section>
+
+  <!-- LERNKOMMENTAR -->
+  <section id="view-lk" class="hidden">
+    <div class="lk-toolbar">
+      <button id="lk-new" class="primary">+ Neue Norm</button>
+      <input type="text" id="lk-search" placeholder="Suche (Norm oder Inhalt)..." />
+      <select id="lk-sort">
+        <option value="norm">Sortierung: Norm</option>
+        <option value="recent">Sortierung: Zuletzt bearbeitet</option>
+      </select>
+    </div>
+    <div class="lk-grid">
+      <div class="lk-list" id="lk-list"></div>
+      <div class="lk-detail" id="lk-detail">
+        <p class="lk-detail-empty">Wählen Sie links eine Norm aus oder legen Sie eine neue an.</p>
+      </div>
+    </div>
+  </section>
 </div>
 
 <script>
 (function() {
   const STORAGE_KEY = 'examen_app_v1';
 
+  // ÖR vorgezogen: Methodik (1-4) → ÖR (vormalige 49-76, jetzt 5-32) → Zivilrecht → Strafrecht → Rest-Methodik+ZivilNebengebiete
   const PLAN = [
+    // Methodik Gesetze lesen (Tag 1-4)
     {tag:1, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Suchlesen'},
     {tag:2, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Auslegungslesen I'},
     {tag:3, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Auslegungslesen II'},
     {tag:4, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Wiedererkennungslesen'},
-    {tag:5, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Grundlagen, Willenserklärung, Willensmängel'},
-    {tag:6, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Vertrag, Auslegung, Geschäftsfähigkeit'},
-    {tag:7, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Vertretung, Form'},
-    {tag:8, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Unwirksamkeit, Zustimmung, Bedingung, AGB'},
-    {tag:9, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Schuldverhältnisse'},
-    {tag:10, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Personenmehrheiten und -wechsel, Dritte'},
-    {tag:11, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Erfüllung, Beendigung, Anpassung'},
-    {tag:12, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Leistungsstörungen'},
-    {tag:13, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Schadens-/Aufwendungsersatz, Verbraucher'},
-    {tag:14, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Vertragsrecht, Kaufrecht I – Mangel, Gefahr'},
-    {tag:15, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Kaufrecht II – Mängelrechte des Käufers'},
-    {tag:16, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Kaufrecht III – Besonderheiten; Überlassung'},
-    {tag:17, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Mietrecht, Zeitüberlassungsverträge'},
-    {tag:18, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Werkrecht'},
-    {tag:19, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Weitere Verträge'},
-    {tag:20, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Gesetzliche Schuldverhältnisse, GoA'},
-    {tag:21, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Leistungskondiktion'},
-    {tag:22, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Nichtleistungskondiktion'},
-    {tag:23, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Inhalt, Mehrpersonen'},
-    {tag:24, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Deliktsrecht – Verschuldenshaftung'},
-    {tag:25, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Deliktsrecht – weitere Haftung inklusive StVG'},
-    {tag:26, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Mobiliarsachenrecht, Eigentumserwerb'},
-    {tag:27, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Gutgläubiger Erwerb, gesetzlicher Erwerb'},
-    {tag:28, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Eigentümer-Besitzer-Verhältnis, Besitzschutz'},
-    {tag:29, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Kreditsicherungsrechte'},
-    {tag:30, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Immobiliarsachenrecht, Eigentumserwerb'},
-    {tag:31, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundbuchberichtigung, Vormerkung, Vorkauf'},
-    {tag:32, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundpfandrechte I – Hypothek'},
-    {tag:33, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundpfandrechte II – Grundschuld; Nutzung'},
-    {tag:34, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Grundlagen, objektiver Tatbestand'},
-    {tag:35, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Täterschaft, subjektiver Tatbestand'},
-    {tag:36, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Rechtswidrigkeit'},
-    {tag:37, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Schuld, Fahrlässigkeit'},
-    {tag:38, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Unterlassung, Teilnahme'},
-    {tag:39, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Versuch, Konkurrenzen'},
-    {tag:40, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Mord, Totschlag'},
-    {tag:41, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Körperverletzung, Brandstiftung'},
-    {tag:42, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Straßenverkehr, Willensbeeinträchtigung'},
-    {tag:43, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Urkundendelikte, Ehrschutz, Aussagedelikte'},
-    {tag:44, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Diebstahl I – Tatbestand'},
-    {tag:45, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Diebstahl II; Unterschlagung'},
-    {tag:46, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Raub, Erpressung'},
-    {tag:47, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Betrug, Computerbetrug'},
-    {tag:48, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Untreue, Anschlussdelikte, Sachbeschädigung'},
-    {tag:49, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Basics, Prozessrecht, Kompetenz, Verfahren'},
-    {tag:50, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Staatsprinzipien, Exekutive, Föderalsystem'},
-    {tag:51, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Bundestag, Bundesrat'},
-    {tag:52, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Bundesregierung, Bundespräsident, Parteien'},
-    {tag:53, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Wahlrecht, internationale Bezüge'},
-    {tag:54, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechtssystem, Freiheitsgrundrechte'},
-    {tag:55, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte I – Art. 2–5 GG'},
-    {tag:56, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte II – Art. 6–13 GG'},
-    {tag:57, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte III – Art. 14–19, 1 und 3 GG'},
-    {tag:58, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechtsgleiche Rechte, Durchsetzung'},
-    {tag:59, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht I – Grundsätze, Verfahren'},
-    {tag:60, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht II – Klage- und Antragsarten'},
-    {tag:61, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht III – SEV, Begründetheit'},
-    {tag:62, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Rechtsmittel, Verwaltung, Handlungsformen'},
-    {tag:63, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Verwaltungsakt, Rechtmäßigkeit, Aufhebung'},
-    {tag:64, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Vollstreckung, Vertrag, weitere Hoheitsakte'},
-    {tag:65, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Staatshaftung'},
-    {tag:66, gebiet:'Öffentliches Recht', teilgebiet:'Kommunalrecht', thema:'Basics, Selbstverwaltung, Aufgaben, Aufsicht'},
-    {tag:67, gebiet:'Öffentliches Recht', teilgebiet:'Kommunalrecht', thema:'Gemeindeverfassung, Satzungen, Einwohner'},
-    {tag:68, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Grundlagen, Generalklausel, Gefahrbegriff'},
-    {tag:69, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Pflichtigkeit, Ermessen, Standardmaßnahmen'},
-    {tag:70, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Versammlungen, Vollstreckung, Verordnung'},
-    {tag:71, gebiet:'Öffentliches Recht', teilgebiet:'Baurecht', thema:'Grundlagen, Bauplanungsrecht'},
-    {tag:72, gebiet:'Öffentliches Recht', teilgebiet:'Baurecht', thema:'Bauordnungsrecht, Prozessrecht'},
-    {tag:73, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundlagen, Struktur, Rechtsnatur, Organe'},
-    {tag:74, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Rechtsetzung, Rechtsquellen'},
-    {tag:75, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundfreiheiten'},
-    {tag:76, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundrechte, Rechtsschutz, Beihilfenrecht'},
+    // ÖR vorgezogen (Tag 5-32, ursprünglich 49-76)
+    {tag:5, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Basics, Prozessrecht, Kompetenz, Verfahren'},
+    {tag:6, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Staatsprinzipien, Exekutive, Föderalsystem'},
+    {tag:7, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Bundestag, Bundesrat'},
+    {tag:8, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Bundesregierung, Bundespräsident, Parteien'},
+    {tag:9, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Wahlrecht, internationale Bezüge'},
+    {tag:10, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechtssystem, Freiheitsgrundrechte'},
+    {tag:11, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte I – Art. 2–5 GG'},
+    {tag:12, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte II – Art. 6–13 GG'},
+    {tag:13, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte III – Art. 14–19, 1 und 3 GG'},
+    {tag:14, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechtsgleiche Rechte, Durchsetzung'},
+    {tag:15, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht I – Grundsätze, Verfahren'},
+    {tag:16, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht II – Klage- und Antragsarten'},
+    {tag:17, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht III – SEV, Begründetheit'},
+    {tag:18, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Rechtsmittel, Verwaltung, Handlungsformen'},
+    {tag:19, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Verwaltungsakt, Rechtmäßigkeit, Aufhebung'},
+    {tag:20, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Vollstreckung, Vertrag, weitere Hoheitsakte'},
+    {tag:21, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Staatshaftung'},
+    {tag:22, gebiet:'Öffentliches Recht', teilgebiet:'Kommunalrecht', thema:'Basics, Selbstverwaltung, Aufgaben, Aufsicht'},
+    {tag:23, gebiet:'Öffentliches Recht', teilgebiet:'Kommunalrecht', thema:'Gemeindeverfassung, Satzungen, Einwohner'},
+    {tag:24, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Grundlagen, Generalklausel, Gefahrbegriff'},
+    {tag:25, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Pflichtigkeit, Ermessen, Standardmaßnahmen'},
+    {tag:26, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Versammlungen, Vollstreckung, Verordnung'},
+    {tag:27, gebiet:'Öffentliches Recht', teilgebiet:'Baurecht', thema:'Grundlagen, Bauplanungsrecht'},
+    {tag:28, gebiet:'Öffentliches Recht', teilgebiet:'Baurecht', thema:'Bauordnungsrecht, Prozessrecht'},
+    {tag:29, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundlagen, Struktur, Rechtsnatur, Organe'},
+    {tag:30, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Rechtsetzung, Rechtsquellen'},
+    {tag:31, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundfreiheiten'},
+    {tag:32, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundrechte, Rechtsschutz, Beihilfenrecht'},
+    // ZivilR Kerngebiete (Tag 33-61, ursprünglich 5-33)
+    {tag:33, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Grundlagen, Willenserklärung, Willensmängel'},
+    {tag:34, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Vertrag, Auslegung, Geschäftsfähigkeit'},
+    {tag:35, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Vertretung, Form'},
+    {tag:36, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Unwirksamkeit, Zustimmung, Bedingung, AGB'},
+    {tag:37, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Schuldverhältnisse'},
+    {tag:38, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Personenmehrheiten und -wechsel, Dritte'},
+    {tag:39, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Erfüllung, Beendigung, Anpassung'},
+    {tag:40, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Leistungsstörungen'},
+    {tag:41, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Schadens-/Aufwendungsersatz, Verbraucher'},
+    {tag:42, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Vertragsrecht, Kaufrecht I – Mangel, Gefahr'},
+    {tag:43, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Kaufrecht II – Mängelrechte des Käufers'},
+    {tag:44, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Kaufrecht III – Besonderheiten; Überlassung'},
+    {tag:45, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Mietrecht, Zeitüberlassungsverträge'},
+    {tag:46, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Werkrecht'},
+    {tag:47, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Weitere Verträge'},
+    {tag:48, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Gesetzliche Schuldverhältnisse, GoA'},
+    {tag:49, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Leistungskondiktion'},
+    {tag:50, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Nichtleistungskondiktion'},
+    {tag:51, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Inhalt, Mehrpersonen'},
+    {tag:52, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Deliktsrecht – Verschuldenshaftung'},
+    {tag:53, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Deliktsrecht – weitere Haftung inklusive StVG'},
+    {tag:54, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Mobiliarsachenrecht, Eigentumserwerb'},
+    {tag:55, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Gutgläubiger Erwerb, gesetzlicher Erwerb'},
+    {tag:56, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Eigentümer-Besitzer-Verhältnis, Besitzschutz'},
+    {tag:57, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Kreditsicherungsrechte'},
+    {tag:58, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Immobiliarsachenrecht, Eigentumserwerb'},
+    {tag:59, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundbuchberichtigung, Vormerkung, Vorkauf'},
+    {tag:60, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundpfandrechte I – Hypothek'},
+    {tag:61, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundpfandrechte II – Grundschuld; Nutzung'},
+    // StrafR (Tag 62-76, ursprünglich 34-48)
+    {tag:62, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Grundlagen, objektiver Tatbestand'},
+    {tag:63, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Täterschaft, subjektiver Tatbestand'},
+    {tag:64, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Rechtswidrigkeit'},
+    {tag:65, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Schuld, Fahrlässigkeit'},
+    {tag:66, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Unterlassung, Teilnahme'},
+    {tag:67, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Versuch, Konkurrenzen'},
+    {tag:68, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Mord, Totschlag'},
+    {tag:69, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Körperverletzung, Brandstiftung'},
+    {tag:70, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Straßenverkehr, Willensbeeinträchtigung'},
+    {tag:71, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Urkundendelikte, Ehrschutz, Aussagedelikte'},
+    {tag:72, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Diebstahl I – Tatbestand'},
+    {tag:73, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Diebstahl II; Unterschlagung'},
+    {tag:74, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Raub, Erpressung'},
+    {tag:75, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Betrug, Computerbetrug'},
+    {tag:76, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Untreue, Anschlussdelikte, Sachbeschädigung'},
+    // Methodik Begründen (Tag 77-79)
     {tag:77, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungserfordernis, Interpretationsfrage'},
     {tag:78, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungsbedarf, Begründungskompetenz'},
     {tag:79, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungsbeispiele, Formulierungstechnik'},
+    // ZivilR Nebengebiete (Tag 80-92)
     {tag:80, gebiet:'Zivilrecht', teilgebiet:'Familienrecht', thema:'Grundlagen, Eheschließung, Güterrecht'},
     {tag:81, gebiet:'Zivilrecht', teilgebiet:'Familienrecht', thema:'Unterhalt, Ehevertrag, Verwandtschaft, Sorge'},
     {tag:82, gebiet:'Zivilrecht', teilgebiet:'Erbrecht', thema:'Grundlagen, Erbfolge, Testament, Verfügung'},
@@ -452,9 +397,11 @@
     {tag:90, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Erkenntnisverfahren I – Klage, Zulässigkeit'},
     {tag:91, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Erkenntnisverfahren II – Beweis, Entscheidung'},
     {tag:92, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Zwangsvollstreckungsrecht, Eilrechtsschutz'},
+    // StrafR Prozessrecht (Tag 93-95)
     {tag:93, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Ermittlungsverfahren I – Ablauf, Beteiligte'},
     {tag:94, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Ermittlungsverfahren II – Beweisverwertung'},
     {tag:95, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Abschluss, Zwischen- und Hauptverfahren'},
+    // Methodik Methodenlehre (Tag 96-100)
     {tag:96, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Begründungs- und Argumentationslehre'},
     {tag:97, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Auslegung'},
     {tag:98, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Konkretisierung und Konstruktion'},
@@ -462,211 +409,456 @@
     {tag:100, gebiet:'Methodik', teilgebiet:'Sprache und Stil', thema:'Gutes, überzeugendes Deutsch (§ 184 GVG)'}
   ];
 
-  const BADGE_CLASS = {
-    'Methodik': 'methodik',
-    'Zivilrecht': 'zivil',
-    'Strafrecht': 'straf',
-    'Öffentliches Recht': 'oeff'
+  const BADGE_CLASS = { 'Methodik':'methodik', 'Zivilrecht':'zivil', 'Strafrecht':'straf', 'Öffentliches Recht':'oeff' };
+
+  // Wochenplan: 0=So, 1=Mo, 2=Di, 3=Mi, 4=Do, 5=Fr, 6=Sa
+  const WEEKPLAN = {
+    1: { name: 'Mo', slots: [
+      { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' },
+      { time: '12:00–16:00', activity: 'Examenskurs Zivilrecht', tag: 'kurs' }
+    ]},
+    2: { name: 'Di', slots: [
+      { time: 'Vormittag',   activity: '100-Tage-Plan (heutiger Tag)', tag: 'stex' },
+      { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' },
+      { time: 'Nachmittag',  activity: 'Schwerpunkt oder Stex (variabel)', tag: 'sp' }
+    ]},
+    3: { name: 'Mi', slots: [
+      { time: '10:00–12:30', activity: 'Arbeit am Lehrstuhl', tag: 'kurs' },
+      { time: '12:30–13:30', activity: 'Mittagspause', tag: 'pause' },
+      { time: '14:00–16:00', activity: 'Seminar Öffentliches Recht', tag: 'kurs' }
+    ]},
+    4: { name: 'Do', slots: [
+      { time: '10:00–14:00', activity: 'Examenskurs Öffentliches Recht', tag: 'kurs' },
+      { time: '12:00–13:00', activity: '(Mittagspause innerhalb Kurs)', tag: 'pause' }
+    ]},
+    5: { name: 'Fr', slots: [
+      { time: 'Vormittag',   activity: 'Schwerpunkt', tag: 'sp' },
+      { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' },
+      { time: 'Nachmittag',  activity: '100-Tage-Plan (heutiger Tag)', tag: 'stex' }
+    ]},
+    6: { name: 'Sa', slots: [
+      { time: '09:00–14:00', activity: 'Klausuren (wenn angeboten)', tag: 'kurs' },
+      { time: '12:00–13:00', activity: 'Mittagspause (wenn frei)', tag: 'pause' }
+    ]},
+    0: { name: 'So', slots: [
+      { time: 'ganztägig', activity: 'Frei – Erholung', tag: 'frei' }
+    ]}
   };
 
   const SP_DATE = '2026-07-29';
   const EX_DATE = '2027-10-01';
   const DEFAULT_START = '2026-05-11';
+  const STEX_LERNTAGE = [2, 5]; // Di + Fr
+
+  const SP_BLOCKS_DEFAULT = [
+    { id: 'umweltAT', title: 'Umweltrecht AT', items: [] },
+    { id: 'umweltBT', title: 'Umweltrecht BT', items: [] },
+    { id: 'klimaEnergie', title: 'Klima- und Energierecht', items: [] },
+    { id: 'infraPlanung', title: 'Infrastruktur- und Planungsrecht', items: [] }
+  ];
 
   let state = loadState();
   let currentFilter = 'all';
+  let currentLkId = null;
+  let lkSearchTerm = '';
+  let lkSortBy = 'norm';
+  let saveTimer = null;
 
   function loadState() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
-        const parsed = JSON.parse(raw);
+        const p = JSON.parse(raw);
         return {
-          startDate: parsed.startDate || DEFAULT_START,
-          done: parsed.done || {},
-          notes: parsed.notes || {}
+          startDate: p.startDate || DEFAULT_START,
+          done: p.done || {},
+          notes: p.notes || {},
+          lk: p.lk || {},
+          sp: p.sp || SP_BLOCKS_DEFAULT.map(b => ({...b, items: []}))
         };
       }
     } catch(e) {}
-    return { startDate: DEFAULT_START, done: {}, notes: {} };
+    return { startDate: DEFAULT_START, done: {}, notes: {}, lk: {}, sp: SP_BLOCKS_DEFAULT.map(b => ({...b, items: []})) };
   }
-
-  function saveState() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
-  }
+  function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {} }
 
   function todayISO() {
     const d = new Date();
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return y + '-' + m + '-' + day;
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
   }
-
-  function daysBetween(a, b) {
-    const ms = 86400000;
-    return Math.round((new Date(b + 'T00:00:00') - new Date(a + 'T00:00:00')) / ms);
+  function daysBetween(a,b) { return Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/86400000); }
+  function dateForDay(tag) { const d = new Date(state.startDate+'T00:00:00'); d.setDate(d.getDate()+(tag-1)); return d.toISOString().slice(0,10); }
+  function formatDateDE(iso) { return new Date(iso+'T00:00:00').toLocaleDateString('de-DE', {day:'2-digit',month:'2-digit',year:'numeric'}); }
+  function weekdayDE(iso) {
+    const wd = new Date(iso+'T00:00:00').getDay();
+    return ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'][wd];
   }
-
-  function dateForDay(tag) {
-    const d = new Date(state.startDate + 'T00:00:00');
-    d.setDate(d.getDate() + (tag - 1));
-    return d.toISOString().slice(0,10);
-  }
-
-  function formatDateDE(iso) {
-    return new Date(iso + 'T00:00:00').toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit', year:'numeric'});
-  }
-
   function currentDayNumber() {
-    const offset = daysBetween(state.startDate, todayISO()) + 1;
-    if (offset < 1) return 0;
-    if (offset > 100) return 101;
-    return offset;
+    const o = daysBetween(state.startDate, todayISO())+1;
+    if (o<1) return 0;
+    if (o>100) return 101;
+    return o;
+  }
+  function countDone() { return Object.values(state.done).filter(Boolean).length; }
+
+  // nächster offener Plan-Tag (in Reihenfolge der Tag-Nummer)
+  function nextOpenPlanDay() {
+    for (let i = 0; i < PLAN.length; i++) {
+      if (!state.done[PLAN[i].tag]) return PLAN[i];
+    }
+    return null;
   }
 
-  function countDone() {
-    return Object.values(state.done).filter(Boolean).length;
+  function tempoText() {
+    const today = todayISO();
+    const start = state.startDate;
+    const elapsed = daysBetween(start, today) + 1;
+    const done = countDone();
+    if (elapsed < 1) return 'Lernplan startet am ' + formatDateDE(start) + '.';
+    if (done === 0) return 'Noch keine Tage abgeschlossen.';
+    const ratePerDay = done / elapsed; // tatsächlich pro Kalendertag
+    if (ratePerDay <= 0) return '';
+    const remaining = 100 - done;
+    const daysNeeded = Math.ceil(remaining / ratePerDay);
+    const finishDate = new Date(today+'T00:00:00');
+    finishDate.setDate(finishDate.getDate() + daysNeeded);
+    return 'Bei aktueller Geschwindigkeit (ø ' + ratePerDay.toFixed(2) + ' Tage/Kalendertag) erreichen Sie Tag 100 am ' + finishDate.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}) + '.';
   }
 
   function renderDashboard() {
+    const today = todayISO();
     const day = currentDayNumber();
     const done = countDone();
-    const today = todayISO();
+
+    // Schwerpunktklausur (priorisiert)
+    const sp = daysBetween(today, SP_DATE);
+    document.getElementById('stat-sp').textContent = sp>0 ? sp+' Tage' : (sp===0 ? 'heute!' : 'vorbei');
 
     let dayLabel;
-    if (day === 0) dayLabel = 'in ' + daysBetween(today, state.startDate) + 'T';
-    else if (day === 101) dayLabel = 'beendet';
-    else dayLabel = day + ' / 100';
-
+    if (day===0) dayLabel = 'in '+daysBetween(today, state.startDate)+'T';
+    else if (day===101) dayLabel = 'beendet';
+    else dayLabel = day+' / 100';
     document.getElementById('stat-day').textContent = dayLabel;
-    document.getElementById('stat-done').textContent = done + ' / 100';
+    document.getElementById('stat-done').textContent = done+' / 100';
 
-    const spDays = daysBetween(today, SP_DATE);
-    const exDays = daysBetween(today, EX_DATE);
-    document.getElementById('stat-sp').textContent = spDays > 0 ? spDays + 'T' : (spDays === 0 ? 'heute' : 'vorbei');
-    document.getElementById('stat-ex').textContent = exDays > 0 ? exDays + 'T' : (exDays === 0 ? 'heute' : 'vorbei');
+    const ex = daysBetween(today, EX_DATE);
+    document.getElementById('stat-ex').textContent = ex>0 ? Math.round(ex/30)+' Mon.' : 'vorbei';
 
-    document.getElementById('progress-pct').textContent = done + '%';
-    document.getElementById('progress-bar').style.width = done + '%';
+    document.getElementById('progress-pct').textContent = done+'%';
+    document.getElementById('progress-bar').style.width = done+'%';
 
     document.getElementById('today-date').textContent = formatDateDE(today);
+    document.getElementById('today-weekday').textContent = weekdayDE(today);
 
+    renderTodayCard(today);
+    document.getElementById('tempo-hint').textContent = tempoText();
+    document.getElementById('start-date').value = state.startDate;
+  }
+
+  function renderTodayCard(today) {
+    const wd = new Date(today+'T00:00:00').getDay();
     const titleEl = document.getElementById('today-title');
     const topicEl = document.getElementById('today-topic');
-    const btn = document.getElementById('today-toggle');
-    const status = document.getElementById('today-status');
+    const actionsEl = document.getElementById('today-actions');
+    const hintEl = document.getElementById('today-hint');
+    actionsEl.innerHTML = '';
+    hintEl.textContent = '';
 
-    if (day >= 1 && day <= 100) {
-      const item = PLAN[day - 1];
-      titleEl.textContent = 'Tag ' + day + ' · ' + item.gebiet + ' · ' + item.teilgebiet;
-      topicEl.textContent = item.thema;
-      const isDone = !!state.done[day];
-      btn.style.display = '';
-      btn.textContent = isDone ? 'Als offen markieren' : 'Als erledigt markieren';
-      status.textContent = isDone ? 'erledigt' : '';
-      btn.onclick = function() {
-        state.done[day] = !state.done[day];
-        saveState();
-        renderAll();
-      };
-    } else if (day === 0) {
-      titleEl.textContent = 'Lernplan startet noch nicht';
-      topicEl.textContent = 'Beginn am ' + formatDateDE(state.startDate);
-      btn.style.display = 'none';
-      status.textContent = '';
-    } else {
-      titleEl.textContent = '100-Tage-Plan abgeschlossen';
-      topicEl.textContent = 'Übergang zur Vertiefungs- und Trainingsphase';
-      btn.style.display = 'none';
-      status.textContent = '';
+    const day = currentDayNumber();
+    const isStexLerntag = STEX_LERNTAGE.indexOf(wd) !== -1;
+    const dayPlan = WEEKPLAN[wd];
+
+    // Standardfälle: feste Aktivitäten
+    if (wd === 1) { // Mo
+      titleEl.textContent = 'Examenskurs Zivilrecht';
+      topicEl.textContent = '12–16 Uhr · Bringt das Stex-Training mit';
+      hintEl.textContent = 'Kein 100-Tage-Plan-Tag. Fall- und Klausurarbeit ist hier die Hauptaufgabe.';
+      return;
+    }
+    if (wd === 3) { // Mi
+      titleEl.textContent = 'Lehrstuhl + Seminar Öffentliches Recht';
+      topicEl.textContent = '10–12:30 Lehrstuhl · 14–16 Seminar';
+      hintEl.textContent = 'Das Seminar-Thema baut sich gut in den Lernkommentar (Reiter rechts) ein.';
+      return;
+    }
+    if (wd === 4) { // Do
+      titleEl.textContent = 'Examenskurs Öffentliches Recht';
+      topicEl.textContent = '10–14 Uhr · Stoffüberschneidung mit Schwerpunkt nutzen';
+      hintEl.textContent = 'Wenn etwas Neues kommt: kurz im 100-Tage-Tracker nachsehen, ob es zu einem Tag passt.';
+      return;
+    }
+    if (wd === 6) { // Sa
+      titleEl.textContent = 'Samstagsklausur (wenn angeboten)';
+      topicEl.textContent = '9–14 Uhr · sonst freier Tag';
+      hintEl.textContent = 'Schreiben ist die wichtigste Übung. Nach der Klausur: Pause, nicht direkt nachbearbeiten.';
+      return;
+    }
+    if (wd === 0) { // So
+      titleEl.textContent = 'Sonntag — Erholung';
+      topicEl.textContent = 'Nicht lernen ist auch Lernen.';
+      hintEl.textContent = 'Dr. Hügel empfiehlt einen vollständig freien Tag pro Woche. Heute keine Aufgaben.';
+      return;
     }
 
-    document.getElementById('start-date').value = state.startDate;
+    // Di + Fr — Stex-Lerntage mit Schwerpunkt-Anteil
+    if (isStexLerntag && day >= 1 && day <= 100) {
+      const planItem = nextOpenPlanDay();
+      if (planItem) {
+        titleEl.textContent = 'Heute: 100-Tage-Plan + Schwerpunkt';
+        topicEl.textContent = 'Stex-Tag: ' + planItem.tag + ' · ' + planItem.gebiet + ' · ' + planItem.teilgebiet + ' (' + planItem.thema + ')';
+        const btnDone = document.createElement('button');
+        const isDone = !!state.done[planItem.tag];
+        btnDone.textContent = isDone ? 'Stex-Tag ' + planItem.tag + ' offen markieren' : 'Stex-Tag ' + planItem.tag + ' erledigt';
+        btnDone.onclick = function() {
+          state.done[planItem.tag] = !state.done[planItem.tag];
+          saveState();
+          renderAll();
+        };
+        actionsEl.appendChild(btnDone);
+        const sp = daysBetween(today, SP_DATE);
+        if (sp > 0) {
+          hintEl.textContent = 'Faustregel: ' + (wd===2 ? 'Dienstag' : 'Freitag') + ' Vormittag Stex, Nachmittag Schwerpunkt — oder umgekehrt, je nach Energie. Schwerpunktklausur in ' + sp + ' Tagen.';
+        }
+        return;
+      } else if (day === 101) {
+        titleEl.textContent = '100-Tage-Plan abgeschlossen 🎉';
+        topicEl.textContent = 'Heute Schwerpunkt + Vertiefung/Falltraining';
+      } else {
+        titleEl.textContent = 'Lernplan startet noch nicht';
+        topicEl.textContent = 'Beginn am ' + formatDateDE(state.startDate);
+      }
+      return;
+    }
+
+    // Fallback
+    titleEl.textContent = dayPlan ? dayPlan.name + ' — ' + (dayPlan.slots[0] && dayPlan.slots[0].activity || '') : '';
+    topicEl.textContent = '';
   }
 
   function renderTracker() {
     const list = document.getElementById('tracker-list');
-    const currentDay = currentDayNumber();
-
+    const cd = currentDayNumber();
     let items = PLAN.slice();
-    if (currentFilter === 'open') items = items.filter(p => !state.done[p.tag]);
-    if (currentFilter === 'done') items = items.filter(p => !!state.done[p.tag]);
-    if (currentFilter === 'today') items = items.filter(p => p.tag === currentDay);
-
-    list.innerHTML = '';
-    if (items.length === 0) {
-      const empty = document.createElement('p');
-      empty.className = 'empty';
-      empty.textContent = 'Keine Einträge für diesen Filter.';
-      list.appendChild(empty);
-      return;
+    if (currentFilter==='open') items = items.filter(p=>!state.done[p.tag]);
+    if (currentFilter==='done') items = items.filter(p=>!!state.done[p.tag]);
+    if (currentFilter==='today') {
+      const next = nextOpenPlanDay();
+      items = next ? items.filter(p=>p.tag===next.tag) : [];
     }
-
-    items.forEach(item => {
-      const isDone = !!state.done[item.tag];
-      const isToday = item.tag === currentDay;
-      const date = dateForDay(item.tag);
-
+    list.innerHTML = '';
+    if (items.length===0) {
+      const e = document.createElement('p'); e.className='empty'; e.textContent='Keine Einträge für diesen Filter.'; list.appendChild(e); return;
+    }
+    items.forEach(it => {
+      const isDone = !!state.done[it.tag];
+      const next = nextOpenPlanDay();
+      const isNext = next && next.tag===it.tag;
+      const date = dateForDay(it.tag);
       const row = document.createElement('div');
-      row.className = 'tracker-row' + (isToday ? ' today' : '');
-
-      const cb = document.createElement('input');
-      cb.type = 'checkbox';
-      cb.checked = isDone;
-      cb.onchange = function() {
-        state.done[item.tag] = cb.checked;
-        saveState();
-        renderAll();
-      };
-
-      const tagCell = document.createElement('div');
-      tagCell.className = 'tracker-tag';
-      tagCell.textContent = 'Tag ' + item.tag;
-
-      const dateCell = document.createElement('div');
-      dateCell.className = 'tracker-date';
-      dateCell.textContent = formatDateDE(date).slice(0,5);
-
-      const topic = document.createElement('div');
-      topic.className = 'tracker-topic' + (isDone ? ' done' : '');
-      const teil = document.createElement('span');
-      teil.className = 'teil';
-      teil.textContent = item.teilgebiet + ':';
-      topic.appendChild(teil);
-      topic.appendChild(document.createTextNode(item.thema));
-
-      const badge = document.createElement('span');
-      badge.className = 'badge ' + (BADGE_CLASS[item.gebiet] || '');
-      badge.textContent = item.gebiet;
-
-      row.appendChild(cb);
-      row.appendChild(tagCell);
-      row.appendChild(dateCell);
-      row.appendChild(topic);
-      row.appendChild(badge);
+      row.className = 'tracker-row'+(isNext?' today':'');
+      const cb = document.createElement('input'); cb.type='checkbox'; cb.checked=isDone;
+      cb.onchange = function() { state.done[it.tag]=cb.checked; saveState(); renderAll(); };
+      const tagCell = document.createElement('div'); tagCell.className='tracker-tag'; tagCell.textContent='Tag '+it.tag;
+      const dateCell = document.createElement('div'); dateCell.className='tracker-date'; dateCell.textContent=formatDateDE(date).slice(0,5);
+      const topic = document.createElement('div'); topic.className='tracker-topic'+(isDone?' done':'');
+      const teil = document.createElement('span'); teil.className='teil'; teil.textContent=it.teilgebiet+':';
+      topic.appendChild(teil); topic.appendChild(document.createTextNode(it.thema));
+      const badge = document.createElement('span'); badge.className='badge '+(BADGE_CLASS[it.gebiet]||''); badge.textContent=it.gebiet;
+      row.appendChild(cb); row.appendChild(tagCell); row.appendChild(dateCell); row.appendChild(topic); row.appendChild(badge);
       list.appendChild(row);
     });
   }
 
-  function renderAll() {
-    renderDashboard();
-    renderTracker();
+  /* Wochenplan */
+  function renderWochenplan() {
+    const list = document.getElementById('wochenplan-list');
+    list.innerHTML = '';
+    const today = todayISO();
+    const todayWd = new Date(today+'T00:00:00').getDay();
+    const order = [1,2,3,4,5,6,0]; // Mo bis So
+    order.forEach(wd => {
+      const dp = WEEKPLAN[wd];
+      const day = document.createElement('div');
+      day.className = 'wp-day' + (wd===todayWd ? ' wp-day-today' : '');
+      const left = document.createElement('div');
+      const name = document.createElement('div'); name.className='wp-day-name'; name.textContent = dp.name + (wd===todayWd ? ' · heute' : '');
+      left.appendChild(name);
+      day.appendChild(left);
+      const slots = document.createElement('div'); slots.className='wp-slots';
+      dp.slots.forEach(s => {
+        const slot = document.createElement('div'); slot.className='wp-slot';
+        const t = document.createElement('div'); t.className='wp-time'; t.textContent = s.time;
+        const a = document.createElement('div'); a.className='wp-activity'; a.textContent = s.activity;
+        const tag = document.createElement('span'); tag.className='wp-tag '+s.tag;
+        tag.textContent = ({stex:'Stex', sp:'Schwerpunkt', kurs:'Kurs', frei:'frei', pause:'Pause'})[s.tag] || s.tag;
+        slot.appendChild(t); slot.appendChild(a); slot.appendChild(tag);
+        slots.appendChild(slot);
+      });
+      day.appendChild(slots);
+      list.appendChild(day);
+    });
   }
 
-  document.getElementById('tab-dashboard').onclick = function() {
-    document.getElementById('view-dashboard').classList.remove('hidden');
-    document.getElementById('view-tracker').classList.add('hidden');
-    this.classList.add('active');
-    document.getElementById('tab-tracker').classList.remove('active');
-  };
-  document.getElementById('tab-tracker').onclick = function() {
-    document.getElementById('view-dashboard').classList.add('hidden');
-    document.getElementById('view-tracker').classList.remove('hidden');
-    this.classList.add('active');
-    document.getElementById('tab-dashboard').classList.remove('active');
-    renderTracker();
-  };
+  /* Schwerpunkt */
+  function renderSp() {
+    const wrap = document.getElementById('sp-blocks');
+    wrap.innerHTML = '';
+    state.sp.forEach(block => {
+      const bx = document.createElement('div'); bx.className='sp-block';
+      const head = document.createElement('div'); head.className='sp-block-header';
+      const title = document.createElement('p'); title.className='sp-block-title'; title.textContent = block.title;
+      const total = block.items.length;
+      const fertig = block.items.filter(i=>i.status==='fertig').length;
+      const prog = document.createElement('span'); prog.className='sp-block-progress'; prog.textContent = total ? (fertig+' / '+total+' fertig') : 'noch keine Themen';
+      head.appendChild(title); head.appendChild(prog);
+      bx.appendChild(head);
+
+      block.items.forEach((item, idx) => {
+        const row = document.createElement('div'); row.className='sp-item';
+        const dot = document.createElement('div'); dot.className='sp-item-status '+item.status;
+        const text = document.createElement('div'); text.className='sp-item-text'+(item.status==='fertig'?' fertig':''); text.textContent = item.text;
+        const sel = document.createElement('select'); sel.className='sp-item-status-select';
+        ['offen','arbeit','fertig'].forEach(s => {
+          const opt = document.createElement('option'); opt.value=s;
+          opt.textContent = ({offen:'offen', arbeit:'in Arbeit', fertig:'fertig'})[s];
+          if (item.status===s) opt.selected = true;
+          sel.appendChild(opt);
+        });
+        sel.onchange = function() { item.status = sel.value; saveState(); renderSp(); };
+        const del = document.createElement('button'); del.className='small'; del.textContent='✕';
+        del.title = 'Eintrag löschen';
+        del.onclick = function() {
+          if (confirm('"'+item.text+'" löschen?')) {
+            block.items.splice(idx, 1);
+            saveState();
+            renderSp();
+          }
+        };
+        row.appendChild(dot); row.appendChild(text); row.appendChild(sel); row.appendChild(del);
+        bx.appendChild(row);
+      });
+
+      const addRow = document.createElement('div'); addRow.className='sp-add-row';
+      const inp = document.createElement('input'); inp.type='text'; inp.placeholder='Neues Thema hinzufügen...';
+      const btn = document.createElement('button'); btn.className='primary small'; btn.textContent='+ Hinzufügen';
+      const addItem = function() {
+        const t = inp.value.trim();
+        if (!t) return;
+        block.items.push({ text: t, status: 'offen', createdAt: Date.now() });
+        inp.value = '';
+        saveState();
+        renderSp();
+      };
+      btn.onclick = addItem;
+      inp.onkeydown = function(e) { if (e.key==='Enter') addItem(); };
+      addRow.appendChild(inp); addRow.appendChild(btn);
+      bx.appendChild(addRow);
+
+      wrap.appendChild(bx);
+    });
+  }
+
+  /* Lernkommentar */
+  function newId() { return 'lk_'+Date.now()+'_'+Math.random().toString(36).slice(2,7); }
+  function compareNorms(a,b) { return (a.norm||'').toLowerCase().localeCompare((b.norm||'').toLowerCase(), 'de', {numeric:true}); }
+  function getLkArray() { return Object.keys(state.lk).map(id => Object.assign({id:id}, state.lk[id])); }
+  function getFilteredSorted() {
+    let items = getLkArray();
+    if (lkSearchTerm) {
+      const q = lkSearchTerm.toLowerCase();
+      items = items.filter(it => [it.norm,it.rechtsfolge,it.tatbestand,it.notizen].filter(Boolean).join(' ').toLowerCase().includes(q));
+    }
+    if (lkSortBy==='recent') items.sort((a,b) => (b.updatedAt||0)-(a.updatedAt||0));
+    else items.sort(compareNorms);
+    return items;
+  }
+  function renderLkList() {
+    const list = document.getElementById('lk-list');
+    const items = getFilteredSorted();
+    list.innerHTML = '';
+    if (items.length===0) {
+      const e = document.createElement('p'); e.className='empty';
+      e.textContent = lkSearchTerm ? 'Keine Treffer.' : 'Noch keine Einträge.';
+      list.appendChild(e); return;
+    }
+    items.forEach(it => {
+      const row = document.createElement('div');
+      row.className = 'lk-list-item'+(it.id===currentLkId?' active':'');
+      const norm = document.createElement('p'); norm.className='lk-list-norm'; norm.textContent = it.norm || '(Ohne Norm)';
+      const meta = document.createElement('p'); meta.className='lk-list-meta';
+      const upd = it.updatedAt ? new Date(it.updatedAt).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'}) : '';
+      meta.textContent = upd ? 'Bearbeitet '+upd : 'Neu';
+      row.appendChild(norm); row.appendChild(meta);
+      row.onclick = function() { currentLkId = it.id; renderLk(); };
+      list.appendChild(row);
+    });
+  }
+  function renderLkDetail() {
+    const detail = document.getElementById('lk-detail');
+    detail.innerHTML = '';
+    if (!currentLkId || !state.lk[currentLkId]) {
+      const e = document.createElement('p'); e.className='lk-detail-empty';
+      e.textContent = 'Wählen Sie links eine Norm aus oder legen Sie eine neue an.';
+      detail.appendChild(e); return;
+    }
+    const entry = state.lk[currentLkId];
+    const fields = [
+      {key:'norm', label:'Norm', placeholder:'z.B. § 107 BGB', hint:'Die zentrale Vorschrift, um die es geht.', type:'input'},
+      {key:'rechtsfolge', label:'Rechtsfolge (RF)', placeholder:'z.B. § 108 Abs. 1 BGB "erforderlich"', hint:'Wohin verweist die Norm? Was passiert, wenn der Tatbestand erfüllt ist?', type:'textarea'},
+      {key:'tatbestand', label:'Tatbestand (TB)', placeholder:'Voraussetzungen, ggf. mit Querverweisen auf andere §§', hint:'Aufzählung der Voraussetzungen mit kurzer Auslegung.', type:'textarea'},
+      {key:'notizen', label:'Auslegung, Streit, Schemata, Beispiele', placeholder:'Freier Text für alles Weitere — Auslegungsfragen, Meinungsstreit, Beispielsfälle, Aufbauschemata, eigene Anmerkungen, offene Fragen.', hint:'Hier ist Platz für alles, was nicht in die festen Felder passt.', type:'textarea'}
+    ];
+    fields.forEach(f => {
+      const wrap = document.createElement('div'); wrap.className='lk-field';
+      const label = document.createElement('label'); label.className='lk-field-label'; label.textContent = f.label;
+      wrap.appendChild(label);
+      let input;
+      if (f.type==='input') { input = document.createElement('input'); input.type='text'; }
+      else { input = document.createElement('textarea'); if (f.key==='notizen') input.style.minHeight='160px'; }
+      input.placeholder = f.placeholder;
+      input.value = entry[f.key] || '';
+      input.oninput = function() { entry[f.key] = input.value; entry.updatedAt = Date.now(); scheduleSave(); };
+      wrap.appendChild(input);
+      if (f.hint) { const h = document.createElement('p'); h.className='lk-field-hint'; h.textContent=f.hint; wrap.appendChild(h); }
+      detail.appendChild(wrap);
+    });
+    const actions = document.createElement('div'); actions.className='lk-detail-actions';
+    const saved = document.createElement('span'); saved.className='lk-saved-indicator'; saved.id='lk-saved'; saved.textContent='Automatisch gespeichert';
+    const del = document.createElement('button'); del.className='danger'; del.textContent='Eintrag löschen';
+    del.onclick = function() {
+      if (confirm('Diesen Eintrag wirklich löschen? ('+(entry.norm||'Ohne Norm')+')')) {
+        delete state.lk[currentLkId]; currentLkId = null; saveState(); renderLk();
+      }
+    };
+    actions.appendChild(saved); actions.appendChild(del);
+    detail.appendChild(actions);
+  }
+  function renderLk() { renderLkList(); renderLkDetail(); }
+  function scheduleSave() {
+    if (saveTimer) clearTimeout(saveTimer);
+    const ind = document.getElementById('lk-saved');
+    if (ind) ind.textContent = 'Speichere...';
+    saveTimer = setTimeout(() => {
+      saveState();
+      const i = document.getElementById('lk-saved');
+      if (i) i.textContent = 'Automatisch gespeichert';
+      renderLkList();
+    }, 400);
+  }
+
+  function renderAll() { renderDashboard(); renderTracker(); renderWochenplan(); renderSp(); renderLk(); }
+
+  function showView(name) {
+    ['dashboard','wochenplan','tracker','sp','lk'].forEach(v => {
+      document.getElementById('view-'+v).classList.toggle('hidden', v!==name);
+      document.getElementById('tab-'+v).classList.toggle('active', v===name);
+    });
+  }
+  document.getElementById('tab-dashboard').onclick = function() { showView('dashboard'); };
+  document.getElementById('tab-wochenplan').onclick = function() { showView('wochenplan'); renderWochenplan(); };
+  document.getElementById('tab-tracker').onclick = function() { showView('tracker'); renderTracker(); };
+  document.getElementById('tab-sp').onclick = function() { showView('sp'); renderSp(); };
+  document.getElementById('tab-lk').onclick = function() { showView('lk'); renderLk(); };
 
   document.querySelectorAll('.filter-btn').forEach(b => {
     b.onclick = function() {
@@ -677,55 +869,41 @@
     };
   });
 
-  document.getElementById('start-date').onchange = function(e) {
-    state.startDate = e.target.value;
-    saveState();
-    renderAll();
+  document.getElementById('lk-new').onclick = function() {
+    const id = newId();
+    state.lk[id] = { norm:'', rechtsfolge:'', tatbestand:'', notizen:'', createdAt: Date.now(), updatedAt: Date.now() };
+    currentLkId = id; saveState(); renderLk();
+    setTimeout(() => { const inp = document.querySelector('#lk-detail input[type="text"]'); if (inp) inp.focus(); }, 50);
   };
+  document.getElementById('lk-search').oninput = function(e) { lkSearchTerm = e.target.value; renderLkList(); };
+  document.getElementById('lk-sort').onchange = function(e) { lkSortBy = e.target.value; renderLkList(); };
 
+  document.getElementById('start-date').onchange = function(e) { state.startDate = e.target.value; saveState(); renderAll(); };
   document.getElementById('reset-btn').onclick = function() {
-    if (confirm('Wirklich allen Fortschritt zurücksetzen?')) {
-      state.done = {};
-      saveState();
-      renderAll();
+    if (confirm('Wirklich allen 100-Tage-Fortschritt zurücksetzen? (Lernkommentar und Schwerpunkt bleiben erhalten.)')) {
+      state.done = {}; saveState(); renderAll();
     }
   };
-
   document.getElementById('export-btn').onclick = function() {
     const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'examen-backup-' + todayISO() + '.json';
-    a.click();
+    const a = document.createElement('a'); a.href=url; a.download='examen-backup-'+todayISO()+'.json'; a.click();
     URL.revokeObjectURL(url);
   };
-
-  document.getElementById('import-btn').onclick = function() {
-    document.getElementById('import-file').click();
-  };
-
+  document.getElementById('import-btn').onclick = function() { document.getElementById('import-file').click(); };
   document.getElementById('import-file').onchange = function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(ev) {
+    const f = e.target.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = function(ev) {
       try {
-        const data = JSON.parse(ev.target.result);
+        const d = JSON.parse(ev.target.result);
         if (confirm('Import überschreibt aktuelle Daten. Fortfahren?')) {
-          state = {
-            startDate: data.startDate || DEFAULT_START,
-            done: data.done || {},
-            notes: data.notes || {}
-          };
-          saveState();
-          renderAll();
+          state = { startDate: d.startDate || DEFAULT_START, done: d.done || {}, notes: d.notes || {}, lk: d.lk || {}, sp: d.sp || SP_BLOCKS_DEFAULT.map(b => ({...b, items: []})) };
+          saveState(); renderAll();
         }
-      } catch(err) {
-        alert('Import fehlgeschlagen: ' + err.message);
-      }
+      } catch(err) { alert('Import fehlgeschlagen: '+err.message); }
     };
-    reader.readAsText(file);
+    r.readAsText(f);
   };
 
   renderAll();
