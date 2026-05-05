@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Examensvorbereitung · Lernplan</title>
+<style>
+  :root {
+    --bg: #fafaf7;
+    --surface: #ffffff;
+    --surface-2: #f1efe8;
+    --text: #1a1a1a;
+    --text-secondary: #5f5e5a;
+    --text-tertiary: #888780;
+    --border: rgba(0,0,0,0.12);
+    --border-strong: rgba(0,0,0,0.25);
+    --accent: #1a1a1a;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242422;
+      --surface-2: #2c2c2a;
+      --text: #f0eee8;
+      --text-secondary: #a8a6a0;
+      --text-tertiary: #767670;
+      --border: rgba(255,255,255,0.12);
+      --border-strong: rgba(255,255,255,0.25);
+      --accent: #f0eee8;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+  .app {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  header {
+    margin-bottom: 2rem;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0 0 4px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 1.5rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-family: inherit;
+    border-radius: 0;
+    transition: color 0.15s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active {
+    border-bottom-color: var(--accent);
+    color: var(--text);
+    font-weight: 500;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  .stat {
+    background: var(--surface-2);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0 0 6px;
+  }
+  .stat-value {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+  }
+  .progress-wrap {
+    margin-bottom: 1.5rem;
+  }
+  .progress-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .progress-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .progress-pct {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .progress-bar-bg {
+    height: 8px;
+    background: var(--surface-2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+  .card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .card-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0 0 8px;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 4px;
+  }
+  .card-topic {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0 0 12px;
+  }
+  button {
+    background: transparent;
+    border: 0.5px solid var(--border-strong);
+    padding: 6px 14px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--text);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  button:hover {
+    background: var(--surface-2);
+  }
+  button:active { transform: scale(0.98); }
+  button.primary {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  input[type="date"], input[type="text"] {
+    border: 0.5px solid var(--border-strong);
+    padding: 6px 10px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--surface);
+    border-radius: var(--radius-md);
+  }
+  .filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .filter-btn.active {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  .tracker-row {
+    display: grid;
+    grid-template-columns: 32px 70px 90px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 12px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .tracker-row.today {
+    background: var(--surface-2);
+  }
+  .tracker-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+  .tracker-tag {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+  .tracker-date {
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+  .tracker-topic {
+    font-size: 13px;
+  }
+  .tracker-topic.done {
+    text-decoration: line-through;
+    color: var(--text-tertiary);
+  }
+  .tracker-topic .teil {
+    color: var(--text-secondary);
+    margin-right: 6px;
+  }
+  .badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: var(--radius-md);
+    white-space: nowrap;
+  }
+  .badge.methodik { background: #FAEEDA; color: #854F0B; }
+  .badge.zivil { background: #E6F1FB; color: #0C447C; }
+  .badge.straf { background: #FCEBEB; color: #791F1F; }
+  .badge.oeff { background: #EAF3DE; color: #27500A; }
+  @media (prefers-color-scheme: dark) {
+    .badge.methodik { background: #633806; color: #FAC775; }
+    .badge.zivil { background: #0C447C; color: #B5D4F4; }
+    .badge.straf { background: #791F1F; color: #F7C1C1; }
+    .badge.oeff { background: #27500A; color: #C0DD97; }
+  }
+  .settings-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .settings-row label {
+    font-size: 13px;
+  }
+  .empty {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+  .hidden { display: none; }
+  @media (max-width: 600px) {
+    .tracker-row {
+      grid-template-columns: 32px 1fr auto;
+      grid-template-rows: auto auto;
+    }
+    .tracker-tag, .tracker-date { grid-column: 2; font-size: 12px; }
+    .tracker-tag { grid-row: 1; }
+    .tracker-date { grid-row: 1; justify-self: end; grid-column: 3; }
+    .tracker-topic { grid-column: 2 / 4; }
+    .badge { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <h1>Examensvorbereitung</h1>
+    <p class="subtitle">Lernplan nach Dr. Hügel · Staatsexamen Oktober 2027</p>
+  </header>
+
+  <div class="tabs">
+    <button id="tab-dashboard" class="tab-btn active">Dashboard</button>
+    <button id="tab-tracker" class="tab-btn">100-Tage-Tracker</button>
+  </div>
+
+  <section id="view-dashboard">
+    <div class="stats-grid">
+      <div class="stat">
+        <p class="stat-label">Tag im Lernplan</p>
+        <p class="stat-value" id="stat-day">–</p>
+      </div>
+      <div class="stat">
+        <p class="stat-label">Erledigt</p>
+        <p class="stat-value" id="stat-done">0 / 100</p>
+      </div>
+      <div class="stat">
+        <p class="stat-label">Schwerpunktklausur</p>
+        <p class="stat-value" id="stat-sp">–</p>
+      </div>
+      <div class="stat">
+        <p class="stat-label">Staatsexamen</p>
+        <p class="stat-value" id="stat-ex">–</p>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-head">
+        <span class="progress-label">Fortschritt 100-Tage-Plan</span>
+        <span class="progress-pct" id="progress-pct">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-label">Heute (<span id="today-date">–</span>)</p>
+      <p class="card-title" id="today-title">–</p>
+      <p class="card-topic" id="today-topic">–</p>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button id="today-toggle">Als erledigt markieren</button>
+        <span id="today-status" style="font-size: 13px; color: var(--text-secondary);"></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-label">Einstellungen</p>
+      <div class="settings-row">
+        <label for="start-date">Starttag:</label>
+        <input type="date" id="start-date" />
+        <button id="export-btn">Daten exportieren</button>
+        <button id="import-btn">Daten importieren</button>
+        <input type="file" id="import-file" accept="application/json" class="hidden" />
+        <button id="reset-btn">Fortschritt zurücksetzen</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-tracker" class="hidden">
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">Alle</button>
+      <button class="filter-btn" data-filter="open">Offen</button>
+      <button class="filter-btn" data-filter="done">Erledigt</button>
+      <button class="filter-btn" data-filter="today">Heute</button>
+    </div>
+    <div id="tracker-list"></div>
+  </section>
+
+</div>
+
+<script>
+(function() {
+  const STORAGE_KEY = 'examen_app_v1';
+
+  const PLAN = [
+    {tag:1, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Suchlesen'},
+    {tag:2, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Auslegungslesen I'},
+    {tag:3, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Auslegungslesen II'},
+    {tag:4, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Wiedererkennungslesen'},
+    {tag:5, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Grundlagen, Willenserklärung, Willensmängel'},
+    {tag:6, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Vertrag, Auslegung, Geschäftsfähigkeit'},
+    {tag:7, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Vertretung, Form'},
+    {tag:8, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Unwirksamkeit, Zustimmung, Bedingung, AGB'},
+    {tag:9, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Schuldverhältnisse'},
+    {tag:10, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Personenmehrheiten und -wechsel, Dritte'},
+    {tag:11, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Erfüllung, Beendigung, Anpassung'},
+    {tag:12, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Leistungsstörungen'},
+    {tag:13, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Schadens-/Aufwendungsersatz, Verbraucher'},
+    {tag:14, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Vertragsrecht, Kaufrecht I – Mangel, Gefahr'},
+    {tag:15, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Kaufrecht II – Mängelrechte des Käufers'},
+    {tag:16, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Kaufrecht III – Besonderheiten; Überlassung'},
+    {tag:17, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Mietrecht, Zeitüberlassungsverträge'},
+    {tag:18, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Werkrecht'},
+    {tag:19, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Weitere Verträge'},
+    {tag:20, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Gesetzliche Schuldverhältnisse, GoA'},
+    {tag:21, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Leistungskondiktion'},
+    {tag:22, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Nichtleistungskondiktion'},
+    {tag:23, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Inhalt, Mehrpersonen'},
+    {tag:24, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Deliktsrecht – Verschuldenshaftung'},
+    {tag:25, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Deliktsrecht – weitere Haftung inklusive StVG'},
+    {tag:26, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Mobiliarsachenrecht, Eigentumserwerb'},
+    {tag:27, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Gutgläubiger Erwerb, gesetzlicher Erwerb'},
+    {tag:28, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Eigentümer-Besitzer-Verhältnis, Besitzschutz'},
+    {tag:29, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Kreditsicherungsrechte'},
+    {tag:30, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Immobiliarsachenrecht, Eigentumserwerb'},
+    {tag:31, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundbuchberichtigung, Vormerkung, Vorkauf'},
+    {tag:32, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundpfandrechte I – Hypothek'},
+    {tag:33, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundpfandrechte II – Grundschuld; Nutzung'},
+    {tag:34, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Grundlagen, objektiver Tatbestand'},
+    {tag:35, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Täterschaft, subjektiver Tatbestand'},
+    {tag:36, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Rechtswidrigkeit'},
+    {tag:37, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Schuld, Fahrlässigkeit'},
+    {tag:38, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Unterlassung, Teilnahme'},
+    {tag:39, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Versuch, Konkurrenzen'},
+    {tag:40, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Mord, Totschlag'},
+    {tag:41, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Körperverletzung, Brandstiftung'},
+    {tag:42, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Straßenverkehr, Willensbeeinträchtigung'},
+    {tag:43, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Urkundendelikte, Ehrschutz, Aussagedelikte'},
+    {tag:44, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Diebstahl I – Tatbestand'},
+    {tag:45, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Diebstahl II; Unterschlagung'},
+    {tag:46, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Raub, Erpressung'},
+    {tag:47, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Betrug, Computerbetrug'},
+    {tag:48, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Untreue, Anschlussdelikte, Sachbeschädigung'},
+    {tag:49, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Basics, Prozessrecht, Kompetenz, Verfahren'},
+    {tag:50, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Staatsprinzipien, Exekutive, Föderalsystem'},
+    {tag:51, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Bundestag, Bundesrat'},
+    {tag:52, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Bundesregierung, Bundespräsident, Parteien'},
+    {tag:53, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Wahlrecht, internationale Bezüge'},
+    {tag:54, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechtssystem, Freiheitsgrundrechte'},
+    {tag:55, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte I – Art. 2–5 GG'},
+    {tag:56, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte II – Art. 6–13 GG'},
+    {tag:57, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte III – Art. 14–19, 1 und 3 GG'},
+    {tag:58, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechtsgleiche Rechte, Durchsetzung'},
+    {tag:59, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht I – Grundsätze, Verfahren'},
+    {tag:60, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht II – Klage- und Antragsarten'},
+    {tag:61, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht III – SEV, Begründetheit'},
+    {tag:62, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Rechtsmittel, Verwaltung, Handlungsformen'},
+    {tag:63, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Verwaltungsakt, Rechtmäßigkeit, Aufhebung'},
+    {tag:64, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Vollstreckung, Vertrag, weitere Hoheitsakte'},
+    {tag:65, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Staatshaftung'},
+    {tag:66, gebiet:'Öffentliches Recht', teilgebiet:'Kommunalrecht', thema:'Basics, Selbstverwaltung, Aufgaben, Aufsicht'},
+    {tag:67, gebiet:'Öffentliches Recht', teilgebiet:'Kommunalrecht', thema:'Gemeindeverfassung, Satzungen, Einwohner'},
+    {tag:68, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Grundlagen, Generalklausel, Gefahrbegriff'},
+    {tag:69, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Pflichtigkeit, Ermessen, Standardmaßnahmen'},
+    {tag:70, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Versammlungen, Vollstreckung, Verordnung'},
+    {tag:71, gebiet:'Öffentliches Recht', teilgebiet:'Baurecht', thema:'Grundlagen, Bauplanungsrecht'},
+    {tag:72, gebiet:'Öffentliches Recht', teilgebiet:'Baurecht', thema:'Bauordnungsrecht, Prozessrecht'},
+    {tag:73, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundlagen, Struktur, Rechtsnatur, Organe'},
+    {tag:74, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Rechtsetzung, Rechtsquellen'},
+    {tag:75, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundfreiheiten'},
+    {tag:76, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundrechte, Rechtsschutz, Beihilfenrecht'},
+    {tag:77, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungserfordernis, Interpretationsfrage'},
+    {tag:78, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungsbedarf, Begründungskompetenz'},
+    {tag:79, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungsbeispiele, Formulierungstechnik'},
+    {tag:80, gebiet:'Zivilrecht', teilgebiet:'Familienrecht', thema:'Grundlagen, Eheschließung, Güterrecht'},
+    {tag:81, gebiet:'Zivilrecht', teilgebiet:'Familienrecht', thema:'Unterhalt, Ehevertrag, Verwandtschaft, Sorge'},
+    {tag:82, gebiet:'Zivilrecht', teilgebiet:'Erbrecht', thema:'Grundlagen, Erbfolge, Testament, Verfügung'},
+    {tag:83, gebiet:'Zivilrecht', teilgebiet:'Erbrecht', thema:'Anordnungen, Erbe, Erbschein, Pflichtteil'},
+    {tag:84, gebiet:'Zivilrecht', teilgebiet:'Handelsrecht', thema:'Kaufmann, Register, Firma, Unternehmen'},
+    {tag:85, gebiet:'Zivilrecht', teilgebiet:'Handelsrecht', thema:'Prokura, Vollmachten, Handelsgeschäft'},
+    {tag:86, gebiet:'Zivilrecht', teilgebiet:'Gesellschaftsrecht', thema:'Gesellschaften, Vereine, Gesellschaft b. R.'},
+    {tag:87, gebiet:'Zivilrecht', teilgebiet:'Gesellschaftsrecht', thema:'OHG, KG, GmbH, weitere Gesellschaftsformen'},
+    {tag:88, gebiet:'Zivilrecht', teilgebiet:'Arbeitsrecht', thema:'Grundlagen, Begründung, Inhalt'},
+    {tag:89, gebiet:'Zivilrecht', teilgebiet:'Arbeitsrecht', thema:'Leistungsstörungen, Haftung, Beendigung'},
+    {tag:90, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Erkenntnisverfahren I – Klage, Zulässigkeit'},
+    {tag:91, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Erkenntnisverfahren II – Beweis, Entscheidung'},
+    {tag:92, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Zwangsvollstreckungsrecht, Eilrechtsschutz'},
+    {tag:93, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Ermittlungsverfahren I – Ablauf, Beteiligte'},
+    {tag:94, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Ermittlungsverfahren II – Beweisverwertung'},
+    {tag:95, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Abschluss, Zwischen- und Hauptverfahren'},
+    {tag:96, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Begründungs- und Argumentationslehre'},
+    {tag:97, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Auslegung'},
+    {tag:98, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Konkretisierung und Konstruktion'},
+    {tag:99, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Verfassungs- und Europarecht, Rechtsfrieden'},
+    {tag:100, gebiet:'Methodik', teilgebiet:'Sprache und Stil', thema:'Gutes, überzeugendes Deutsch (§ 184 GVG)'}
+  ];
+
+  const BADGE_CLASS = {
+    'Methodik': 'methodik',
+    'Zivilrecht': 'zivil',
+    'Strafrecht': 'straf',
+    'Öffentliches Recht': 'oeff'
+  };
+
+  const SP_DATE = '2026-07-29';
+  const EX_DATE = '2027-10-01';
+  const DEFAULT_START = '2026-05-11';
+
+  let state = loadState();
+  let currentFilter = 'all';
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        return {
+          startDate: parsed.startDate || DEFAULT_START,
+          done: parsed.done || {},
+          notes: parsed.notes || {}
+        };
+      }
+    } catch(e) {}
+    return { startDate: DEFAULT_START, done: {}, notes: {} };
+  }
+
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function todayISO() {
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + day;
+  }
+
+  function daysBetween(a, b) {
+    const ms = 86400000;
+    return Math.round((new Date(b + 'T00:00:00') - new Date(a + 'T00:00:00')) / ms);
+  }
+
+  function dateForDay(tag) {
+    const d = new Date(state.startDate + 'T00:00:00');
+    d.setDate(d.getDate() + (tag - 1));
+    return d.toISOString().slice(0,10);
+  }
+
+  function formatDateDE(iso) {
+    return new Date(iso + 'T00:00:00').toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit', year:'numeric'});
+  }
+
+  function currentDayNumber() {
+    const offset = daysBetween(state.startDate, todayISO()) + 1;
+    if (offset < 1) return 0;
+    if (offset > 100) return 101;
+    return offset;
+  }
+
+  function countDone() {
+    return Object.values(state.done).filter(Boolean).length;
+  }
+
+  function renderDashboard() {
+    const day = currentDayNumber();
+    const done = countDone();
+    const today = todayISO();
+
+    let dayLabel;
+    if (day === 0) dayLabel = 'in ' + daysBetween(today, state.startDate) + 'T';
+    else if (day === 101) dayLabel = 'beendet';
+    else dayLabel = day + ' / 100';
+
+    document.getElementById('stat-day').textContent = dayLabel;
+    document.getElementById('stat-done').textContent = done + ' / 100';
+
+    const spDays = daysBetween(today, SP_DATE);
+    const exDays = daysBetween(today, EX_DATE);
+    document.getElementById('stat-sp').textContent = spDays > 0 ? spDays + 'T' : (spDays === 0 ? 'heute' : 'vorbei');
+    document.getElementById('stat-ex').textContent = exDays > 0 ? exDays + 'T' : (exDays === 0 ? 'heute' : 'vorbei');
+
+    document.getElementById('progress-pct').textContent = done + '%';
+    document.getElementById('progress-bar').style.width = done + '%';
+
+    document.getElementById('today-date').textContent = formatDateDE(today);
+
+    const titleEl = document.getElementById('today-title');
+    const topicEl = document.getElementById('today-topic');
+    const btn = document.getElementById('today-toggle');
+    const status = document.getElementById('today-status');
+
+    if (day >= 1 && day <= 100) {
+      const item = PLAN[day - 1];
+      titleEl.textContent = 'Tag ' + day + ' · ' + item.gebiet + ' · ' + item.teilgebiet;
+      topicEl.textContent = item.thema;
+      const isDone = !!state.done[day];
+      btn.style.display = '';
+      btn.textContent = isDone ? 'Als offen markieren' : 'Als erledigt markieren';
+      status.textContent = isDone ? 'erledigt' : '';
+      btn.onclick = function() {
+        state.done[day] = !state.done[day];
+        saveState();
+        renderAll();
+      };
+    } else if (day === 0) {
+      titleEl.textContent = 'Lernplan startet noch nicht';
+      topicEl.textContent = 'Beginn am ' + formatDateDE(state.startDate);
+      btn.style.display = 'none';
+      status.textContent = '';
+    } else {
+      titleEl.textContent = '100-Tage-Plan abgeschlossen';
+      topicEl.textContent = 'Übergang zur Vertiefungs- und Trainingsphase';
+      btn.style.display = 'none';
+      status.textContent = '';
+    }
+
+    document.getElementById('start-date').value = state.startDate;
+  }
+
+  function renderTracker() {
+    const list = document.getElementById('tracker-list');
+    const currentDay = currentDayNumber();
+
+    let items = PLAN.slice();
+    if (currentFilter === 'open') items = items.filter(p => !state.done[p.tag]);
+    if (currentFilter === 'done') items = items.filter(p => !!state.done[p.tag]);
+    if (currentFilter === 'today') items = items.filter(p => p.tag === currentDay);
+
+    list.innerHTML = '';
+    if (items.length === 0) {
+      const empty = document.createElement('p');
+      empty.className = 'empty';
+      empty.textContent = 'Keine Einträge für diesen Filter.';
+      list.appendChild(empty);
+      return;
+    }
+
+    items.forEach(item => {
+      const isDone = !!state.done[item.tag];
+      const isToday = item.tag === currentDay;
+      const date = dateForDay(item.tag);
+
+      const row = document.createElement('div');
+      row.className = 'tracker-row' + (isToday ? ' today' : '');
+
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = isDone;
+      cb.onchange = function() {
+        state.done[item.tag] = cb.checked;
+        saveState();
+        renderAll();
+      };
+
+      const tagCell = document.createElement('div');
+      tagCell.className = 'tracker-tag';
+      tagCell.textContent = 'Tag ' + item.tag;
+
+      const dateCell = document.createElement('div');
+      dateCell.className = 'tracker-date';
+      dateCell.textContent = formatDateDE(date).slice(0,5);
+
+      const topic = document.createElement('div');
+      topic.className = 'tracker-topic' + (isDone ? ' done' : '');
+      const teil = document.createElement('span');
+      teil.className = 'teil';
+      teil.textContent = item.teilgebiet + ':';
+      topic.appendChild(teil);
+      topic.appendChild(document.createTextNode(item.thema));
+
+      const badge = document.createElement('span');
+      badge.className = 'badge ' + (BADGE_CLASS[item.gebiet] || '');
+      badge.textContent = item.gebiet;
+
+      row.appendChild(cb);
+      row.appendChild(tagCell);
+      row.appendChild(dateCell);
+      row.appendChild(topic);
+      row.appendChild(badge);
+      list.appendChild(row);
+    });
+  }
+
+  function renderAll() {
+    renderDashboard();
+    renderTracker();
+  }
+
+  document.getElementById('tab-dashboard').onclick = function() {
+    document.getElementById('view-dashboard').classList.remove('hidden');
+    document.getElementById('view-tracker').classList.add('hidden');
+    this.classList.add('active');
+    document.getElementById('tab-tracker').classList.remove('active');
+  };
+  document.getElementById('tab-tracker').onclick = function() {
+    document.getElementById('view-dashboard').classList.add('hidden');
+    document.getElementById('view-tracker').classList.remove('hidden');
+    this.classList.add('active');
+    document.getElementById('tab-dashboard').classList.remove('active');
+    renderTracker();
+  };
+
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.onclick = function() {
+      currentFilter = this.dataset.filter;
+      document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+      this.classList.add('active');
+      renderTracker();
+    };
+  });
+
+  document.getElementById('start-date').onchange = function(e) {
+    state.startDate = e.target.value;
+    saveState();
+    renderAll();
+  };
+
+  document.getElementById('reset-btn').onclick = function() {
+    if (confirm('Wirklich allen Fortschritt zurücksetzen?')) {
+      state.done = {};
+      saveState();
+      renderAll();
+    }
+  };
+
+  document.getElementById('export-btn').onclick = function() {
+    const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'examen-backup-' + todayISO() + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  document.getElementById('import-btn').onclick = function() {
+    document.getElementById('import-file').click();
+  };
+
+  document.getElementById('import-file').onchange = function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      try {
+        const data = JSON.parse(ev.target.result);
+        if (confirm('Import überschreibt aktuelle Daten. Fortfahren?')) {
+          state = {
+            startDate: data.startDate || DEFAULT_START,
+            done: data.done || {},
+            notes: data.notes || {}
+          };
+          saveState();
+          renderAll();
+        }
+      } catch(err) {
+        alert('Import fehlgeschlagen: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
