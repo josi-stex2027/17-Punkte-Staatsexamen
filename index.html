@@ -22,6 +22,8 @@
     --warn-fg: #854F0B;
     --success-bg: #EAF3DE;
     --success-fg: #27500A;
+    --danger-bg: #FCEBEB;
+    --danger-fg: #791F1F;
     --radius-md: 8px;
     --radius-lg: 12px;
     --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
@@ -44,6 +46,8 @@
       --warn-fg: #FAC775;
       --success-bg: #27500A;
       --success-fg: #C0DD97;
+      --danger-bg: #501313;
+      --danger-fg: #F7C1C1;
     }
   }
   * { box-sizing: border-box; }
@@ -146,6 +150,40 @@
   .sp-add-row { display: flex; gap: 8px; margin-top: 0.75rem; }
   .sp-add-row input { flex: 1; }
 
+  /* Lernfragen */
+  .lf-toolbar { display: flex; gap: 12px; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; padding: 10px 14px; background: var(--surface-2); border-radius: var(--radius-md); }
+  .lf-mode-switch { display: flex; gap: 0; }
+  .lf-mode-btn { padding: 6px 14px; font-size: 13px; border: 0.5px solid var(--border-strong); background: var(--surface); color: var(--text); cursor: pointer; }
+  .lf-mode-btn:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
+  .lf-mode-btn:last-child { border-radius: 0 var(--radius-md) var(--radius-md) 0; border-left: none; }
+  .lf-mode-btn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .lf-stats { font-size: 12px; color: var(--text-secondary); margin-left: auto; }
+  .lf-block { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
+  .lf-block-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; gap: 12px; flex-wrap: wrap; }
+  .lf-block-title { font-size: 15px; font-weight: 500; margin: 0; }
+  .lf-block-stats { font-size: 12px; color: var(--text-secondary); }
+  .lf-card { padding: 12px 0; border-bottom: 0.5px solid var(--border); }
+  .lf-card:last-of-type { border-bottom: none; }
+  .lf-card-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .lf-question { font-size: 14px; font-weight: 500; line-height: 1.5; flex: 1; }
+  .lf-card-actions { display: flex; gap: 4px; flex-shrink: 0; }
+  .lf-answer { margin-top: 8px; padding: 10px 12px; background: var(--surface-2); border-radius: var(--radius-md); font-size: 14px; line-height: 1.6; white-space: pre-wrap; }
+  .lf-answer-empty { color: var(--text-tertiary); font-style: italic; font-size: 13px; }
+  .lf-reveal-btn { margin-top: 8px; }
+  .lf-rate { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
+  .lf-rate-label { font-size: 12px; color: var(--text-secondary); margin-right: 4px; }
+  .lf-rate-btn { padding: 4px 10px; font-size: 12px; }
+  .lf-rate-btn.success { background: var(--success-bg); color: var(--success-fg); border-color: var(--success-fg); }
+  .lf-rate-btn.warn { background: var(--warn-bg); color: var(--warn-fg); border-color: var(--warn-fg); }
+  .lf-rate-btn.danger { background: var(--danger-bg); color: var(--danger-fg); border-color: var(--danger-fg); }
+  .lf-rate-btn.active { font-weight: 500; }
+  .lf-last-rate { font-size: 11px; color: var(--text-tertiary); margin-left: 8px; }
+  .lf-add-form { display: flex; flex-direction: column; gap: 8px; margin-top: 1rem; padding-top: 1rem; border-top: 0.5px dashed var(--border); }
+  .lf-add-row { display: flex; gap: 8px; align-items: flex-start; }
+  .lf-add-row textarea { min-height: 50px; }
+  .lf-edit-form { display: flex; flex-direction: column; gap: 8px; padding: 8px 0; }
+  .lf-edit-actions { display: flex; gap: 8px; }
+
   /* Lernkommentar */
   .lk-toolbar { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
   .lk-toolbar input[type="text"] { flex: 1; min-width: 180px; width: auto; }
@@ -189,30 +227,17 @@
     <button id="tab-wochenplan" class="tab-btn">Wochenplan</button>
     <button id="tab-tracker" class="tab-btn">100-Tage-Tracker</button>
     <button id="tab-sp" class="tab-btn">Schwerpunkt</button>
+    <button id="tab-lf" class="tab-btn">Lernfragen</button>
     <button id="tab-lk" class="tab-btn">Lernkommentar</button>
   </div>
 
-  <!-- DASHBOARD -->
   <section id="view-dashboard">
     <div class="stats-grid">
-      <div class="stat priority">
-        <p class="stat-label">Schwerpunktklausur (29.07.)</p>
-        <p class="stat-value" id="stat-sp">–</p>
-      </div>
-      <div class="stat">
-        <p class="stat-label">Tag im 100-Tage-Plan</p>
-        <p class="stat-value" id="stat-day">–</p>
-      </div>
-      <div class="stat">
-        <p class="stat-label">Stex-Plan erledigt</p>
-        <p class="stat-value" id="stat-done">0 / 100</p>
-      </div>
-      <div class="stat">
-        <p class="stat-label">Staatsexamen</p>
-        <p class="stat-value" id="stat-ex">–</p>
-      </div>
+      <div class="stat priority"><p class="stat-label">Schwerpunktklausur (29.07.)</p><p class="stat-value" id="stat-sp">–</p></div>
+      <div class="stat"><p class="stat-label">Tag im 100-Tage-Plan</p><p class="stat-value" id="stat-day">–</p></div>
+      <div class="stat"><p class="stat-label">Stex-Plan erledigt</p><p class="stat-value" id="stat-done">0 / 100</p></div>
+      <div class="stat"><p class="stat-label">Staatsexamen</p><p class="stat-value" id="stat-ex">–</p></div>
     </div>
-
     <div class="card">
       <p class="card-label">Heute (<span id="today-date">–</span>) · <span id="today-weekday">–</span></p>
       <p class="card-title" id="today-title">–</p>
@@ -220,13 +245,11 @@
       <div id="today-actions" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"></div>
       <p class="card-hint" id="today-hint"></p>
     </div>
-
     <div class="progress-wrap">
       <div class="progress-head"><span class="progress-label">Fortschritt 100-Tage-Plan</span><span class="progress-pct" id="progress-pct">0%</span></div>
       <div class="progress-bar-bg"><div class="progress-bar" id="progress-bar"></div></div>
       <p class="card-hint" id="tempo-hint" style="margin-top: 8px;"></p>
     </div>
-
     <div class="card">
       <p class="card-label">Einstellungen</p>
       <div class="settings-row">
@@ -240,21 +263,13 @@
     </div>
   </section>
 
-  <!-- WOCHENPLAN -->
   <section id="view-wochenplan" class="hidden">
-    <p class="card-hint" style="margin-bottom: 1rem;">
-      Feste Wochenstruktur. Di und Fr sind Ihre Haupttage für 100-Tage-Plan und Schwerpunkt.
-      Auf welches Thema Sie den Schwerpunkt am freien Tag legen, entscheiden Sie bewusst pro Woche —
-      die Faustregel: solange die Schwerpunktklausur näher ist als das Examen, eher Schwerpunkt.
-    </p>
+    <p class="card-hint" style="margin-bottom: 1rem;">Feste Wochenstruktur. Di und Fr sind Ihre Haupttage für 100-Tage-Plan und Schwerpunkt.</p>
     <div id="wochenplan-list"></div>
   </section>
 
-  <!-- TRACKER -->
   <section id="view-tracker" class="hidden">
-    <p class="card-hint" style="margin-bottom: 1rem;">
-      Reihenfolge angepasst: Methodik → Öffentliches Recht (passt zum Seminar und Schwerpunkt) → Zivilrecht → Strafrecht → Rest.
-    </p>
+    <p class="card-hint" style="margin-bottom: 1rem;">Reihenfolge angepasst: Methodik → Öffentliches Recht (passt zum Seminar und Schwerpunkt) → Zivilrecht → Strafrecht → Rest.</p>
     <div class="filters">
       <button class="filter-btn active" data-filter="all">Alle</button>
       <button class="filter-btn" data-filter="open">Offen</button>
@@ -264,17 +279,26 @@
     <div id="tracker-list"></div>
   </section>
 
-  <!-- SCHWERPUNKT -->
   <section id="view-sp" class="hidden">
     <h2 style="margin-top: 0;">Umwelt-, Energie- und Infrastrukturrecht</h2>
-    <p class="card-hint" style="margin-bottom: 1rem;">
-      Klausur am 29. Juli 2026 · Status pro Thema setzen, Notizen frei ergänzen.
-      Neue Unterthemen können Sie pro Block hinzufügen.
-    </p>
+    <p class="card-hint" style="margin-bottom: 1rem;">Klausur am 29. Juli 2026 · Status pro Thema setzen, Notizen frei ergänzen.</p>
     <div id="sp-blocks"></div>
   </section>
 
-  <!-- LERNKOMMENTAR -->
+  <section id="view-lf" class="hidden">
+    <h2 style="margin-top: 0;">Lernfragen aus den Vorlesungsfolien</h2>
+    <div class="lf-toolbar">
+      <span style="font-size: 13px; color: var(--text-secondary);">Modus:</span>
+      <div class="lf-mode-switch">
+        <button class="lf-mode-btn active" data-mode="lesen">Lesen</button>
+        <button class="lf-mode-btn" data-mode="abfragen">Abfragen</button>
+      </div>
+      <span class="lf-stats" id="lf-stats"></span>
+    </div>
+    <p class="card-hint" style="margin-bottom: 1rem;" id="lf-mode-hint">Im Lesemodus sind Frage und Antwort gemeinsam sichtbar — gut für die strukturierte Wiederholung.</p>
+    <div id="lf-blocks"></div>
+  </section>
+
   <section id="view-lk" class="hidden">
     <div class="lk-toolbar">
       <button id="lk-new" class="primary">+ Neue Norm</button>
@@ -297,14 +321,11 @@
 (function() {
   const STORAGE_KEY = 'examen_app_v1';
 
-  // ÖR vorgezogen: Methodik (1-4) → ÖR (vormalige 49-76, jetzt 5-32) → Zivilrecht → Strafrecht → Rest-Methodik+ZivilNebengebiete
   const PLAN = [
-    // Methodik Gesetze lesen (Tag 1-4)
     {tag:1, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Suchlesen'},
     {tag:2, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Auslegungslesen I'},
     {tag:3, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Auslegungslesen II'},
     {tag:4, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Wiedererkennungslesen'},
-    // ÖR vorgezogen (Tag 5-32, ursprünglich 49-76)
     {tag:5, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Basics, Prozessrecht, Kompetenz, Verfahren'},
     {tag:6, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Staatsprinzipien, Exekutive, Föderalsystem'},
     {tag:7, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Bundestag, Bundesrat'},
@@ -333,7 +354,6 @@
     {tag:30, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Rechtsetzung, Rechtsquellen'},
     {tag:31, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundfreiheiten'},
     {tag:32, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundrechte, Rechtsschutz, Beihilfenrecht'},
-    // ZivilR Kerngebiete (Tag 33-61, ursprünglich 5-33)
     {tag:33, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Grundlagen, Willenserklärung, Willensmängel'},
     {tag:34, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Vertrag, Auslegung, Geschäftsfähigkeit'},
     {tag:35, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Vertretung, Form'},
@@ -363,7 +383,6 @@
     {tag:59, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundbuchberichtigung, Vormerkung, Vorkauf'},
     {tag:60, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundpfandrechte I – Hypothek'},
     {tag:61, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundpfandrechte II – Grundschuld; Nutzung'},
-    // StrafR (Tag 62-76, ursprünglich 34-48)
     {tag:62, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Grundlagen, objektiver Tatbestand'},
     {tag:63, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Täterschaft, subjektiver Tatbestand'},
     {tag:64, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Rechtswidrigkeit'},
@@ -379,11 +398,9 @@
     {tag:74, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Raub, Erpressung'},
     {tag:75, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Betrug, Computerbetrug'},
     {tag:76, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Untreue, Anschlussdelikte, Sachbeschädigung'},
-    // Methodik Begründen (Tag 77-79)
     {tag:77, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungserfordernis, Interpretationsfrage'},
     {tag:78, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungsbedarf, Begründungskompetenz'},
     {tag:79, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungsbeispiele, Formulierungstechnik'},
-    // ZivilR Nebengebiete (Tag 80-92)
     {tag:80, gebiet:'Zivilrecht', teilgebiet:'Familienrecht', thema:'Grundlagen, Eheschließung, Güterrecht'},
     {tag:81, gebiet:'Zivilrecht', teilgebiet:'Familienrecht', thema:'Unterhalt, Ehevertrag, Verwandtschaft, Sorge'},
     {tag:82, gebiet:'Zivilrecht', teilgebiet:'Erbrecht', thema:'Grundlagen, Erbfolge, Testament, Verfügung'},
@@ -397,11 +414,9 @@
     {tag:90, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Erkenntnisverfahren I – Klage, Zulässigkeit'},
     {tag:91, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Erkenntnisverfahren II – Beweis, Entscheidung'},
     {tag:92, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Zwangsvollstreckungsrecht, Eilrechtsschutz'},
-    // StrafR Prozessrecht (Tag 93-95)
     {tag:93, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Ermittlungsverfahren I – Ablauf, Beteiligte'},
     {tag:94, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Ermittlungsverfahren II – Beweisverwertung'},
     {tag:95, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Abschluss, Zwischen- und Hauptverfahren'},
-    // Methodik Methodenlehre (Tag 96-100)
     {tag:96, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Begründungs- und Argumentationslehre'},
     {tag:97, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Auslegung'},
     {tag:98, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Konkretisierung und Konstruktion'},
@@ -411,46 +426,29 @@
 
   const BADGE_CLASS = { 'Methodik':'methodik', 'Zivilrecht':'zivil', 'Strafrecht':'straf', 'Öffentliches Recht':'oeff' };
 
-  // Wochenplan: 0=So, 1=Mo, 2=Di, 3=Mi, 4=Do, 5=Fr, 6=Sa
   const WEEKPLAN = {
-    1: { name: 'Mo', slots: [
-      { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' },
-      { time: '12:00–16:00', activity: 'Examenskurs Zivilrecht', tag: 'kurs' }
-    ]},
-    2: { name: 'Di', slots: [
-      { time: 'Vormittag',   activity: '100-Tage-Plan (heutiger Tag)', tag: 'stex' },
-      { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' },
-      { time: 'Nachmittag',  activity: 'Schwerpunkt oder Stex (variabel)', tag: 'sp' }
-    ]},
-    3: { name: 'Mi', slots: [
-      { time: '10:00–12:30', activity: 'Arbeit am Lehrstuhl', tag: 'kurs' },
-      { time: '12:30–13:30', activity: 'Mittagspause', tag: 'pause' },
-      { time: '14:00–16:00', activity: 'Seminar Öffentliches Recht', tag: 'kurs' }
-    ]},
-    4: { name: 'Do', slots: [
-      { time: '10:00–14:00', activity: 'Examenskurs Öffentliches Recht', tag: 'kurs' },
-      { time: '12:00–13:00', activity: '(Mittagspause innerhalb Kurs)', tag: 'pause' }
-    ]},
-    5: { name: 'Fr', slots: [
-      { time: 'Vormittag',   activity: 'Schwerpunkt', tag: 'sp' },
-      { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' },
-      { time: 'Nachmittag',  activity: '100-Tage-Plan (heutiger Tag)', tag: 'stex' }
-    ]},
-    6: { name: 'Sa', slots: [
-      { time: '09:00–14:00', activity: 'Klausuren (wenn angeboten)', tag: 'kurs' },
-      { time: '12:00–13:00', activity: 'Mittagspause (wenn frei)', tag: 'pause' }
-    ]},
-    0: { name: 'So', slots: [
-      { time: 'ganztägig', activity: 'Frei – Erholung', tag: 'frei' }
-    ]}
+    1: { name: 'Mo', slots: [{ time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' }, { time: '12:00–16:00', activity: 'Examenskurs Zivilrecht', tag: 'kurs' }]},
+    2: { name: 'Di', slots: [{ time: 'Vormittag', activity: '100-Tage-Plan (heutiger Tag)', tag: 'stex' }, { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' }, { time: 'Nachmittag', activity: 'Schwerpunkt oder Stex (variabel)', tag: 'sp' }]},
+    3: { name: 'Mi', slots: [{ time: '10:00–12:30', activity: 'Arbeit am Lehrstuhl', tag: 'kurs' }, { time: '12:30–13:30', activity: 'Mittagspause', tag: 'pause' }, { time: '14:00–16:00', activity: 'Seminar Öffentliches Recht', tag: 'kurs' }]},
+    4: { name: 'Do', slots: [{ time: '10:00–14:00', activity: 'Examenskurs Öffentliches Recht', tag: 'kurs' }, { time: '12:00–13:00', activity: '(Mittagspause innerhalb Kurs)', tag: 'pause' }]},
+    5: { name: 'Fr', slots: [{ time: 'Vormittag', activity: 'Schwerpunkt', tag: 'sp' }, { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' }, { time: 'Nachmittag', activity: '100-Tage-Plan (heutiger Tag)', tag: 'stex' }]},
+    6: { name: 'Sa', slots: [{ time: '09:00–14:00', activity: 'Klausuren (wenn angeboten)', tag: 'kurs' }, { time: '12:00–13:00', activity: 'Mittagspause (wenn frei)', tag: 'pause' }]},
+    0: { name: 'So', slots: [{ time: 'ganztägig', activity: 'Frei – Erholung', tag: 'frei' }]}
   };
 
   const SP_DATE = '2026-07-29';
   const EX_DATE = '2027-10-01';
   const DEFAULT_START = '2026-05-11';
-  const STEX_LERNTAGE = [2, 5]; // Di + Fr
+  const STEX_LERNTAGE = [2, 5];
 
   const SP_BLOCKS_DEFAULT = [
+    { id: 'umweltAT', title: 'Umweltrecht AT', items: [] },
+    { id: 'umweltBT', title: 'Umweltrecht BT', items: [] },
+    { id: 'klimaEnergie', title: 'Klima- und Energierecht', items: [] },
+    { id: 'infraPlanung', title: 'Infrastruktur- und Planungsrecht', items: [] }
+  ];
+
+  const LF_BLOCKS_DEFAULT = [
     { id: 'umweltAT', title: 'Umweltrecht AT', items: [] },
     { id: 'umweltBT', title: 'Umweltrecht BT', items: [] },
     { id: 'klimaEnergie', title: 'Klima- und Energierecht', items: [] },
@@ -463,6 +461,9 @@
   let lkSearchTerm = '';
   let lkSortBy = 'norm';
   let saveTimer = null;
+  let lfMode = 'lesen';
+  let lfRevealed = {};   // id -> bool, in dieser Sitzung aufgedeckt
+  let lfEditing = null;  // id der Frage, die gerade bearbeitet wird
 
   function loadState() {
     try {
@@ -474,11 +475,12 @@
           done: p.done || {},
           notes: p.notes || {},
           lk: p.lk || {},
-          sp: p.sp || SP_BLOCKS_DEFAULT.map(b => ({...b, items: []}))
+          sp: p.sp || SP_BLOCKS_DEFAULT.map(b => ({...b, items: []})),
+          lf: p.lf || LF_BLOCKS_DEFAULT.map(b => ({...b, items: []}))
         };
       }
     } catch(e) {}
-    return { startDate: DEFAULT_START, done: {}, notes: {}, lk: {}, sp: SP_BLOCKS_DEFAULT.map(b => ({...b, items: []})) };
+    return { startDate: DEFAULT_START, done: {}, notes: {}, lk: {}, sp: SP_BLOCKS_DEFAULT.map(b => ({...b, items: []})), lf: LF_BLOCKS_DEFAULT.map(b => ({...b, items: []})) };
   }
   function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {} }
 
@@ -489,25 +491,10 @@
   function daysBetween(a,b) { return Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/86400000); }
   function dateForDay(tag) { const d = new Date(state.startDate+'T00:00:00'); d.setDate(d.getDate()+(tag-1)); return d.toISOString().slice(0,10); }
   function formatDateDE(iso) { return new Date(iso+'T00:00:00').toLocaleDateString('de-DE', {day:'2-digit',month:'2-digit',year:'numeric'}); }
-  function weekdayDE(iso) {
-    const wd = new Date(iso+'T00:00:00').getDay();
-    return ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'][wd];
-  }
-  function currentDayNumber() {
-    const o = daysBetween(state.startDate, todayISO())+1;
-    if (o<1) return 0;
-    if (o>100) return 101;
-    return o;
-  }
+  function weekdayDE(iso) { const wd = new Date(iso+'T00:00:00').getDay(); return ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'][wd]; }
+  function currentDayNumber() { const o = daysBetween(state.startDate, todayISO())+1; if (o<1) return 0; if (o>100) return 101; return o; }
   function countDone() { return Object.values(state.done).filter(Boolean).length; }
-
-  // nächster offener Plan-Tag (in Reihenfolge der Tag-Nummer)
-  function nextOpenPlanDay() {
-    for (let i = 0; i < PLAN.length; i++) {
-      if (!state.done[PLAN[i].tag]) return PLAN[i];
-    }
-    return null;
-  }
+  function nextOpenPlanDay() { for (let i=0; i<PLAN.length; i++) if (!state.done[PLAN[i].tag]) return PLAN[i]; return null; }
 
   function tempoText() {
     const today = todayISO();
@@ -516,40 +503,33 @@
     const done = countDone();
     if (elapsed < 1) return 'Lernplan startet am ' + formatDateDE(start) + '.';
     if (done === 0) return 'Noch keine Tage abgeschlossen.';
-    const ratePerDay = done / elapsed; // tatsächlich pro Kalendertag
-    if (ratePerDay <= 0) return '';
+    const rate = done / elapsed;
+    if (rate <= 0) return '';
     const remaining = 100 - done;
-    const daysNeeded = Math.ceil(remaining / ratePerDay);
-    const finishDate = new Date(today+'T00:00:00');
-    finishDate.setDate(finishDate.getDate() + daysNeeded);
-    return 'Bei aktueller Geschwindigkeit (ø ' + ratePerDay.toFixed(2) + ' Tage/Kalendertag) erreichen Sie Tag 100 am ' + finishDate.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}) + '.';
+    const daysNeeded = Math.ceil(remaining / rate);
+    const finish = new Date(today+'T00:00:00');
+    finish.setDate(finish.getDate() + daysNeeded);
+    return 'Bei aktueller Geschwindigkeit (ø ' + rate.toFixed(2) + ' Tage/Kalendertag) erreichen Sie Tag 100 am ' + finish.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}) + '.';
   }
 
   function renderDashboard() {
     const today = todayISO();
     const day = currentDayNumber();
     const done = countDone();
-
-    // Schwerpunktklausur (priorisiert)
     const sp = daysBetween(today, SP_DATE);
     document.getElementById('stat-sp').textContent = sp>0 ? sp+' Tage' : (sp===0 ? 'heute!' : 'vorbei');
-
     let dayLabel;
     if (day===0) dayLabel = 'in '+daysBetween(today, state.startDate)+'T';
     else if (day===101) dayLabel = 'beendet';
     else dayLabel = day+' / 100';
     document.getElementById('stat-day').textContent = dayLabel;
     document.getElementById('stat-done').textContent = done+' / 100';
-
     const ex = daysBetween(today, EX_DATE);
     document.getElementById('stat-ex').textContent = ex>0 ? Math.round(ex/30)+' Mon.' : 'vorbei';
-
     document.getElementById('progress-pct').textContent = done+'%';
     document.getElementById('progress-bar').style.width = done+'%';
-
     document.getElementById('today-date').textContent = formatDateDE(today);
     document.getElementById('today-weekday').textContent = weekdayDE(today);
-
     renderTodayCard(today);
     document.getElementById('tempo-hint').textContent = tempoText();
     document.getElementById('start-date').value = state.startDate;
@@ -563,99 +543,46 @@
     const hintEl = document.getElementById('today-hint');
     actionsEl.innerHTML = '';
     hintEl.textContent = '';
-
     const day = currentDayNumber();
     const isStexLerntag = STEX_LERNTAGE.indexOf(wd) !== -1;
-    const dayPlan = WEEKPLAN[wd];
-
-    // Standardfälle: feste Aktivitäten
-    if (wd === 1) { // Mo
-      titleEl.textContent = 'Examenskurs Zivilrecht';
-      topicEl.textContent = '12–16 Uhr · Bringt das Stex-Training mit';
-      hintEl.textContent = 'Kein 100-Tage-Plan-Tag. Fall- und Klausurarbeit ist hier die Hauptaufgabe.';
-      return;
-    }
-    if (wd === 3) { // Mi
-      titleEl.textContent = 'Lehrstuhl + Seminar Öffentliches Recht';
-      topicEl.textContent = '10–12:30 Lehrstuhl · 14–16 Seminar';
-      hintEl.textContent = 'Das Seminar-Thema baut sich gut in den Lernkommentar (Reiter rechts) ein.';
-      return;
-    }
-    if (wd === 4) { // Do
-      titleEl.textContent = 'Examenskurs Öffentliches Recht';
-      topicEl.textContent = '10–14 Uhr · Stoffüberschneidung mit Schwerpunkt nutzen';
-      hintEl.textContent = 'Wenn etwas Neues kommt: kurz im 100-Tage-Tracker nachsehen, ob es zu einem Tag passt.';
-      return;
-    }
-    if (wd === 6) { // Sa
-      titleEl.textContent = 'Samstagsklausur (wenn angeboten)';
-      topicEl.textContent = '9–14 Uhr · sonst freier Tag';
-      hintEl.textContent = 'Schreiben ist die wichtigste Übung. Nach der Klausur: Pause, nicht direkt nachbearbeiten.';
-      return;
-    }
-    if (wd === 0) { // So
-      titleEl.textContent = 'Sonntag — Erholung';
-      topicEl.textContent = 'Nicht lernen ist auch Lernen.';
-      hintEl.textContent = 'Dr. Hügel empfiehlt einen vollständig freien Tag pro Woche. Heute keine Aufgaben.';
-      return;
-    }
-
-    // Di + Fr — Stex-Lerntage mit Schwerpunkt-Anteil
+    if (wd === 1) { titleEl.textContent = 'Examenskurs Zivilrecht'; topicEl.textContent = '12–16 Uhr · Bringt das Stex-Training mit'; hintEl.textContent = 'Kein 100-Tage-Plan-Tag. Fall- und Klausurarbeit ist hier die Hauptaufgabe.'; return; }
+    if (wd === 3) { titleEl.textContent = 'Lehrstuhl + Seminar Öffentliches Recht'; topicEl.textContent = '10–12:30 Lehrstuhl · 14–16 Seminar'; hintEl.textContent = 'Das Seminar-Thema baut sich gut in den Lernkommentar (Reiter rechts) ein.'; return; }
+    if (wd === 4) { titleEl.textContent = 'Examenskurs Öffentliches Recht'; topicEl.textContent = '10–14 Uhr · Stoffüberschneidung mit Schwerpunkt nutzen'; hintEl.textContent = 'Wenn etwas Neues kommt: kurz im 100-Tage-Tracker nachsehen, ob es zu einem Tag passt.'; return; }
+    if (wd === 6) { titleEl.textContent = 'Samstagsklausur (wenn angeboten)'; topicEl.textContent = '9–14 Uhr · sonst freier Tag'; hintEl.textContent = 'Schreiben ist die wichtigste Übung. Nach der Klausur: Pause, nicht direkt nachbearbeiten.'; return; }
+    if (wd === 0) { titleEl.textContent = 'Sonntag — Erholung'; topicEl.textContent = 'Nicht lernen ist auch Lernen.'; hintEl.textContent = 'Dr. Hügel empfiehlt einen vollständig freien Tag pro Woche. Heute keine Aufgaben.'; return; }
     if (isStexLerntag && day >= 1 && day <= 100) {
       const planItem = nextOpenPlanDay();
       if (planItem) {
         titleEl.textContent = 'Heute: 100-Tage-Plan + Schwerpunkt';
         topicEl.textContent = 'Stex-Tag: ' + planItem.tag + ' · ' + planItem.gebiet + ' · ' + planItem.teilgebiet + ' (' + planItem.thema + ')';
-        const btnDone = document.createElement('button');
+        const btn = document.createElement('button');
         const isDone = !!state.done[planItem.tag];
-        btnDone.textContent = isDone ? 'Stex-Tag ' + planItem.tag + ' offen markieren' : 'Stex-Tag ' + planItem.tag + ' erledigt';
-        btnDone.onclick = function() {
-          state.done[planItem.tag] = !state.done[planItem.tag];
-          saveState();
-          renderAll();
-        };
-        actionsEl.appendChild(btnDone);
+        btn.textContent = isDone ? 'Stex-Tag '+planItem.tag+' offen markieren' : 'Stex-Tag '+planItem.tag+' erledigt';
+        btn.onclick = function() { state.done[planItem.tag] = !state.done[planItem.tag]; saveState(); renderAll(); };
+        actionsEl.appendChild(btn);
         const sp = daysBetween(today, SP_DATE);
-        if (sp > 0) {
-          hintEl.textContent = 'Faustregel: ' + (wd===2 ? 'Dienstag' : 'Freitag') + ' Vormittag Stex, Nachmittag Schwerpunkt — oder umgekehrt, je nach Energie. Schwerpunktklausur in ' + sp + ' Tagen.';
-        }
+        if (sp > 0) hintEl.textContent = 'Faustregel: ' + (wd===2?'Dienstag':'Freitag') + ' Vormittag Stex, Nachmittag Schwerpunkt — oder umgekehrt. Schwerpunktklausur in ' + sp + ' Tagen.';
         return;
-      } else if (day === 101) {
-        titleEl.textContent = '100-Tage-Plan abgeschlossen 🎉';
-        topicEl.textContent = 'Heute Schwerpunkt + Vertiefung/Falltraining';
-      } else {
-        titleEl.textContent = 'Lernplan startet noch nicht';
-        topicEl.textContent = 'Beginn am ' + formatDateDE(state.startDate);
-      }
+      } else if (day === 101) { titleEl.textContent = '100-Tage-Plan abgeschlossen 🎉'; topicEl.textContent = 'Heute Schwerpunkt + Vertiefung/Falltraining'; }
+      else { titleEl.textContent = 'Lernplan startet noch nicht'; topicEl.textContent = 'Beginn am ' + formatDateDE(state.startDate); }
       return;
     }
-
-    // Fallback
-    titleEl.textContent = dayPlan ? dayPlan.name + ' — ' + (dayPlan.slots[0] && dayPlan.slots[0].activity || '') : '';
-    topicEl.textContent = '';
   }
 
   function renderTracker() {
     const list = document.getElementById('tracker-list');
-    const cd = currentDayNumber();
     let items = PLAN.slice();
     if (currentFilter==='open') items = items.filter(p=>!state.done[p.tag]);
     if (currentFilter==='done') items = items.filter(p=>!!state.done[p.tag]);
-    if (currentFilter==='today') {
-      const next = nextOpenPlanDay();
-      items = next ? items.filter(p=>p.tag===next.tag) : [];
-    }
+    if (currentFilter==='today') { const next = nextOpenPlanDay(); items = next ? items.filter(p=>p.tag===next.tag) : []; }
     list.innerHTML = '';
-    if (items.length===0) {
-      const e = document.createElement('p'); e.className='empty'; e.textContent='Keine Einträge für diesen Filter.'; list.appendChild(e); return;
-    }
+    if (items.length===0) { const e = document.createElement('p'); e.className='empty'; e.textContent='Keine Einträge für diesen Filter.'; list.appendChild(e); return; }
     items.forEach(it => {
       const isDone = !!state.done[it.tag];
       const next = nextOpenPlanDay();
       const isNext = next && next.tag===it.tag;
       const date = dateForDay(it.tag);
-      const row = document.createElement('div');
-      row.className = 'tracker-row'+(isNext?' today':'');
+      const row = document.createElement('div'); row.className = 'tracker-row'+(isNext?' today':'');
       const cb = document.createElement('input'); cb.type='checkbox'; cb.checked=isDone;
       cb.onchange = function() { state.done[it.tag]=cb.checked; saveState(); renderAll(); };
       const tagCell = document.createElement('div'); tagCell.className='tracker-tag'; tagCell.textContent='Tag '+it.tag;
@@ -669,50 +596,37 @@
     });
   }
 
-  /* Wochenplan */
   function renderWochenplan() {
-    const list = document.getElementById('wochenplan-list');
-    list.innerHTML = '';
-    const today = todayISO();
-    const todayWd = new Date(today+'T00:00:00').getDay();
-    const order = [1,2,3,4,5,6,0]; // Mo bis So
-    order.forEach(wd => {
+    const list = document.getElementById('wochenplan-list'); list.innerHTML = '';
+    const todayWd = new Date(todayISO()+'T00:00:00').getDay();
+    [1,2,3,4,5,6,0].forEach(wd => {
       const dp = WEEKPLAN[wd];
-      const day = document.createElement('div');
-      day.className = 'wp-day' + (wd===todayWd ? ' wp-day-today' : '');
+      const day = document.createElement('div'); day.className = 'wp-day' + (wd===todayWd?' wp-day-today':'');
       const left = document.createElement('div');
-      const name = document.createElement('div'); name.className='wp-day-name'; name.textContent = dp.name + (wd===todayWd ? ' · heute' : '');
-      left.appendChild(name);
-      day.appendChild(left);
+      const name = document.createElement('div'); name.className='wp-day-name'; name.textContent = dp.name + (wd===todayWd?' · heute':'');
+      left.appendChild(name); day.appendChild(left);
       const slots = document.createElement('div'); slots.className='wp-slots';
       dp.slots.forEach(s => {
         const slot = document.createElement('div'); slot.className='wp-slot';
         const t = document.createElement('div'); t.className='wp-time'; t.textContent = s.time;
         const a = document.createElement('div'); a.className='wp-activity'; a.textContent = s.activity;
         const tag = document.createElement('span'); tag.className='wp-tag '+s.tag;
-        tag.textContent = ({stex:'Stex', sp:'Schwerpunkt', kurs:'Kurs', frei:'frei', pause:'Pause'})[s.tag] || s.tag;
-        slot.appendChild(t); slot.appendChild(a); slot.appendChild(tag);
-        slots.appendChild(slot);
+        tag.textContent = ({stex:'Stex',sp:'Schwerpunkt',kurs:'Kurs',frei:'frei',pause:'Pause'})[s.tag] || s.tag;
+        slot.appendChild(t); slot.appendChild(a); slot.appendChild(tag); slots.appendChild(slot);
       });
-      day.appendChild(slots);
-      list.appendChild(day);
+      day.appendChild(slots); list.appendChild(day);
     });
   }
 
-  /* Schwerpunkt */
   function renderSp() {
-    const wrap = document.getElementById('sp-blocks');
-    wrap.innerHTML = '';
+    const wrap = document.getElementById('sp-blocks'); wrap.innerHTML = '';
     state.sp.forEach(block => {
       const bx = document.createElement('div'); bx.className='sp-block';
       const head = document.createElement('div'); head.className='sp-block-header';
       const title = document.createElement('p'); title.className='sp-block-title'; title.textContent = block.title;
-      const total = block.items.length;
-      const fertig = block.items.filter(i=>i.status==='fertig').length;
+      const total = block.items.length; const fertig = block.items.filter(i=>i.status==='fertig').length;
       const prog = document.createElement('span'); prog.className='sp-block-progress'; prog.textContent = total ? (fertig+' / '+total+' fertig') : 'noch keine Themen';
-      head.appendChild(title); head.appendChild(prog);
-      bx.appendChild(head);
-
+      head.appendChild(title); head.appendChild(prog); bx.appendChild(head);
       block.items.forEach((item, idx) => {
         const row = document.createElement('div'); row.className='sp-item';
         const dot = document.createElement('div'); dot.className='sp-item-status '+item.status;
@@ -720,45 +634,152 @@
         const sel = document.createElement('select'); sel.className='sp-item-status-select';
         ['offen','arbeit','fertig'].forEach(s => {
           const opt = document.createElement('option'); opt.value=s;
-          opt.textContent = ({offen:'offen', arbeit:'in Arbeit', fertig:'fertig'})[s];
-          if (item.status===s) opt.selected = true;
-          sel.appendChild(opt);
+          opt.textContent = ({offen:'offen',arbeit:'in Arbeit',fertig:'fertig'})[s];
+          if (item.status===s) opt.selected = true; sel.appendChild(opt);
         });
         sel.onchange = function() { item.status = sel.value; saveState(); renderSp(); };
-        const del = document.createElement('button'); del.className='small'; del.textContent='✕';
-        del.title = 'Eintrag löschen';
-        del.onclick = function() {
-          if (confirm('"'+item.text+'" löschen?')) {
-            block.items.splice(idx, 1);
-            saveState();
-            renderSp();
-          }
-        };
-        row.appendChild(dot); row.appendChild(text); row.appendChild(sel); row.appendChild(del);
-        bx.appendChild(row);
+        const del = document.createElement('button'); del.className='small'; del.textContent='✕'; del.title = 'Eintrag löschen';
+        del.onclick = function() { if (confirm('"'+item.text+'" löschen?')) { block.items.splice(idx, 1); saveState(); renderSp(); } };
+        row.appendChild(dot); row.appendChild(text); row.appendChild(sel); row.appendChild(del); bx.appendChild(row);
       });
-
       const addRow = document.createElement('div'); addRow.className='sp-add-row';
       const inp = document.createElement('input'); inp.type='text'; inp.placeholder='Neues Thema hinzufügen...';
       const btn = document.createElement('button'); btn.className='primary small'; btn.textContent='+ Hinzufügen';
-      const addItem = function() {
-        const t = inp.value.trim();
-        if (!t) return;
-        block.items.push({ text: t, status: 'offen', createdAt: Date.now() });
-        inp.value = '';
-        saveState();
-        renderSp();
+      const addItem = function() { const t = inp.value.trim(); if (!t) return; block.items.push({ text: t, status: 'offen', createdAt: Date.now() }); inp.value = ''; saveState(); renderSp(); };
+      btn.onclick = addItem; inp.onkeydown = function(e) { if (e.key==='Enter') addItem(); };
+      addRow.appendChild(inp); addRow.appendChild(btn); bx.appendChild(addRow);
+      wrap.appendChild(bx);
+    });
+  }
+
+  /* ---------- Lernfragen ---------- */
+
+  function lfNewId() { return 'lf_'+Date.now()+'_'+Math.random().toString(36).slice(2,7); }
+
+  function renderLfStats() {
+    const all = state.lf.reduce((acc, b) => acc + b.items.length, 0);
+    const known = state.lf.reduce((acc, b) => acc + b.items.filter(i => i.lastRating === 'known').length, 0);
+    const unknown = state.lf.reduce((acc, b) => acc + b.items.filter(i => i.lastRating === 'unknown').length, 0);
+    document.getElementById('lf-stats').textContent = all > 0 ? all+' Fragen · '+known+' gewusst · '+unknown+' nicht gewusst' : '';
+  }
+
+  function renderLf() {
+    const wrap = document.getElementById('lf-blocks'); wrap.innerHTML = '';
+    document.querySelectorAll('.lf-mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === lfMode));
+    document.getElementById('lf-mode-hint').textContent = lfMode === 'lesen'
+      ? 'Im Lesemodus sind Frage und Antwort gemeinsam sichtbar — gut für die strukturierte Wiederholung.'
+      : 'Im Abfragemodus ist die Antwort verdeckt. Versuchen Sie sie erst zu beantworten, dann aufdecken und sich selbst bewerten.';
+    renderLfStats();
+
+    state.lf.forEach(block => {
+      const bx = document.createElement('div'); bx.className='lf-block';
+      const head = document.createElement('div'); head.className='lf-block-header';
+      const title = document.createElement('p'); title.className='lf-block-title'; title.textContent = block.title;
+      const total = block.items.length;
+      const known = block.items.filter(i => i.lastRating === 'known').length;
+      const stats = document.createElement('span'); stats.className='lf-block-stats';
+      stats.textContent = total ? (total+' Fragen' + (lfMode==='abfragen' ? ' · '+known+' zuletzt gewusst' : '')) : 'noch keine Fragen';
+      head.appendChild(title); head.appendChild(stats); bx.appendChild(head);
+
+      block.items.forEach((item, idx) => {
+        const card = document.createElement('div'); card.className='lf-card';
+        if (lfEditing === item.id) {
+          // Bearbeiten-Modus
+          const form = document.createElement('div'); form.className='lf-edit-form';
+          const qInp = document.createElement('textarea'); qInp.value = item.question; qInp.placeholder = 'Frage';
+          const aInp = document.createElement('textarea'); aInp.value = item.answer || ''; aInp.placeholder = 'Antwort'; aInp.style.minHeight = '100px';
+          const btnRow = document.createElement('div'); btnRow.className='lf-edit-actions';
+          const save = document.createElement('button'); save.className='primary small'; save.textContent='Speichern';
+          save.onclick = function() {
+            item.question = qInp.value.trim();
+            item.answer = aInp.value.trim();
+            item.updatedAt = Date.now();
+            lfEditing = null; saveState(); renderLf();
+          };
+          const cancel = document.createElement('button'); cancel.className='small'; cancel.textContent='Abbrechen';
+          cancel.onclick = function() { lfEditing = null; renderLf(); };
+          btnRow.appendChild(save); btnRow.appendChild(cancel);
+          form.appendChild(qInp); form.appendChild(aInp); form.appendChild(btnRow);
+          card.appendChild(form);
+        } else {
+          // Anzeigen
+          const qWrap = document.createElement('div'); qWrap.className='lf-card-q';
+          const q = document.createElement('div'); q.className='lf-question'; q.textContent = item.question;
+          const acts = document.createElement('div'); acts.className='lf-card-actions';
+          const edit = document.createElement('button'); edit.className='small'; edit.textContent='Bearbeiten';
+          edit.onclick = function() { lfEditing = item.id; renderLf(); };
+          const del = document.createElement('button'); del.className='small'; del.textContent='✕';
+          del.title = 'Frage löschen';
+          del.onclick = function() { if (confirm('Frage löschen?')) { block.items.splice(idx, 1); saveState(); renderLf(); } };
+          acts.appendChild(edit); acts.appendChild(del);
+          qWrap.appendChild(q); qWrap.appendChild(acts);
+          card.appendChild(qWrap);
+
+          const isRevealed = lfMode === 'lesen' || !!lfRevealed[item.id];
+          if (isRevealed) {
+            const a = document.createElement('div'); a.className='lf-answer';
+            if (item.answer && item.answer.trim()) a.textContent = item.answer;
+            else { a.classList.add('lf-answer-empty'); a.textContent = '(noch keine Antwort hinterlegt — bearbeiten Sie die Karte, um eine zu ergänzen)'; }
+            card.appendChild(a);
+          } else {
+            const reveal = document.createElement('button'); reveal.className='lf-reveal-btn small';
+            reveal.textContent = 'Antwort anzeigen';
+            reveal.onclick = function() { lfRevealed[item.id] = true; renderLf(); };
+            card.appendChild(reveal);
+          }
+
+          if (lfMode === 'abfragen' && isRevealed) {
+            const rate = document.createElement('div'); rate.className='lf-rate';
+            const lbl = document.createElement('span'); lbl.className='lf-rate-label'; lbl.textContent = 'Selbsteinschätzung:';
+            rate.appendChild(lbl);
+            [
+              { key:'known', label:'gewusst', cls:'success' },
+              { key:'unsure', label:'unsicher', cls:'warn' },
+              { key:'unknown', label:'nicht gewusst', cls:'danger' }
+            ].forEach(r => {
+              const b = document.createElement('button');
+              b.className = 'lf-rate-btn '+r.cls + (item.lastRating === r.key ? ' active' : '');
+              b.textContent = r.label;
+              b.onclick = function() {
+                item.lastRating = r.key;
+                item.lastRatedAt = Date.now();
+                if (!item.history) item.history = [];
+                item.history.push({ rating: r.key, at: Date.now() });
+                saveState(); renderLf();
+              };
+              rate.appendChild(b);
+            });
+            if (item.lastRatedAt) {
+              const last = document.createElement('span'); last.className = 'lf-last-rate';
+              last.textContent = 'zuletzt: ' + new Date(item.lastRatedAt).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'});
+              rate.appendChild(last);
+            }
+            card.appendChild(rate);
+          }
+        }
+        bx.appendChild(card);
+      });
+
+      // Add-Form
+      const addForm = document.createElement('div'); addForm.className='lf-add-form';
+      const qInp = document.createElement('textarea'); qInp.placeholder = 'Neue Lernfrage...'; qInp.style.minHeight = '50px';
+      const aInp = document.createElement('textarea'); aInp.placeholder = 'Antwort (kann später ergänzt werden)'; aInp.style.minHeight = '50px';
+      const addBtn = document.createElement('button'); addBtn.className='primary small'; addBtn.textContent='+ Frage hinzufügen';
+      const add = function() {
+        const q = qInp.value.trim(); if (!q) return;
+        block.items.push({ id: lfNewId(), question: q, answer: aInp.value.trim(), createdAt: Date.now(), updatedAt: Date.now(), history: [] });
+        qInp.value = ''; aInp.value = ''; saveState(); renderLf();
       };
-      btn.onclick = addItem;
-      inp.onkeydown = function(e) { if (e.key==='Enter') addItem(); };
-      addRow.appendChild(inp); addRow.appendChild(btn);
-      bx.appendChild(addRow);
+      addBtn.onclick = add;
+      addForm.appendChild(qInp); addForm.appendChild(aInp); addForm.appendChild(addBtn);
+      bx.appendChild(addForm);
 
       wrap.appendChild(bx);
     });
   }
 
-  /* Lernkommentar */
+  /* ---------- Lernkommentar ---------- */
+
   function newId() { return 'lk_'+Date.now()+'_'+Math.random().toString(36).slice(2,7); }
   function compareNorms(a,b) { return (a.norm||'').toLowerCase().localeCompare((b.norm||'').toLowerCase(), 'de', {numeric:true}); }
   function getLkArray() { return Object.keys(state.lk).map(id => Object.assign({id:id}, state.lk[id])); }
@@ -774,16 +795,10 @@
   }
   function renderLkList() {
     const list = document.getElementById('lk-list');
-    const items = getFilteredSorted();
-    list.innerHTML = '';
-    if (items.length===0) {
-      const e = document.createElement('p'); e.className='empty';
-      e.textContent = lkSearchTerm ? 'Keine Treffer.' : 'Noch keine Einträge.';
-      list.appendChild(e); return;
-    }
+    const items = getFilteredSorted(); list.innerHTML = '';
+    if (items.length===0) { const e = document.createElement('p'); e.className='empty'; e.textContent = lkSearchTerm ? 'Keine Treffer.' : 'Noch keine Einträge.'; list.appendChild(e); return; }
     items.forEach(it => {
-      const row = document.createElement('div');
-      row.className = 'lk-list-item'+(it.id===currentLkId?' active':'');
+      const row = document.createElement('div'); row.className = 'lk-list-item'+(it.id===currentLkId?' active':'');
       const norm = document.createElement('p'); norm.className='lk-list-norm'; norm.textContent = it.norm || '(Ohne Norm)';
       const meta = document.createElement('p'); meta.className='lk-list-meta';
       const upd = it.updatedAt ? new Date(it.updatedAt).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'}) : '';
@@ -794,29 +809,22 @@
     });
   }
   function renderLkDetail() {
-    const detail = document.getElementById('lk-detail');
-    detail.innerHTML = '';
-    if (!currentLkId || !state.lk[currentLkId]) {
-      const e = document.createElement('p'); e.className='lk-detail-empty';
-      e.textContent = 'Wählen Sie links eine Norm aus oder legen Sie eine neue an.';
-      detail.appendChild(e); return;
-    }
+    const detail = document.getElementById('lk-detail'); detail.innerHTML = '';
+    if (!currentLkId || !state.lk[currentLkId]) { const e = document.createElement('p'); e.className='lk-detail-empty'; e.textContent = 'Wählen Sie links eine Norm aus oder legen Sie eine neue an.'; detail.appendChild(e); return; }
     const entry = state.lk[currentLkId];
     const fields = [
-      {key:'norm', label:'Norm', placeholder:'z.B. § 107 BGB', hint:'Die zentrale Vorschrift, um die es geht.', type:'input'},
-      {key:'rechtsfolge', label:'Rechtsfolge (RF)', placeholder:'z.B. § 108 Abs. 1 BGB "erforderlich"', hint:'Wohin verweist die Norm? Was passiert, wenn der Tatbestand erfüllt ist?', type:'textarea'},
-      {key:'tatbestand', label:'Tatbestand (TB)', placeholder:'Voraussetzungen, ggf. mit Querverweisen auf andere §§', hint:'Aufzählung der Voraussetzungen mit kurzer Auslegung.', type:'textarea'},
-      {key:'notizen', label:'Auslegung, Streit, Schemata, Beispiele', placeholder:'Freier Text für alles Weitere — Auslegungsfragen, Meinungsstreit, Beispielsfälle, Aufbauschemata, eigene Anmerkungen, offene Fragen.', hint:'Hier ist Platz für alles, was nicht in die festen Felder passt.', type:'textarea'}
+      {key:'norm', label:'Norm', placeholder:'z.B. § 107 BGB', hint:'Die zentrale Vorschrift.', type:'input'},
+      {key:'rechtsfolge', label:'Rechtsfolge (RF)', placeholder:'z.B. § 108 Abs. 1 BGB "erforderlich"', hint:'Wohin verweist die Norm?', type:'textarea'},
+      {key:'tatbestand', label:'Tatbestand (TB)', placeholder:'Voraussetzungen', hint:'Aufzählung mit kurzer Auslegung.', type:'textarea'},
+      {key:'notizen', label:'Auslegung, Streit, Schemata, Beispiele', placeholder:'Freier Text', hint:'Alles, was nicht in die festen Felder passt.', type:'textarea'}
     ];
     fields.forEach(f => {
       const wrap = document.createElement('div'); wrap.className='lk-field';
-      const label = document.createElement('label'); label.className='lk-field-label'; label.textContent = f.label;
-      wrap.appendChild(label);
+      const label = document.createElement('label'); label.className='lk-field-label'; label.textContent = f.label; wrap.appendChild(label);
       let input;
       if (f.type==='input') { input = document.createElement('input'); input.type='text'; }
       else { input = document.createElement('textarea'); if (f.key==='notizen') input.style.minHeight='160px'; }
-      input.placeholder = f.placeholder;
-      input.value = entry[f.key] || '';
+      input.placeholder = f.placeholder; input.value = entry[f.key] || '';
       input.oninput = function() { entry[f.key] = input.value; entry.updatedAt = Date.now(); scheduleSave(); };
       wrap.appendChild(input);
       if (f.hint) { const h = document.createElement('p'); h.className='lk-field-hint'; h.textContent=f.hint; wrap.appendChild(h); }
@@ -825,31 +833,24 @@
     const actions = document.createElement('div'); actions.className='lk-detail-actions';
     const saved = document.createElement('span'); saved.className='lk-saved-indicator'; saved.id='lk-saved'; saved.textContent='Automatisch gespeichert';
     const del = document.createElement('button'); del.className='danger'; del.textContent='Eintrag löschen';
-    del.onclick = function() {
-      if (confirm('Diesen Eintrag wirklich löschen? ('+(entry.norm||'Ohne Norm')+')')) {
-        delete state.lk[currentLkId]; currentLkId = null; saveState(); renderLk();
-      }
-    };
-    actions.appendChild(saved); actions.appendChild(del);
-    detail.appendChild(actions);
+    del.onclick = function() { if (confirm('Diesen Eintrag wirklich löschen? ('+(entry.norm||'Ohne Norm')+')')) { delete state.lk[currentLkId]; currentLkId = null; saveState(); renderLk(); } };
+    actions.appendChild(saved); actions.appendChild(del); detail.appendChild(actions);
   }
   function renderLk() { renderLkList(); renderLkDetail(); }
   function scheduleSave() {
     if (saveTimer) clearTimeout(saveTimer);
-    const ind = document.getElementById('lk-saved');
-    if (ind) ind.textContent = 'Speichere...';
+    const ind = document.getElementById('lk-saved'); if (ind) ind.textContent = 'Speichere...';
     saveTimer = setTimeout(() => {
       saveState();
-      const i = document.getElementById('lk-saved');
-      if (i) i.textContent = 'Automatisch gespeichert';
+      const i = document.getElementById('lk-saved'); if (i) i.textContent = 'Automatisch gespeichert';
       renderLkList();
     }, 400);
   }
 
-  function renderAll() { renderDashboard(); renderTracker(); renderWochenplan(); renderSp(); renderLk(); }
+  function renderAll() { renderDashboard(); renderTracker(); renderWochenplan(); renderSp(); renderLf(); renderLk(); }
 
   function showView(name) {
-    ['dashboard','wochenplan','tracker','sp','lk'].forEach(v => {
+    ['dashboard','wochenplan','tracker','sp','lf','lk'].forEach(v => {
       document.getElementById('view-'+v).classList.toggle('hidden', v!==name);
       document.getElementById('tab-'+v).classList.toggle('active', v===name);
     });
@@ -858,14 +859,22 @@
   document.getElementById('tab-wochenplan').onclick = function() { showView('wochenplan'); renderWochenplan(); };
   document.getElementById('tab-tracker').onclick = function() { showView('tracker'); renderTracker(); };
   document.getElementById('tab-sp').onclick = function() { showView('sp'); renderSp(); };
+  document.getElementById('tab-lf').onclick = function() { showView('lf'); renderLf(); };
   document.getElementById('tab-lk').onclick = function() { showView('lk'); renderLk(); };
 
   document.querySelectorAll('.filter-btn').forEach(b => {
     b.onclick = function() {
       currentFilter = this.dataset.filter;
       document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
-      this.classList.add('active');
-      renderTracker();
+      this.classList.add('active'); renderTracker();
+    };
+  });
+
+  document.querySelectorAll('.lf-mode-btn').forEach(b => {
+    b.onclick = function() {
+      lfMode = this.dataset.mode;
+      lfRevealed = {}; // beim Moduswechsel alles wieder verdecken
+      renderLf();
     };
   });
 
@@ -879,11 +888,7 @@
   document.getElementById('lk-sort').onchange = function(e) { lkSortBy = e.target.value; renderLkList(); };
 
   document.getElementById('start-date').onchange = function(e) { state.startDate = e.target.value; saveState(); renderAll(); };
-  document.getElementById('reset-btn').onclick = function() {
-    if (confirm('Wirklich allen 100-Tage-Fortschritt zurücksetzen? (Lernkommentar und Schwerpunkt bleiben erhalten.)')) {
-      state.done = {}; saveState(); renderAll();
-    }
-  };
+  document.getElementById('reset-btn').onclick = function() { if (confirm('Wirklich allen 100-Tage-Fortschritt zurücksetzen? (Alle anderen Daten bleiben erhalten.)')) { state.done = {}; saveState(); renderAll(); } };
   document.getElementById('export-btn').onclick = function() {
     const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
     const url = URL.createObjectURL(blob);
@@ -898,7 +903,12 @@
       try {
         const d = JSON.parse(ev.target.result);
         if (confirm('Import überschreibt aktuelle Daten. Fortfahren?')) {
-          state = { startDate: d.startDate || DEFAULT_START, done: d.done || {}, notes: d.notes || {}, lk: d.lk || {}, sp: d.sp || SP_BLOCKS_DEFAULT.map(b => ({...b, items: []})) };
+          state = {
+            startDate: d.startDate || DEFAULT_START,
+            done: d.done || {}, notes: d.notes || {}, lk: d.lk || {},
+            sp: d.sp || SP_BLOCKS_DEFAULT.map(b => ({...b, items: []})),
+            lf: d.lf || LF_BLOCKS_DEFAULT.map(b => ({...b, items: []}))
+          };
           saveState(); renderAll();
         }
       } catch(err) { alert('Import fehlgeschlagen: '+err.message); }
