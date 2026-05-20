@@ -6,48 +6,27 @@
 <title>Examensvorbereitung · Lernplan</title>
 <style>
   :root {
-    --bg: #fafaf7;
-    --surface: #ffffff;
-    --surface-2: #f1efe8;
-    --text: #1a1a1a;
-    --text-secondary: #5f5e5a;
-    --text-tertiary: #888780;
-    --border: rgba(0,0,0,0.12);
-    --border-strong: rgba(0,0,0,0.25);
-    --accent: #1a1a1a;
-    --danger: #791F1F;
-    --info-bg: #E6F1FB;
-    --info-fg: #0C447C;
-    --warn-bg: #FAEEDA;
-    --warn-fg: #854F0B;
-    --success-bg: #EAF3DE;
-    --success-fg: #27500A;
-    --danger-bg: #FCEBEB;
-    --danger-fg: #791F1F;
-    --radius-md: 8px;
-    --radius-lg: 12px;
+    --bg: #fafaf7; --surface: #ffffff; --surface-2: #f1efe8;
+    --text: #1a1a1a; --text-secondary: #5f5e5a; --text-tertiary: #888780;
+    --border: rgba(0,0,0,0.12); --border-strong: rgba(0,0,0,0.25);
+    --accent: #1a1a1a; --danger: #791F1F;
+    --info-bg: #E6F1FB; --info-fg: #0C447C;
+    --warn-bg: #FAEEDA; --warn-fg: #854F0B;
+    --success-bg: #EAF3DE; --success-fg: #27500A;
+    --danger-bg: #FCEBEB; --danger-fg: #791F1F;
+    --radius-md: 8px; --radius-lg: 12px;
     --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1a1a1a;
-      --surface: #242422;
-      --surface-2: #2c2c2a;
-      --text: #f0eee8;
-      --text-secondary: #a8a6a0;
-      --text-tertiary: #767670;
-      --border: rgba(255,255,255,0.12);
-      --border-strong: rgba(255,255,255,0.25);
-      --accent: #f0eee8;
-      --danger: #F09595;
-      --info-bg: #0C447C;
-      --info-fg: #B5D4F4;
-      --warn-bg: #633806;
-      --warn-fg: #FAC775;
-      --success-bg: #27500A;
-      --success-fg: #C0DD97;
-      --danger-bg: #501313;
-      --danger-fg: #F7C1C1;
+      --bg: #1a1a1a; --surface: #242422; --surface-2: #2c2c2a;
+      --text: #f0eee8; --text-secondary: #a8a6a0; --text-tertiary: #767670;
+      --border: rgba(255,255,255,0.12); --border-strong: rgba(255,255,255,0.25);
+      --accent: #f0eee8; --danger: #F09595;
+      --info-bg: #0C447C; --info-fg: #B5D4F4;
+      --warn-bg: #633806; --warn-fg: #FAC775;
+      --success-bg: #27500A; --success-fg: #C0DD97;
+      --danger-bg: #501313; --danger-fg: #F7C1C1;
     }
   }
   * { box-sizing: border-box; }
@@ -64,7 +43,6 @@
   .sync-status.syncing { background: var(--info-bg); color: var(--info-fg); }
   .sync-status.synced { background: var(--success-bg); color: var(--success-fg); }
   .sync-status.error { background: var(--danger-bg); color: var(--danger-fg); }
-  .sync-status.offline { background: var(--warn-bg); color: var(--warn-fg); }
   .tabs { display: flex; gap: 4px; margin-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); flex-wrap: wrap; }
   .tab-btn { background: transparent; border: none; border-bottom: 2px solid transparent; padding: 10px 14px; font-size: 14px; font-weight: 400; cursor: pointer; color: var(--text-secondary); font-family: inherit; border-radius: 0; transition: color 0.15s; }
   .tab-btn:hover { color: var(--text); }
@@ -172,7 +150,6 @@
   .lf-rate-btn.warn { background: var(--warn-bg); color: var(--warn-fg); border-color: var(--warn-fg); }
   .lf-rate-btn.danger { background: var(--danger-bg); color: var(--danger-fg); border-color: var(--danger-fg); }
   .lf-rate-btn.active { font-weight: 500; }
-  .lf-last-rate { font-size: 11px; color: var(--text-tertiary); margin-left: 8px; }
   .lf-add-form { display: flex; flex-direction: column; gap: 8px; margin-top: 1rem; padding-top: 1rem; border-top: 0.5px dashed var(--border); }
   .lf-edit-form { display: flex; flex-direction: column; gap: 8px; padding: 8px 0; }
   .lf-edit-actions { display: flex; gap: 8px; }
@@ -191,7 +168,6 @@
   .lk-detail-empty { color: var(--text-secondary); text-align: center; padding: 3rem 1rem; font-size: 14px; }
   .lk-field { margin-bottom: 1.25rem; }
   .lk-field-label { display: block; font-size: 12px; font-weight: 500; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
-  .lk-field-hint { font-size: 12px; color: var(--text-tertiary); margin-top: 4px; line-height: 1.4; }
   .lk-detail-actions { display: flex; gap: 8px; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 0.5px solid var(--border); flex-wrap: wrap; align-items: center; }
   .rte-wrap { border: 0.5px solid var(--border-strong); border-radius: var(--radius-md); background: var(--surface); overflow: hidden; }
   .rte-wrap:focus-within { outline: 2px solid var(--accent); outline-offset: -1px; }
@@ -215,8 +191,6 @@
   .rte-content p:last-child, .rendered p:last-child { margin-bottom: 0; }
   .rte-content strong, .rendered strong { font-weight: 600; }
   .rendered { font-size: 14px; line-height: 1.6; }
-
-  /* Auth Screen */
   .auth-screen { max-width: 380px; margin: 4rem auto; padding: 2rem; background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); }
   .auth-screen h2 { margin-top: 0; }
   .auth-form { display: flex; flex-direction: column; gap: 12px; }
@@ -229,7 +203,7 @@
   .auth-message.success { background: var(--success-bg); color: var(--success-fg); }
   .migration-banner { padding: 1rem; background: var(--warn-bg); color: var(--warn-fg); border-radius: var(--radius-md); margin-bottom: 1rem; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
   .migration-banner button { background: var(--warn-fg); color: var(--warn-bg); border-color: var(--warn-fg); }
-
+  .loading-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; color: var(--text-secondary); font-size: 14px; }
   @media (max-width: 600px) {
     .tracker-row { grid-template-columns: 32px 1fr auto; grid-template-rows: auto auto; }
     .tracker-tag, .tracker-date { grid-column: 2; font-size: 12px; }
@@ -242,7 +216,8 @@
 </head>
 <body>
 
-<!-- AUTH-BILDSCHIRM -->
+<div id="loading-screen" class="loading-screen">Lade App...</div>
+
 <div id="auth-screen" class="auth-screen hidden">
   <h2>Examensvorbereitung</h2>
   <p class="subtitle" style="margin-bottom: 1.5rem;">Anmeldung für Cloud-Synchronisation</p>
@@ -256,12 +231,8 @@
     <input type="password" id="auth-password" placeholder="Passwort (min. 6 Zeichen)" autocomplete="current-password" />
     <button id="auth-submit" class="primary">Anmelden</button>
   </div>
-  <p class="card-hint" style="margin-top: 1.5rem;">
-    Beim ersten Mal: oben auf "Registrieren" klicken. Wenn Sie sich bereits angemeldet haben: hier mit E-Mail und Passwort einloggen.
-  </p>
 </div>
 
-<!-- APP -->
 <div id="main-app" class="app hidden">
   <header>
     <div>
@@ -273,9 +244,7 @@
       <button class="small" id="logout-btn">Abmelden</button>
     </div>
   </header>
-
   <div id="migration-banner" class="hidden"></div>
-
   <div class="tabs">
     <button id="tab-dashboard" class="tab-btn active">Dashboard</button>
     <button id="tab-wochenplan" class="tab-btn">Wochenplan</button>
@@ -284,7 +253,6 @@
     <button id="tab-lf" class="tab-btn">Lernfragen</button>
     <button id="tab-lk" class="tab-btn">Lernkommentar</button>
   </div>
-
   <section id="view-dashboard">
     <div class="stats-grid">
       <div class="stat priority"><p class="stat-label">Schwerpunktklausur (29.07.)</p><p class="stat-value" id="stat-sp">–</p></div>
@@ -314,7 +282,6 @@
       </div>
     </div>
   </section>
-
   <section id="view-wochenplan" class="hidden"><div id="wochenplan-list"></div></section>
   <section id="view-tracker" class="hidden">
     <div class="filters">
@@ -354,856 +321,919 @@
   </section>
 </div>
 
-<script type="module">
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+<script>
+(function() {
+  'use strict';
 
-const SUPABASE_URL = 'https://gbhbiqgncnzxzkbxbwve.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_B3TYdWujCFlrXvqCB28FJg_L_hzhhPC';
+  // === Konfiguration ===
+  var SUPABASE_URL = 'https://gbhbiqgncnzxzkbxbwve.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_B3TYdWujCFlrXvqCB28FJg_L_hzhhPC';
+  var AUTH_STORAGE_KEY = 'examen_auth_session';
+  var LEGACY_STORAGE_KEY = 'examen_app_v1';
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
-const LEGACY_STORAGE_KEY = 'examen_app_v1';
-
-const PLAN = [
-  {tag:1, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Suchlesen'},
-  {tag:2, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Auslegungslesen I'},
-  {tag:3, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Auslegungslesen II'},
-  {tag:4, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Wiedererkennungslesen'},
-  {tag:5, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Basics, Prozessrecht, Kompetenz, Verfahren'},
-  {tag:6, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Staatsprinzipien, Exekutive, Föderalsystem'},
-  {tag:7, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Bundestag, Bundesrat'},
-  {tag:8, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Bundesregierung, Bundespräsident, Parteien'},
-  {tag:9, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Wahlrecht, internationale Bezüge'},
-  {tag:10, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechtssystem, Freiheitsgrundrechte'},
-  {tag:11, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte I – Art. 2–5 GG'},
-  {tag:12, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte II – Art. 6–13 GG'},
-  {tag:13, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte III – Art. 14–19, 1 und 3 GG'},
-  {tag:14, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechtsgleiche Rechte, Durchsetzung'},
-  {tag:15, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht I – Grundsätze, Verfahren'},
-  {tag:16, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht II – Klage- und Antragsarten'},
-  {tag:17, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht III – SEV, Begründetheit'},
-  {tag:18, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Rechtsmittel, Verwaltung, Handlungsformen'},
-  {tag:19, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Verwaltungsakt, Rechtmäßigkeit, Aufhebung'},
-  {tag:20, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Vollstreckung, Vertrag, weitere Hoheitsakte'},
-  {tag:21, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Staatshaftung'},
-  {tag:22, gebiet:'Öffentliches Recht', teilgebiet:'Kommunalrecht', thema:'Basics, Selbstverwaltung, Aufgaben, Aufsicht'},
-  {tag:23, gebiet:'Öffentliches Recht', teilgebiet:'Kommunalrecht', thema:'Gemeindeverfassung, Satzungen, Einwohner'},
-  {tag:24, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Grundlagen, Generalklausel, Gefahrbegriff'},
-  {tag:25, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Pflichtigkeit, Ermessen, Standardmaßnahmen'},
-  {tag:26, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Versammlungen, Vollstreckung, Verordnung'},
-  {tag:27, gebiet:'Öffentliches Recht', teilgebiet:'Baurecht', thema:'Grundlagen, Bauplanungsrecht'},
-  {tag:28, gebiet:'Öffentliches Recht', teilgebiet:'Baurecht', thema:'Bauordnungsrecht, Prozessrecht'},
-  {tag:29, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundlagen, Struktur, Rechtsnatur, Organe'},
-  {tag:30, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Rechtsetzung, Rechtsquellen'},
-  {tag:31, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundfreiheiten'},
-  {tag:32, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundrechte, Rechtsschutz, Beihilfenrecht'},
-  {tag:33, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Grundlagen, Willenserklärung, Willensmängel'},
-  {tag:34, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Vertrag, Auslegung, Geschäftsfähigkeit'},
-  {tag:35, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Vertretung, Form'},
-  {tag:36, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Unwirksamkeit, Zustimmung, Bedingung, AGB'},
-  {tag:37, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Schuldverhältnisse'},
-  {tag:38, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Personenmehrheiten und -wechsel, Dritte'},
-  {tag:39, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Erfüllung, Beendigung, Anpassung'},
-  {tag:40, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Leistungsstörungen'},
-  {tag:41, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Schadens-/Aufwendungsersatz, Verbraucher'},
-  {tag:42, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Vertragsrecht, Kaufrecht I – Mangel, Gefahr'},
-  {tag:43, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Kaufrecht II – Mängelrechte des Käufers'},
-  {tag:44, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Kaufrecht III – Besonderheiten; Überlassung'},
-  {tag:45, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Mietrecht, Zeitüberlassungsverträge'},
-  {tag:46, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Werkrecht'},
-  {tag:47, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Weitere Verträge'},
-  {tag:48, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Gesetzliche Schuldverhältnisse, GoA'},
-  {tag:49, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Leistungskondiktion'},
-  {tag:50, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Nichtleistungskondiktion'},
-  {tag:51, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Inhalt, Mehrpersonen'},
-  {tag:52, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Deliktsrecht – Verschuldenshaftung'},
-  {tag:53, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Deliktsrecht – weitere Haftung inklusive StVG'},
-  {tag:54, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Mobiliarsachenrecht, Eigentumserwerb'},
-  {tag:55, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Gutgläubiger Erwerb, gesetzlicher Erwerb'},
-  {tag:56, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Eigentümer-Besitzer-Verhältnis, Besitzschutz'},
-  {tag:57, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Kreditsicherungsrechte'},
-  {tag:58, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Immobiliarsachenrecht, Eigentumserwerb'},
-  {tag:59, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundbuchberichtigung, Vormerkung, Vorkauf'},
-  {tag:60, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundpfandrechte I – Hypothek'},
-  {tag:61, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundpfandrechte II – Grundschuld; Nutzung'},
-  {tag:62, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Grundlagen, objektiver Tatbestand'},
-  {tag:63, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Täterschaft, subjektiver Tatbestand'},
-  {tag:64, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Rechtswidrigkeit'},
-  {tag:65, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Schuld, Fahrlässigkeit'},
-  {tag:66, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Unterlassung, Teilnahme'},
-  {tag:67, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Versuch, Konkurrenzen'},
-  {tag:68, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Mord, Totschlag'},
-  {tag:69, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Körperverletzung, Brandstiftung'},
-  {tag:70, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Straßenverkehr, Willensbeeinträchtigung'},
-  {tag:71, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Urkundendelikte, Ehrschutz, Aussagedelikte'},
-  {tag:72, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Diebstahl I – Tatbestand'},
-  {tag:73, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Diebstahl II; Unterschlagung'},
-  {tag:74, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Raub, Erpressung'},
-  {tag:75, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Betrug, Computerbetrug'},
-  {tag:76, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Untreue, Anschlussdelikte, Sachbeschädigung'},
-  {tag:77, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungserfordernis, Interpretationsfrage'},
-  {tag:78, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungsbedarf, Begründungskompetenz'},
-  {tag:79, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungsbeispiele, Formulierungstechnik'},
-  {tag:80, gebiet:'Zivilrecht', teilgebiet:'Familienrecht', thema:'Grundlagen, Eheschließung, Güterrecht'},
-  {tag:81, gebiet:'Zivilrecht', teilgebiet:'Familienrecht', thema:'Unterhalt, Ehevertrag, Verwandtschaft, Sorge'},
-  {tag:82, gebiet:'Zivilrecht', teilgebiet:'Erbrecht', thema:'Grundlagen, Erbfolge, Testament, Verfügung'},
-  {tag:83, gebiet:'Zivilrecht', teilgebiet:'Erbrecht', thema:'Anordnungen, Erbe, Erbschein, Pflichtteil'},
-  {tag:84, gebiet:'Zivilrecht', teilgebiet:'Handelsrecht', thema:'Kaufmann, Register, Firma, Unternehmen'},
-  {tag:85, gebiet:'Zivilrecht', teilgebiet:'Handelsrecht', thema:'Prokura, Vollmachten, Handelsgeschäft'},
-  {tag:86, gebiet:'Zivilrecht', teilgebiet:'Gesellschaftsrecht', thema:'Gesellschaften, Vereine, Gesellschaft b. R.'},
-  {tag:87, gebiet:'Zivilrecht', teilgebiet:'Gesellschaftsrecht', thema:'OHG, KG, GmbH, weitere Gesellschaftsformen'},
-  {tag:88, gebiet:'Zivilrecht', teilgebiet:'Arbeitsrecht', thema:'Grundlagen, Begründung, Inhalt'},
-  {tag:89, gebiet:'Zivilrecht', teilgebiet:'Arbeitsrecht', thema:'Leistungsstörungen, Haftung, Beendigung'},
-  {tag:90, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Erkenntnisverfahren I – Klage, Zulässigkeit'},
-  {tag:91, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Erkenntnisverfahren II – Beweis, Entscheidung'},
-  {tag:92, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Zwangsvollstreckungsrecht, Eilrechtsschutz'},
-  {tag:93, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Ermittlungsverfahren I – Ablauf, Beteiligte'},
-  {tag:94, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Ermittlungsverfahren II – Beweisverwertung'},
-  {tag:95, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Abschluss, Zwischen- und Hauptverfahren'},
-  {tag:96, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Begründungs- und Argumentationslehre'},
-  {tag:97, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Auslegung'},
-  {tag:98, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Konkretisierung und Konstruktion'},
-  {tag:99, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Verfassungs- und Europarecht, Rechtsfrieden'},
-  {tag:100, gebiet:'Methodik', teilgebiet:'Sprache und Stil', thema:'Gutes, überzeugendes Deutsch (§ 184 GVG)'}
-];
-
-const BADGE_CLASS = { 'Methodik':'methodik', 'Zivilrecht':'zivil', 'Strafrecht':'straf', 'Öffentliches Recht':'oeff' };
-const WEEKPLAN = {
-  1: { name: 'Mo', slots: [{ time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' }, { time: '12:00–16:00', activity: 'Examenskurs Zivilrecht', tag: 'kurs' }]},
-  2: { name: 'Di', slots: [{ time: 'Vormittag', activity: '100-Tage-Plan (heutiger Tag)', tag: 'stex' }, { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' }, { time: 'Nachmittag', activity: 'Schwerpunkt oder Stex (variabel)', tag: 'sp' }]},
-  3: { name: 'Mi', slots: [{ time: '10:00–12:30', activity: 'Arbeit am Lehrstuhl', tag: 'kurs' }, { time: '12:30–13:30', activity: 'Mittagspause', tag: 'pause' }, { time: '14:00–16:00', activity: 'Seminar Öffentliches Recht', tag: 'kurs' }]},
-  4: { name: 'Do', slots: [{ time: '10:00–14:00', activity: 'Examenskurs Öffentliches Recht', tag: 'kurs' }, { time: '12:00–13:00', activity: '(Mittagspause innerhalb Kurs)', tag: 'pause' }]},
-  5: { name: 'Fr', slots: [{ time: 'Vormittag', activity: 'Schwerpunkt', tag: 'sp' }, { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' }, { time: 'Nachmittag', activity: '100-Tage-Plan (heutiger Tag)', tag: 'stex' }]},
-  6: { name: 'Sa', slots: [{ time: '09:00–14:00', activity: 'Klausuren (wenn angeboten)', tag: 'kurs' }, { time: '12:00–13:00', activity: 'Mittagspause (wenn frei)', tag: 'pause' }]},
-  0: { name: 'So', slots: [{ time: 'ganztägig', activity: 'Frei – Erholung', tag: 'frei' }]}
-};
-const SP_DATE = '2026-07-29';
-const EX_DATE = '2027-10-01';
-const DEFAULT_START = '2026-05-11';
-const STEX_LERNTAGE = [2, 5];
-const SP_BLOCKS_DEFAULT = [
-  { id: 'umweltAT', title: 'Umweltrecht AT', items: [] },
-  { id: 'umweltBT', title: 'Umweltrecht BT', items: [] },
-  { id: 'klimaEnergie', title: 'Klima- und Energierecht', items: [] },
-  { id: 'infraPlanung', title: 'Infrastruktur- und Planungsrecht', items: [] }
-];
-const LF_BLOCKS_DEFAULT = SP_BLOCKS_DEFAULT.map(b => ({...b, items: []}));
-
-let state = emptyState();
-let user = null;
-let currentFilter = 'all';
-let currentLkId = null;
-let lkSearchTerm = '';
-let lkSortBy = 'norm';
-let saveTimer = null;
-let lfMode = 'lesen';
-let lfRevealed = {};
-let lfEditing = null;
-let isMigrating = false;
-
-function emptyState() {
-  return { startDate: DEFAULT_START, done: {}, notes: {}, lk: {}, sp: SP_BLOCKS_DEFAULT.map(b => ({...b, items: []})), lf: LF_BLOCKS_DEFAULT.map(b => ({...b, items: []})) };
-}
-
-function normalizeState(s) {
-  return {
-    startDate: s.startDate || DEFAULT_START,
-    done: s.done || {}, notes: s.notes || {}, lk: s.lk || {},
-    sp: s.sp || SP_BLOCKS_DEFAULT.map(b => ({...b, items: []})),
-    lf: s.lf || LF_BLOCKS_DEFAULT.map(b => ({...b, items: []}))
+  // === Eigene Supabase-Funktionen (ohne externe Bibliothek) ===
+  var api = {
+    // Login per E-Mail/Passwort
+    signIn: function(email, password) {
+      return fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email, password: password })
+      }).then(function(r) { return r.json().then(function(data) { return { ok: r.ok, status: r.status, data: data }; }); });
+    },
+    // Registrierung
+    signUp: function(email, password) {
+      return fetch(SUPABASE_URL + '/auth/v1/signup', {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email, password: password })
+      }).then(function(r) { return r.json().then(function(data) { return { ok: r.ok, status: r.status, data: data }; }); });
+    },
+    // Token erneuern
+    refreshToken: function(refreshToken) {
+      return fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ refresh_token: refreshToken })
+      }).then(function(r) { return r.json().then(function(data) { return { ok: r.ok, status: r.status, data: data }; }); });
+    },
+    // Daten lesen
+    getData: function(token, userId) {
+      return fetch(SUPABASE_URL + '/rest/v1/user_data?select=data&user_id=eq.' + userId, {
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + token
+        }
+      }).then(function(r) { return r.json().then(function(data) { return { ok: r.ok, status: r.status, data: data }; }); });
+    },
+    // Daten speichern (upsert)
+    setData: function(token, userId, payload) {
+      return fetch(SUPABASE_URL + '/rest/v1/user_data', {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json',
+          'Prefer': 'resolution=merge-duplicates'
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          data: payload,
+          updated_at: new Date().toISOString()
+        })
+      }).then(function(r) { return { ok: r.ok, status: r.status }; });
+    }
   };
-}
 
-function setSyncStatus(status, text) {
-  const el = document.getElementById('sync-status');
-  if (!el) return;
-  el.className = 'sync-status ' + status;
-  el.textContent = text;
-}
+  // === Session-Management ===
+  var session = null; // { access_token, refresh_token, expires_at, user: { id, email } }
 
-async function loadFromCloud() {
-  if (!user) return null;
-  setSyncStatus('syncing', 'Lade...');
-  try {
-    const { data, error } = await supabase
-      .from('user_data')
-      .select('data')
-      .eq('user_id', user.id)
-      .maybeSingle();
-    if (error) throw error;
-    setSyncStatus('synced', 'Synchronisiert');
-    return data ? data.data : null;
-  } catch (e) {
-    console.error('Cloud-Lesen fehlgeschlagen:', e);
-    setSyncStatus('error', 'Fehler beim Laden');
+  function loadSession() {
+    try {
+      var raw = localStorage.getItem(AUTH_STORAGE_KEY);
+      if (!raw) return null;
+      var s = JSON.parse(raw);
+      if (s && s.access_token && s.user && s.user.id) return s;
+    } catch (e) {}
     return null;
   }
-}
-
-async function saveToCloud() {
-  if (!user) return;
-  setSyncStatus('syncing', 'Speichere...');
-  try {
-    const { error } = await supabase
-      .from('user_data')
-      .upsert({ user_id: user.id, data: state, updated_at: new Date().toISOString() });
-    if (error) throw error;
-    setSyncStatus('synced', 'Synchronisiert');
-  } catch (e) {
-    console.error('Cloud-Speichern fehlgeschlagen:', e);
-    setSyncStatus('error', 'Fehler beim Speichern');
+  function saveSession(s) {
+    session = s;
+    if (s) localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(s));
+    else localStorage.removeItem(AUTH_STORAGE_KEY);
   }
-}
 
-function scheduleCloudSave() {
-  if (saveTimer) clearTimeout(saveTimer);
-  setSyncStatus('syncing', 'Speichere...');
-  saveTimer = setTimeout(() => { saveToCloud(); }, 800);
-}
-
-function hasLocalLegacyData() {
-  try {
-    const raw = localStorage.getItem(LEGACY_STORAGE_KEY);
-    if (!raw) return false;
-    const parsed = JSON.parse(raw);
-    const hasLk = parsed.lk && Object.keys(parsed.lk).length > 0;
-    const hasDone = parsed.done && Object.keys(parsed.done).length > 0;
-    const hasSp = parsed.sp && parsed.sp.some(b => b.items && b.items.length > 0);
-    const hasLf = parsed.lf && parsed.lf.some(b => b.items && b.items.length > 0);
-    return hasLk || hasDone || hasSp || hasLf;
-  } catch (e) { return false; }
-}
-
-function getLocalLegacyData() {
-  try {
-    const raw = localStorage.getItem(LEGACY_STORAGE_KEY);
-    return raw ? normalizeState(JSON.parse(raw)) : null;
-  } catch (e) { return null; }
-}
-
-function showMigrationBanner() {
-  const banner = document.getElementById('migration-banner');
-  banner.className = 'migration-banner';
-  banner.innerHTML = '';
-  const txt = document.createElement('div');
-  txt.style.flex = '1';
-  txt.innerHTML = '<strong>Lokale Daten gefunden!</strong> Sie haben bereits Daten im Browser gespeichert (vor der Cloud-Aktivierung). Möchten Sie diese in die Cloud übernehmen?';
-  banner.appendChild(txt);
-  const btn = document.createElement('button');
-  btn.textContent = 'Lokale Daten in Cloud kopieren';
-  btn.onclick = async () => {
-    isMigrating = true;
-    btn.disabled = true; btn.textContent = 'Übertrage...';
-    const legacy = getLocalLegacyData();
-    if (legacy) {
-      state = legacy;
-      await saveToCloud();
-      banner.classList.add('hidden');
-      renderAll();
-      alert('Daten erfolgreich in die Cloud übertragen! Die lokalen Daten bleiben als Backup im Browser. Sie können sie später über das Browser-Konsolen-Menü löschen, falls Sie möchten.');
-    }
-    isMigrating = false;
-  };
-  const dismiss = document.createElement('button');
-  dismiss.textContent = 'Mit leerem Cloud-Stand starten';
-  dismiss.onclick = () => { banner.classList.add('hidden'); };
-  banner.appendChild(btn); banner.appendChild(dismiss);
-}
-
-/* ---------- Auth ---------- */
-
-let authMode = 'login';
-
-function showAuthScreen() {
-  document.getElementById('auth-screen').classList.remove('hidden');
-  document.getElementById('main-app').classList.add('hidden');
-}
-function showApp() {
-  document.getElementById('auth-screen').classList.add('hidden');
-  document.getElementById('main-app').classList.remove('hidden');
-}
-function setAuthMessage(text, type) {
-  const el = document.getElementById('auth-message');
-  if (!text) { el.innerHTML = ''; return; }
-  el.innerHTML = '<div class="auth-message '+(type||'info')+'">'+text+'</div>';
-}
-
-document.querySelectorAll('.auth-tab').forEach(t => {
-  t.onclick = function() {
-    authMode = this.dataset.mode;
-    document.querySelectorAll('.auth-tab').forEach(x => x.classList.toggle('active', x === this));
-    document.getElementById('auth-submit').textContent = authMode === 'signup' ? 'Registrieren' : 'Anmelden';
-    setAuthMessage('');
-  };
-});
-
-document.getElementById('auth-submit').onclick = async function() {
-  const email = document.getElementById('auth-email').value.trim();
-  const password = document.getElementById('auth-password').value;
-  if (!email || !password) { setAuthMessage('Bitte E-Mail und Passwort eingeben.', 'error'); return; }
-  if (password.length < 6) { setAuthMessage('Passwort muss mindestens 6 Zeichen lang sein.', 'error'); return; }
-
-  this.disabled = true; this.textContent = '...';
-  try {
-    if (authMode === 'signup') {
-      const { data, error } = await supabase.auth.signUp({ email, password });
-      if (error) throw error;
-      if (data.user && !data.session) {
-        setAuthMessage('Registrierung erfolgreich! Falls Sie eine Bestätigungsmail bekommen, klicken Sie den Link darin. Sonst können Sie sich direkt anmelden.', 'success');
-      }
-    } else {
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) throw error;
-    }
-  } catch (e) {
-    setAuthMessage('Fehler: ' + e.message, 'error');
+  function authHeaders() {
+    if (!session) return null;
+    return { token: session.access_token, userId: session.user.id };
   }
-  this.disabled = false;
-  this.textContent = authMode === 'signup' ? 'Registrieren' : 'Anmelden';
-};
 
-document.getElementById('logout-btn').onclick = async function() {
-  if (confirm('Wirklich abmelden? Daten bleiben in der Cloud gespeichert.')) {
-    await supabase.auth.signOut();
-  }
-};
-
-supabase.auth.onAuthStateChange(async (event, session) => {
-  if (session && session.user) {
-    user = session.user;
-    showApp();
-    const cloud = await loadFromCloud();
-    if (cloud) {
-      state = normalizeState(cloud);
-    } else {
-      state = emptyState();
-      if (hasLocalLegacyData()) {
-        showMigrationBanner();
-      }
-    }
-    renderAll();
-  } else {
-    user = null;
-    showAuthScreen();
-  }
-});
-
-/* ---------- Helpers ---------- */
-
-function todayISO() { const d = new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
-function daysBetween(a,b) { return Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/86400000); }
-function dateForDay(tag) { const d = new Date(state.startDate+'T00:00:00'); d.setDate(d.getDate()+(tag-1)); return d.toISOString().slice(0,10); }
-function formatDateDE(iso) { return new Date(iso+'T00:00:00').toLocaleDateString('de-DE', {day:'2-digit',month:'2-digit',year:'numeric'}); }
-function weekdayDE(iso) { const wd = new Date(iso+'T00:00:00').getDay(); return ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'][wd]; }
-function currentDayNumber() { const o = daysBetween(state.startDate, todayISO())+1; if (o<1) return 0; if (o>100) return 101; return o; }
-function countDone() { return Object.values(state.done).filter(Boolean).length; }
-function nextOpenPlanDay() { for (let i=0; i<PLAN.length; i++) if (!state.done[PLAN[i].tag]) return PLAN[i]; return null; }
-function newId(prefix) { return prefix+'_'+Date.now()+'_'+Math.random().toString(36).slice(2,7); }
-function htmlToText(html) { if (!html) return ''; const tmp = document.createElement('div'); tmp.innerHTML = html; return tmp.textContent || ''; }
-
-/* ---------- Sanitizer + RTE ---------- */
-
-function sanitizeHtml(html) {
-  if (!html) return '';
-  const ALLOWED_TAGS = ['P','BR','STRONG','B','EM','I','U','UL','OL','LI','TABLE','THEAD','TBODY','TR','TD','TH','DIV','SPAN'];
-  const ALLOWED_ATTRS_BY_TAG = { 'TD': ['colspan','rowspan'], 'TH': ['colspan','rowspan'] };
-  const tmp = document.createElement('div');
-  tmp.innerHTML = html;
-  tmp.innerHTML = tmp.innerHTML
-    .replace(/<\/?o:p[^>]*>/gi, '').replace(/<\/?w:[a-z]+[^>]*>/gi, '').replace(/<\/?m:[a-z]+[^>]*>/gi, '')
-    .replace(/<!--\[if[\s\S]*?endif\]-->/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '')
-    .replace(/<meta[^>]*>/gi, '').replace(/<link[^>]*>/gi, '')
-    .replace(/\sclass="[^"]*"/gi, '').replace(/\sstyle="[^"]*"/gi, '')
-    .replace(/\slang="[^"]*"/gi, '').replace(/\sxml:lang="[^"]*"/gi, '')
-    .replace(/\sxmlns[^=]*="[^"]*"/gi, '');
-  function clean(node) {
-    const children = Array.from(node.childNodes);
-    children.forEach(child => {
-      if (child.nodeType === 1) {
-        const tag = child.tagName;
-        if (ALLOWED_TAGS.indexOf(tag) === -1) {
-          const parent = child.parentNode;
-          while (child.firstChild) parent.insertBefore(child.firstChild, child);
-          parent.removeChild(child);
-        } else {
-          const allowed = ALLOWED_ATTRS_BY_TAG[tag] || [];
-          Array.from(child.attributes).forEach(attr => { if (allowed.indexOf(attr.name) === -1) child.removeAttribute(attr.name); });
-          if ((tag === 'DIV' || tag === 'SPAN') && child.attributes.length === 0) {
-            const parent = child.parentNode;
-            while (child.firstChild) parent.insertBefore(child.firstChild, child);
-            parent.removeChild(child); return;
-          }
-          clean(child);
-        }
-      } else if (child.nodeType === 8) { child.parentNode.removeChild(child); }
-    });
-  }
-  clean(tmp);
-  return tmp.innerHTML;
-}
-
-function createRTE(initialHtml, placeholder, onChange) {
-  const wrap = document.createElement('div'); wrap.className = 'rte-wrap';
-  const tb = document.createElement('div'); tb.className = 'rte-toolbar';
-  const editor = document.createElement('div');
-  editor.className = 'rte-content'; editor.contentEditable = 'true'; editor.spellcheck = true;
-  editor.setAttribute('data-placeholder', placeholder || '');
-  editor.innerHTML = initialHtml || '';
-  function exec(cmd, val) { editor.focus(); try { document.execCommand(cmd, false, val || null); } catch(e) {} onChange(editor.innerHTML); }
-  function tool(label, title, cmd, cls) {
-    const b = document.createElement('button'); b.className = 'rte-tool' + (cls ? ' '+cls : ''); b.type = 'button';
-    b.textContent = label; b.title = title;
-    b.onmousedown = function(e) { e.preventDefault(); };
-    b.onclick = function() { exec(cmd); }; return b;
-  }
-  function sep() { const s = document.createElement('div'); s.className='rte-tool-sep'; return s; }
-  tb.appendChild(tool('F', 'Fett (Strg+B)', 'bold', 'bold'));
-  tb.appendChild(tool('K', 'Kursiv (Strg+I)', 'italic', 'italic'));
-  tb.appendChild(tool('U', 'Unterstrichen', 'underline', 'underline'));
-  tb.appendChild(sep());
-  tb.appendChild(tool('• Liste', 'Aufzählung', 'insertUnorderedList'));
-  tb.appendChild(tool('1. Liste', 'Nummerierte Liste', 'insertOrderedList'));
-  tb.appendChild(sep());
-  const tblBtn = document.createElement('button');
-  tblBtn.className = 'rte-tool'; tblBtn.type = 'button'; tblBtn.textContent = '⊞ Tabelle'; tblBtn.title = 'Tabelle einfügen';
-  tblBtn.onmousedown = function(e) { e.preventDefault(); };
-  tblBtn.onclick = function() {
-    const r = parseInt(prompt('Anzahl Zeilen (inkl. Kopfzeile):', '3'), 10);
-    const c = parseInt(prompt('Anzahl Spalten:', '2'), 10);
-    if (!r || !c || r < 1 || c < 1) return;
-    let html = '<table><thead><tr>';
-    for (let i=0;i<c;i++) html += '<th>&nbsp;</th>';
-    html += '</tr></thead><tbody>';
-    for (let i=0;i<r-1;i++) { html += '<tr>'; for (let j=0;j<c;j++) html += '<td>&nbsp;</td>'; html += '</tr>'; }
-    html += '</tbody></table><p>&nbsp;</p>';
-    exec('insertHTML', html);
-  };
-  tb.appendChild(tblBtn);
-  function makeTblBtn(label, title, action) {
-    const b = document.createElement('button'); b.className = 'rte-tool'; b.type = 'button'; b.textContent = label; b.title = title;
-    b.onmousedown = function(e) { e.preventDefault(); };
-    b.onclick = function() { tableEdit(action); };
-    return b;
-  }
-  tb.appendChild(makeTblBtn('+Z', 'Zeile darunter', 'rowAdd'));
-  tb.appendChild(makeTblBtn('−Z', 'Zeile löschen', 'rowDel'));
-  tb.appendChild(makeTblBtn('+S', 'Spalte rechts', 'colAdd'));
-  tb.appendChild(makeTblBtn('−S', 'Spalte löschen', 'colDel'));
-  tb.appendChild(sep());
-  const clearBtn = document.createElement('button');
-  clearBtn.className = 'rte-tool'; clearBtn.type = 'button'; clearBtn.textContent = '⌫ Format'; clearBtn.title = 'Formatierung entfernen';
-  clearBtn.onmousedown = function(e) { e.preventDefault(); };
-  clearBtn.onclick = function() { exec('removeFormat'); };
-  tb.appendChild(clearBtn);
-  function getCellAtSelection() {
-    const sel = window.getSelection(); if (!sel.rangeCount) return null;
-    let n = sel.anchorNode;
-    while (n && n !== editor) { if (n.nodeType === 1 && (n.tagName === 'TD' || n.tagName === 'TH')) return n; n = n.parentNode; }
-    return null;
-  }
-  function tableEdit(action) {
-    const cell = getCellAtSelection();
-    if (!cell) { alert('Cursor zuerst in eine Tabellenzelle setzen.'); return; }
-    const row = cell.parentNode; const table = cell.closest('table'); if (!table) return;
-    if (action === 'rowAdd') {
-      const newRow = document.createElement('tr'); const len = row.children.length;
-      for (let i=0; i<len; i++) { const td = document.createElement('td'); td.innerHTML = '&nbsp;'; newRow.appendChild(td); }
-      if (row.nextSibling) row.parentNode.insertBefore(newRow, row.nextSibling); else row.parentNode.appendChild(newRow);
-    } else if (action === 'rowDel') {
-      if (row.parentNode.children.length <= 1) { if (confirm('Letzte Zeile entfernt ganze Tabelle. OK?')) table.parentNode.removeChild(table); }
-      else row.parentNode.removeChild(row);
-    } else if (action === 'colAdd') {
-      const idx = Array.from(row.children).indexOf(cell);
-      Array.from(table.querySelectorAll('tr')).forEach(r => {
-        const cellTag = r.children[0] && r.children[0].tagName === 'TH' ? 'th' : 'td';
-        const nc = document.createElement(cellTag); nc.innerHTML = '&nbsp;';
-        if (r.children[idx+1]) r.insertBefore(nc, r.children[idx+1]); else r.appendChild(nc);
-      });
-    } else if (action === 'colDel') {
-      const idx = Array.from(row.children).indexOf(cell);
-      if (row.children.length <= 1) { if (confirm('Letzte Spalte entfernt ganze Tabelle. OK?')) table.parentNode.removeChild(table); }
-      else Array.from(table.querySelectorAll('tr')).forEach(r => { if (r.children[idx]) r.removeChild(r.children[idx]); });
-    }
-    onChange(editor.innerHTML);
-  }
-  editor.addEventListener('paste', function(e) {
-    const html = e.clipboardData.getData('text/html');
-    const text = e.clipboardData.getData('text/plain');
-    if (html && html.length > 0) {
-      e.preventDefault();
-      document.execCommand('insertHTML', false, sanitizeHtml(html));
-      onChange(editor.innerHTML);
-    } else if (text) {
-      e.preventDefault();
-      document.execCommand('insertText', false, text);
-      onChange(editor.innerHTML);
-    }
-  });
-  editor.addEventListener('input', function() { onChange(editor.innerHTML); });
-  wrap.appendChild(tb); wrap.appendChild(editor);
-  return wrap;
-}
-
-/* ---------- Render-Funktionen (alle wie zuvor) ---------- */
-
-function tempoText() {
-  const today = todayISO(); const start = state.startDate;
-  const elapsed = daysBetween(start, today) + 1; const done = countDone();
-  if (elapsed < 1) return 'Lernplan startet am ' + formatDateDE(start) + '.';
-  if (done === 0) return 'Noch keine Tage abgeschlossen.';
-  const rate = done / elapsed; if (rate <= 0) return '';
-  const remaining = 100 - done; const daysNeeded = Math.ceil(remaining / rate);
-  const finish = new Date(today+'T00:00:00'); finish.setDate(finish.getDate() + daysNeeded);
-  return 'Bei aktueller Geschwindigkeit (ø ' + rate.toFixed(2) + ' Tage/Kalendertag) erreichen Sie Tag 100 am ' + finish.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}) + '.';
-}
-
-function renderDashboard() {
-  const today = todayISO(); const day = currentDayNumber(); const done = countDone();
-  const sp = daysBetween(today, SP_DATE);
-  document.getElementById('stat-sp').textContent = sp>0 ? sp+' Tage' : (sp===0 ? 'heute!' : 'vorbei');
-  let dayLabel;
-  if (day===0) dayLabel = 'in '+daysBetween(today, state.startDate)+'T';
-  else if (day===101) dayLabel = 'beendet';
-  else dayLabel = day+' / 100';
-  document.getElementById('stat-day').textContent = dayLabel;
-  document.getElementById('stat-done').textContent = done+' / 100';
-  const ex = daysBetween(today, EX_DATE);
-  document.getElementById('stat-ex').textContent = ex>0 ? Math.round(ex/30)+' Mon.' : 'vorbei';
-  document.getElementById('progress-pct').textContent = done+'%';
-  document.getElementById('progress-bar').style.width = done+'%';
-  document.getElementById('today-date').textContent = formatDateDE(today);
-  document.getElementById('today-weekday').textContent = weekdayDE(today);
-  renderTodayCard(today);
-  document.getElementById('tempo-hint').textContent = tempoText();
-  document.getElementById('start-date').value = state.startDate;
-}
-
-function renderTodayCard(today) {
-  const wd = new Date(today+'T00:00:00').getDay();
-  const titleEl = document.getElementById('today-title');
-  const topicEl = document.getElementById('today-topic');
-  const actionsEl = document.getElementById('today-actions');
-  const hintEl = document.getElementById('today-hint');
-  actionsEl.innerHTML = ''; hintEl.textContent = '';
-  const day = currentDayNumber();
-  const isStexLerntag = STEX_LERNTAGE.indexOf(wd) !== -1;
-  if (wd === 1) { titleEl.textContent = 'Examenskurs Zivilrecht'; topicEl.textContent = '12–16 Uhr'; return; }
-  if (wd === 3) { titleEl.textContent = 'Lehrstuhl + Seminar ÖR'; topicEl.textContent = '10–12:30 Lehrstuhl · 14–16 Seminar'; return; }
-  if (wd === 4) { titleEl.textContent = 'Examenskurs Öffentliches Recht'; topicEl.textContent = '10–14 Uhr'; return; }
-  if (wd === 6) { titleEl.textContent = 'Samstagsklausur (wenn angeboten)'; topicEl.textContent = '9–14 Uhr'; return; }
-  if (wd === 0) { titleEl.textContent = 'Sonntag — Erholung'; topicEl.textContent = 'Heute keine Aufgaben.'; return; }
-  if (isStexLerntag && day >= 1 && day <= 100) {
-    const planItem = nextOpenPlanDay();
-    if (planItem) {
-      titleEl.textContent = 'Heute: 100-Tage-Plan + Schwerpunkt';
-      topicEl.textContent = 'Stex-Tag: ' + planItem.tag + ' · ' + planItem.gebiet + ' · ' + planItem.teilgebiet + ' (' + planItem.thema + ')';
-      const btn = document.createElement('button');
-      const isDone = !!state.done[planItem.tag];
-      btn.textContent = isDone ? 'Stex-Tag '+planItem.tag+' offen markieren' : 'Stex-Tag '+planItem.tag+' erledigt';
-      btn.onclick = function() { state.done[planItem.tag] = !state.done[planItem.tag]; scheduleCloudSave(); renderAll(); };
-      actionsEl.appendChild(btn);
-      const sp = daysBetween(today, SP_DATE);
-      if (sp > 0) hintEl.textContent = (wd===2?'Dienstag':'Freitag') + ' Vormittag Stex, Nachmittag Schwerpunkt (Klausur in ' + sp + ' Tagen).';
-    }
-  }
-}
-
-function renderTracker() {
-  const list = document.getElementById('tracker-list');
-  let items = PLAN.slice();
-  if (currentFilter==='open') items = items.filter(p=>!state.done[p.tag]);
-  if (currentFilter==='done') items = items.filter(p=>!!state.done[p.tag]);
-  if (currentFilter==='today') { const next = nextOpenPlanDay(); items = next ? items.filter(p=>p.tag===next.tag) : []; }
-  list.innerHTML = '';
-  if (items.length===0) { const e = document.createElement('p'); e.className='empty'; e.textContent='Keine Einträge.'; list.appendChild(e); return; }
-  items.forEach(it => {
-    const isDone = !!state.done[it.tag]; const next = nextOpenPlanDay();
-    const isNext = next && next.tag===it.tag; const date = dateForDay(it.tag);
-    const row = document.createElement('div'); row.className = 'tracker-row'+(isNext?' today':'');
-    const cb = document.createElement('input'); cb.type='checkbox'; cb.checked=isDone;
-    cb.onchange = function() { state.done[it.tag]=cb.checked; scheduleCloudSave(); renderAll(); };
-    const tagCell = document.createElement('div'); tagCell.className='tracker-tag'; tagCell.textContent='Tag '+it.tag;
-    const dateCell = document.createElement('div'); dateCell.className='tracker-date'; dateCell.textContent=formatDateDE(date).slice(0,5);
-    const topic = document.createElement('div'); topic.className='tracker-topic'+(isDone?' done':'');
-    const teil = document.createElement('span'); teil.className='teil'; teil.textContent=it.teilgebiet+':';
-    topic.appendChild(teil); topic.appendChild(document.createTextNode(it.thema));
-    const badge = document.createElement('span'); badge.className='badge '+(BADGE_CLASS[it.gebiet]||''); badge.textContent=it.gebiet;
-    row.appendChild(cb); row.appendChild(tagCell); row.appendChild(dateCell); row.appendChild(topic); row.appendChild(badge);
-    list.appendChild(row);
-  });
-}
-
-function renderWochenplan() {
-  const list = document.getElementById('wochenplan-list'); list.innerHTML = '';
-  const todayWd = new Date(todayISO()+'T00:00:00').getDay();
-  [1,2,3,4,5,6,0].forEach(wd => {
-    const dp = WEEKPLAN[wd];
-    const day = document.createElement('div'); day.className = 'wp-day' + (wd===todayWd?' wp-day-today':'');
-    const left = document.createElement('div');
-    const name = document.createElement('div'); name.className='wp-day-name'; name.textContent = dp.name + (wd===todayWd?' · heute':'');
-    left.appendChild(name); day.appendChild(left);
-    const slots = document.createElement('div'); slots.className='wp-slots';
-    dp.slots.forEach(s => {
-      const slot = document.createElement('div'); slot.className='wp-slot';
-      const t = document.createElement('div'); t.className='wp-time'; t.textContent = s.time;
-      const a = document.createElement('div'); a.className='wp-activity'; a.textContent = s.activity;
-      const tag = document.createElement('span'); tag.className='wp-tag '+s.tag;
-      tag.textContent = ({stex:'Stex',sp:'Schwerpunkt',kurs:'Kurs',frei:'frei',pause:'Pause'})[s.tag] || s.tag;
-      slot.appendChild(t); slot.appendChild(a); slot.appendChild(tag); slots.appendChild(slot);
-    });
-    day.appendChild(slots); list.appendChild(day);
-  });
-}
-
-function renderSp() {
-  const wrap = document.getElementById('sp-blocks'); wrap.innerHTML = '';
-  state.sp.forEach(block => {
-    const bx = document.createElement('div'); bx.className='sp-block';
-    const head = document.createElement('div'); head.className='sp-block-header';
-    const title = document.createElement('p'); title.className='sp-block-title'; title.textContent = block.title;
-    const total = block.items.length; const fertig = block.items.filter(i=>i.status==='fertig').length;
-    const prog = document.createElement('span'); prog.className='sp-block-progress'; prog.textContent = total ? (fertig+' / '+total+' fertig') : 'noch keine Themen';
-    head.appendChild(title); head.appendChild(prog); bx.appendChild(head);
-    block.items.forEach((item, idx) => {
-      const row = document.createElement('div'); row.className='sp-item';
-      const dot = document.createElement('div'); dot.className='sp-item-status '+item.status;
-      const text = document.createElement('div'); text.className='sp-item-text'+(item.status==='fertig'?' fertig':''); text.textContent = item.text;
-      const sel = document.createElement('select'); sel.className='sp-item-status-select';
-      ['offen','arbeit','fertig'].forEach(s => {
-        const opt = document.createElement('option'); opt.value=s; opt.textContent = ({offen:'offen',arbeit:'in Arbeit',fertig:'fertig'})[s];
-        if (item.status===s) opt.selected = true; sel.appendChild(opt);
-      });
-      sel.onchange = function() { item.status = sel.value; scheduleCloudSave(); renderSp(); };
-      const del = document.createElement('button'); del.className='small'; del.textContent='✕';
-      del.onclick = function() { if (confirm('"'+item.text+'" löschen?')) { block.items.splice(idx, 1); scheduleCloudSave(); renderSp(); } };
-      row.appendChild(dot); row.appendChild(text); row.appendChild(sel); row.appendChild(del); bx.appendChild(row);
-    });
-    const addRow = document.createElement('div'); addRow.className='sp-add-row';
-    const inp = document.createElement('input'); inp.type='text'; inp.placeholder='Neues Thema hinzufügen...';
-    const btn = document.createElement('button'); btn.className='primary small'; btn.textContent='+ Hinzufügen';
-    const addItem = function() { const t = inp.value.trim(); if (!t) return; block.items.push({ text: t, status: 'offen', createdAt: Date.now() }); inp.value = ''; scheduleCloudSave(); renderSp(); };
-    btn.onclick = addItem; inp.onkeydown = function(e) { if (e.key==='Enter') addItem(); };
-    addRow.appendChild(inp); addRow.appendChild(btn); bx.appendChild(addRow);
-    wrap.appendChild(bx);
-  });
-}
-
-function renderLfStats() {
-  const all = state.lf.reduce((acc, b) => acc + b.items.length, 0);
-  const known = state.lf.reduce((acc, b) => acc + b.items.filter(i => i.lastRating === 'known').length, 0);
-  const unknown = state.lf.reduce((acc, b) => acc + b.items.filter(i => i.lastRating === 'unknown').length, 0);
-  document.getElementById('lf-stats').textContent = all > 0 ? all+' Fragen · '+known+' gewusst · '+unknown+' nicht gewusst' : '';
-}
-
-function renderLf() {
-  const wrap = document.getElementById('lf-blocks'); wrap.innerHTML = '';
-  document.querySelectorAll('.lf-mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === lfMode));
-  renderLfStats();
-  state.lf.forEach(block => {
-    const bx = document.createElement('div'); bx.className='lf-block';
-    const head = document.createElement('div'); head.className='lf-block-header';
-    const title = document.createElement('p'); title.className='lf-block-title'; title.textContent = block.title;
-    const total = block.items.length;
-    const stats = document.createElement('span'); stats.className='lf-block-stats';
-    stats.textContent = total ? (total+' Fragen') : 'noch keine Fragen';
-    head.appendChild(title); head.appendChild(stats); bx.appendChild(head);
-    block.items.forEach((item, idx) => {
-      const card = document.createElement('div'); card.className='lf-card';
-      if (lfEditing === item.id) {
-        const form = document.createElement('div'); form.className='lf-edit-form';
-        const qInp = document.createElement('textarea'); qInp.value = item.question; qInp.placeholder = 'Frage';
-        form.appendChild(qInp);
-        const aLabel = document.createElement('label'); aLabel.className='lk-field-label'; aLabel.textContent = 'Antwort'; form.appendChild(aLabel);
-        const rte = createRTE(item.answer || '', 'Antwort...', function(html) { item._draftAnswer = html; });
-        form.appendChild(rte);
-        const btnRow = document.createElement('div'); btnRow.className='lf-edit-actions';
-        const save = document.createElement('button'); save.className='primary small'; save.textContent='Speichern';
-        save.onclick = function() {
-          item.question = qInp.value.trim();
-          item.answer = item._draftAnswer !== undefined ? item._draftAnswer : (item.answer || '');
-          delete item._draftAnswer; item.updatedAt = Date.now();
-          lfEditing = null; scheduleCloudSave(); renderLf();
-        };
-        const cancel = document.createElement('button'); cancel.className='small'; cancel.textContent='Abbrechen';
-        cancel.onclick = function() { delete item._draftAnswer; lfEditing = null; renderLf(); };
-        btnRow.appendChild(save); btnRow.appendChild(cancel);
-        form.appendChild(btnRow); card.appendChild(form);
-      } else {
-        const qWrap = document.createElement('div'); qWrap.className='lf-card-q';
-        const q = document.createElement('div'); q.className='lf-question'; q.textContent = item.question;
-        const acts = document.createElement('div'); acts.className='lf-card-actions';
-        const edit = document.createElement('button'); edit.className='small'; edit.textContent='Bearbeiten';
-        edit.onclick = function() { lfEditing = item.id; renderLf(); };
-        const del = document.createElement('button'); del.className='small'; del.textContent='✕';
-        del.onclick = function() { if (confirm('Frage löschen?')) { block.items.splice(idx, 1); scheduleCloudSave(); renderLf(); } };
-        acts.appendChild(edit); acts.appendChild(del);
-        qWrap.appendChild(q); qWrap.appendChild(acts); card.appendChild(qWrap);
-        const isRevealed = lfMode === 'lesen' || !!lfRevealed[item.id];
-        if (isRevealed) {
-          const a = document.createElement('div'); a.className='lf-answer';
-          if (item.answer && item.answer.replace(/<[^>]*>/g, '').trim()) {
-            const inner = document.createElement('div'); inner.className = 'rendered'; inner.innerHTML = item.answer;
-            a.appendChild(inner);
-          } else {
-            a.classList.add('lf-answer-empty'); a.textContent = '(noch keine Antwort)';
-          }
-          card.appendChild(a);
-        } else {
-          const reveal = document.createElement('button'); reveal.className='lf-reveal-btn small';
-          reveal.textContent = 'Antwort anzeigen';
-          reveal.onclick = function() { lfRevealed[item.id] = true; renderLf(); };
-          card.appendChild(reveal);
-        }
-        if (lfMode === 'abfragen' && isRevealed) {
-          const rate = document.createElement('div'); rate.className='lf-rate';
-          const lbl = document.createElement('span'); lbl.className='lf-rate-label'; lbl.textContent = 'Selbsteinschätzung:';
-          rate.appendChild(lbl);
-          [{key:'known',label:'gewusst',cls:'success'},{key:'unsure',label:'unsicher',cls:'warn'},{key:'unknown',label:'nicht gewusst',cls:'danger'}].forEach(r => {
-            const b = document.createElement('button');
-            b.className = 'lf-rate-btn '+r.cls + (item.lastRating === r.key ? ' active' : '');
-            b.textContent = r.label;
-            b.onclick = function() {
-              item.lastRating = r.key; item.lastRatedAt = Date.now();
-              if (!item.history) item.history = [];
-              item.history.push({ rating: r.key, at: Date.now() });
-              scheduleCloudSave(); renderLf();
-            };
-            rate.appendChild(b);
-          });
-          card.appendChild(rate);
-        }
-      }
-      bx.appendChild(card);
-    });
-    const addForm = document.createElement('div'); addForm.className='lf-add-form';
-    const qInp = document.createElement('textarea'); qInp.placeholder = 'Neue Lernfrage...'; qInp.style.minHeight = '50px';
-    addForm.appendChild(qInp);
-    let draft = '';
-    const rte = createRTE('', 'Antwort (Tabellen aus Word einfügbar)...', function(html) { draft = html; });
-    addForm.appendChild(rte);
-    const addBtn = document.createElement('button'); addBtn.className='primary small'; addBtn.textContent='+ Frage hinzufügen';
-    addBtn.onclick = function() {
-      const q = qInp.value.trim(); if (!q) return;
-      block.items.push({ id: newId('lf'), question: q, answer: draft, createdAt: Date.now(), updatedAt: Date.now(), history: [] });
-      qInp.value = ''; scheduleCloudSave(); renderLf();
-    };
-    addForm.appendChild(addBtn); bx.appendChild(addForm);
-    wrap.appendChild(bx);
-  });
-}
-
-function getLkArray() { return Object.keys(state.lk).map(id => Object.assign({id:id}, state.lk[id])); }
-function compareNorms(a,b) { return (a.norm||'').toLowerCase().localeCompare((b.norm||'').toLowerCase(), 'de', {numeric:true}); }
-function getFilteredSorted() {
-  let items = getLkArray();
-  if (lkSearchTerm) {
-    const q = lkSearchTerm.toLowerCase();
-    items = items.filter(it => ((it.norm||'') + ' ' + htmlToText(it.rechtsfolge||'') + ' ' + htmlToText(it.tatbestand||'') + ' ' + htmlToText(it.notizen||'')).toLowerCase().includes(q));
-  }
-  if (lkSortBy==='recent') items.sort((a,b) => (b.updatedAt||0)-(a.updatedAt||0));
-  else items.sort(compareNorms);
-  return items;
-}
-function renderLkList() {
-  const list = document.getElementById('lk-list');
-  const items = getFilteredSorted(); list.innerHTML = '';
-  if (items.length===0) { const e = document.createElement('p'); e.className='empty'; e.textContent = lkSearchTerm ? 'Keine Treffer.' : 'Noch keine Einträge.'; list.appendChild(e); return; }
-  items.forEach(it => {
-    const row = document.createElement('div'); row.className = 'lk-list-item'+(it.id===currentLkId?' active':'');
-    const norm = document.createElement('p'); norm.className='lk-list-norm'; norm.textContent = it.norm || '(Ohne Norm)';
-    const meta = document.createElement('p'); meta.className='lk-list-meta';
-    const upd = it.updatedAt ? new Date(it.updatedAt).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'}) : '';
-    meta.textContent = upd ? 'Bearbeitet '+upd : 'Neu';
-    row.appendChild(norm); row.appendChild(meta);
-    row.onclick = function() { currentLkId = it.id; renderLk(); };
-    list.appendChild(row);
-  });
-}
-function renderLkDetail() {
-  const detail = document.getElementById('lk-detail'); detail.innerHTML = '';
-  if (!currentLkId || !state.lk[currentLkId]) { const e = document.createElement('p'); e.className='lk-detail-empty'; e.textContent = 'Wählen Sie links eine Norm aus oder legen Sie eine neue an.'; detail.appendChild(e); return; }
-  const entry = state.lk[currentLkId];
-  const normWrap = document.createElement('div'); normWrap.className='lk-field';
-  const normLabel = document.createElement('label'); normLabel.className='lk-field-label'; normLabel.textContent = 'Norm';
-  normWrap.appendChild(normLabel);
-  const normInp = document.createElement('input'); normInp.type='text'; normInp.placeholder = 'z.B. § 107 BGB'; normInp.value = entry.norm || '';
-  normInp.oninput = function() { entry.norm = normInp.value; entry.updatedAt = Date.now(); scheduleCloudSave(); };
-  normWrap.appendChild(normInp);
-  detail.appendChild(normWrap);
-  const rteFields = [
-    {key:'rechtsfolge', label:'Rechtsfolge (RF)'},
-    {key:'tatbestand', label:'Tatbestand (TB)'},
-    {key:'notizen', label:'Auslegung, Streit, Schemata, Beispiele'}
+  // === Daten-Konstanten ===
+  var PLAN = [
+    {tag:1, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Suchlesen'},
+    {tag:2, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Auslegungslesen I'},
+    {tag:3, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Auslegungslesen II'},
+    {tag:4, gebiet:'Methodik', teilgebiet:'Gesetze lesen', thema:'Wiedererkennungslesen'},
+    {tag:5, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Basics, Prozessrecht, Kompetenz, Verfahren'},
+    {tag:6, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Staatsprinzipien, Exekutive, Föderalsystem'},
+    {tag:7, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Bundestag, Bundesrat'},
+    {tag:8, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Bundesregierung, Bundespräsident, Parteien'},
+    {tag:9, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Wahlrecht, internationale Bezüge'},
+    {tag:10, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechtssystem, Freiheitsgrundrechte'},
+    {tag:11, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte I – Art. 2–5 GG'},
+    {tag:12, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte II – Art. 6–13 GG'},
+    {tag:13, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechte III – Art. 14–19, 1 und 3 GG'},
+    {tag:14, gebiet:'Öffentliches Recht', teilgebiet:'Staatsrecht', thema:'Grundrechtsgleiche Rechte, Durchsetzung'},
+    {tag:15, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht I – Grundsätze, Verfahren'},
+    {tag:16, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht II – Klage- und Antragsarten'},
+    {tag:17, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Prozessrecht III – SEV, Begründetheit'},
+    {tag:18, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Rechtsmittel, Verwaltung, Handlungsformen'},
+    {tag:19, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Verwaltungsakt, Rechtmäßigkeit, Aufhebung'},
+    {tag:20, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Vollstreckung, Vertrag, weitere Hoheitsakte'},
+    {tag:21, gebiet:'Öffentliches Recht', teilgebiet:'Allg. Verwaltungsrecht', thema:'Staatshaftung'},
+    {tag:22, gebiet:'Öffentliches Recht', teilgebiet:'Kommunalrecht', thema:'Basics, Selbstverwaltung, Aufgaben, Aufsicht'},
+    {tag:23, gebiet:'Öffentliches Recht', teilgebiet:'Kommunalrecht', thema:'Gemeindeverfassung, Satzungen, Einwohner'},
+    {tag:24, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Grundlagen, Generalklausel, Gefahrbegriff'},
+    {tag:25, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Pflichtigkeit, Ermessen, Standardmaßnahmen'},
+    {tag:26, gebiet:'Öffentliches Recht', teilgebiet:'Polizei- und Ordnungsrecht', thema:'Versammlungen, Vollstreckung, Verordnung'},
+    {tag:27, gebiet:'Öffentliches Recht', teilgebiet:'Baurecht', thema:'Grundlagen, Bauplanungsrecht'},
+    {tag:28, gebiet:'Öffentliches Recht', teilgebiet:'Baurecht', thema:'Bauordnungsrecht, Prozessrecht'},
+    {tag:29, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundlagen, Struktur, Rechtsnatur, Organe'},
+    {tag:30, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Rechtsetzung, Rechtsquellen'},
+    {tag:31, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundfreiheiten'},
+    {tag:32, gebiet:'Öffentliches Recht', teilgebiet:'Europarecht', thema:'Grundrechte, Rechtsschutz, Beihilfenrecht'},
+    {tag:33, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Grundlagen, Willenserklärung, Willensmängel'},
+    {tag:34, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Vertrag, Auslegung, Geschäftsfähigkeit'},
+    {tag:35, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Vertretung, Form'},
+    {tag:36, gebiet:'Zivilrecht', teilgebiet:'BGB AT', thema:'Unwirksamkeit, Zustimmung, Bedingung, AGB'},
+    {tag:37, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Schuldverhältnisse'},
+    {tag:38, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Personenmehrheiten und -wechsel, Dritte'},
+    {tag:39, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Erfüllung, Beendigung, Anpassung'},
+    {tag:40, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Leistungsstörungen'},
+    {tag:41, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht AT', thema:'Schadens-/Aufwendungsersatz, Verbraucher'},
+    {tag:42, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Vertragsrecht, Kaufrecht I – Mangel, Gefahr'},
+    {tag:43, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Kaufrecht II – Mängelrechte des Käufers'},
+    {tag:44, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Kaufrecht III – Besonderheiten; Überlassung'},
+    {tag:45, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Mietrecht, Zeitüberlassungsverträge'},
+    {tag:46, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Werkrecht'},
+    {tag:47, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Weitere Verträge'},
+    {tag:48, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Gesetzliche Schuldverhältnisse, GoA'},
+    {tag:49, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Leistungskondiktion'},
+    {tag:50, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Nichtleistungskondiktion'},
+    {tag:51, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Bereicherungsrecht – Inhalt, Mehrpersonen'},
+    {tag:52, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Deliktsrecht – Verschuldenshaftung'},
+    {tag:53, gebiet:'Zivilrecht', teilgebiet:'Schuldrecht BT', thema:'Deliktsrecht – weitere Haftung inklusive StVG'},
+    {tag:54, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Mobiliarsachenrecht, Eigentumserwerb'},
+    {tag:55, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Gutgläubiger Erwerb, gesetzlicher Erwerb'},
+    {tag:56, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Eigentümer-Besitzer-Verhältnis, Besitzschutz'},
+    {tag:57, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Kreditsicherungsrechte'},
+    {tag:58, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Immobiliarsachenrecht, Eigentumserwerb'},
+    {tag:59, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundbuchberichtigung, Vormerkung, Vorkauf'},
+    {tag:60, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundpfandrechte I – Hypothek'},
+    {tag:61, gebiet:'Zivilrecht', teilgebiet:'Sachenrecht', thema:'Grundpfandrechte II – Grundschuld; Nutzung'},
+    {tag:62, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Grundlagen, objektiver Tatbestand'},
+    {tag:63, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Täterschaft, subjektiver Tatbestand'},
+    {tag:64, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Rechtswidrigkeit'},
+    {tag:65, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Schuld, Fahrlässigkeit'},
+    {tag:66, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Unterlassung, Teilnahme'},
+    {tag:67, gebiet:'Strafrecht', teilgebiet:'Strafrecht AT', thema:'Versuch, Konkurrenzen'},
+    {tag:68, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Mord, Totschlag'},
+    {tag:69, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Körperverletzung, Brandstiftung'},
+    {tag:70, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Straßenverkehr, Willensbeeinträchtigung'},
+    {tag:71, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Urkundendelikte, Ehrschutz, Aussagedelikte'},
+    {tag:72, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Diebstahl I – Tatbestand'},
+    {tag:73, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Diebstahl II; Unterschlagung'},
+    {tag:74, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Raub, Erpressung'},
+    {tag:75, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Betrug, Computerbetrug'},
+    {tag:76, gebiet:'Strafrecht', teilgebiet:'Strafrecht BT', thema:'Untreue, Anschlussdelikte, Sachbeschädigung'},
+    {tag:77, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungserfordernis, Interpretationsfrage'},
+    {tag:78, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungsbedarf, Begründungskompetenz'},
+    {tag:79, gebiet:'Methodik', teilgebiet:'Juristisches Begründen', thema:'Begründungsbeispiele, Formulierungstechnik'},
+    {tag:80, gebiet:'Zivilrecht', teilgebiet:'Familienrecht', thema:'Grundlagen, Eheschließung, Güterrecht'},
+    {tag:81, gebiet:'Zivilrecht', teilgebiet:'Familienrecht', thema:'Unterhalt, Ehevertrag, Verwandtschaft, Sorge'},
+    {tag:82, gebiet:'Zivilrecht', teilgebiet:'Erbrecht', thema:'Grundlagen, Erbfolge, Testament, Verfügung'},
+    {tag:83, gebiet:'Zivilrecht', teilgebiet:'Erbrecht', thema:'Anordnungen, Erbe, Erbschein, Pflichtteil'},
+    {tag:84, gebiet:'Zivilrecht', teilgebiet:'Handelsrecht', thema:'Kaufmann, Register, Firma, Unternehmen'},
+    {tag:85, gebiet:'Zivilrecht', teilgebiet:'Handelsrecht', thema:'Prokura, Vollmachten, Handelsgeschäft'},
+    {tag:86, gebiet:'Zivilrecht', teilgebiet:'Gesellschaftsrecht', thema:'Gesellschaften, Vereine, Gesellschaft b. R.'},
+    {tag:87, gebiet:'Zivilrecht', teilgebiet:'Gesellschaftsrecht', thema:'OHG, KG, GmbH, weitere Gesellschaftsformen'},
+    {tag:88, gebiet:'Zivilrecht', teilgebiet:'Arbeitsrecht', thema:'Grundlagen, Begründung, Inhalt'},
+    {tag:89, gebiet:'Zivilrecht', teilgebiet:'Arbeitsrecht', thema:'Leistungsstörungen, Haftung, Beendigung'},
+    {tag:90, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Erkenntnisverfahren I – Klage, Zulässigkeit'},
+    {tag:91, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Erkenntnisverfahren II – Beweis, Entscheidung'},
+    {tag:92, gebiet:'Zivilrecht', teilgebiet:'Zivilprozessrecht', thema:'Zwangsvollstreckungsrecht, Eilrechtsschutz'},
+    {tag:93, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Ermittlungsverfahren I – Ablauf, Beteiligte'},
+    {tag:94, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Ermittlungsverfahren II – Beweisverwertung'},
+    {tag:95, gebiet:'Strafrecht', teilgebiet:'Strafprozessrecht', thema:'Abschluss, Zwischen- und Hauptverfahren'},
+    {tag:96, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Begründungs- und Argumentationslehre'},
+    {tag:97, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Auslegung'},
+    {tag:98, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Konkretisierung und Konstruktion'},
+    {tag:99, gebiet:'Methodik', teilgebiet:'Juristische Methodenlehre', thema:'Verfassungs- und Europarecht, Rechtsfrieden'},
+    {tag:100, gebiet:'Methodik', teilgebiet:'Sprache und Stil', thema:'Gutes, überzeugendes Deutsch (§ 184 GVG)'}
   ];
-  rteFields.forEach(f => {
-    const wrap = document.createElement('div'); wrap.className='lk-field';
-    const label = document.createElement('label'); label.className='lk-field-label'; label.textContent = f.label;
-    wrap.appendChild(label);
-    const rte = createRTE(entry[f.key] || '', '', function(html) { entry[f.key] = html; entry.updatedAt = Date.now(); scheduleCloudSave(); });
-    wrap.appendChild(rte);
-    detail.appendChild(wrap);
-  });
-  const actions = document.createElement('div'); actions.className='lk-detail-actions';
-  const del = document.createElement('button'); del.className='danger'; del.textContent='Eintrag löschen';
-  del.onclick = function() { if (confirm('Löschen?')) { delete state.lk[currentLkId]; currentLkId = null; scheduleCloudSave(); renderLk(); } };
-  actions.appendChild(del); detail.appendChild(actions);
-}
-function renderLk() { renderLkList(); renderLkDetail(); }
 
-function renderAll() { renderDashboard(); renderTracker(); renderWochenplan(); renderSp(); renderLf(); renderLk(); }
-
-function showView(name) {
-  ['dashboard','wochenplan','tracker','sp','lf','lk'].forEach(v => {
-    document.getElementById('view-'+v).classList.toggle('hidden', v!==name);
-    document.getElementById('tab-'+v).classList.toggle('active', v===name);
-  });
-}
-document.getElementById('tab-dashboard').onclick = function() { showView('dashboard'); };
-document.getElementById('tab-wochenplan').onclick = function() { showView('wochenplan'); renderWochenplan(); };
-document.getElementById('tab-tracker').onclick = function() { showView('tracker'); renderTracker(); };
-document.getElementById('tab-sp').onclick = function() { showView('sp'); renderSp(); };
-document.getElementById('tab-lf').onclick = function() { showView('lf'); renderLf(); };
-document.getElementById('tab-lk').onclick = function() { showView('lk'); renderLk(); };
-
-document.querySelectorAll('.filter-btn').forEach(b => {
-  b.onclick = function() {
-    currentFilter = this.dataset.filter;
-    document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
-    this.classList.add('active'); renderTracker();
+  var BADGE_CLASS = { 'Methodik':'methodik', 'Zivilrecht':'zivil', 'Strafrecht':'straf', 'Öffentliches Recht':'oeff' };
+  var WEEKPLAN = {
+    1: { name: 'Mo', slots: [{ time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' }, { time: '12:00–16:00', activity: 'Examenskurs Zivilrecht', tag: 'kurs' }]},
+    2: { name: 'Di', slots: [{ time: 'Vormittag', activity: '100-Tage-Plan (heutiger Tag)', tag: 'stex' }, { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' }, { time: 'Nachmittag', activity: 'Schwerpunkt oder Stex (variabel)', tag: 'sp' }]},
+    3: { name: 'Mi', slots: [{ time: '10:00–12:30', activity: 'Arbeit am Lehrstuhl', tag: 'kurs' }, { time: '12:30–13:30', activity: 'Mittagspause', tag: 'pause' }, { time: '14:00–16:00', activity: 'Seminar Öffentliches Recht', tag: 'kurs' }]},
+    4: { name: 'Do', slots: [{ time: '10:00–14:00', activity: 'Examenskurs Öffentliches Recht', tag: 'kurs' }, { time: '12:00–13:00', activity: '(Mittagspause innerhalb Kurs)', tag: 'pause' }]},
+    5: { name: 'Fr', slots: [{ time: 'Vormittag', activity: 'Schwerpunkt', tag: 'sp' }, { time: '12:00–13:00', activity: 'Mittagspause', tag: 'pause' }, { time: 'Nachmittag', activity: '100-Tage-Plan (heutiger Tag)', tag: 'stex' }]},
+    6: { name: 'Sa', slots: [{ time: '09:00–14:00', activity: 'Klausuren (wenn angeboten)', tag: 'kurs' }, { time: '12:00–13:00', activity: 'Mittagspause (wenn frei)', tag: 'pause' }]},
+    0: { name: 'So', slots: [{ time: 'ganztägig', activity: 'Frei – Erholung', tag: 'frei' }]}
   };
-});
-document.querySelectorAll('.lf-mode-btn').forEach(b => {
-  b.onclick = function() { lfMode = this.dataset.mode; lfRevealed = {}; renderLf(); };
-});
+  var SP_DATE = '2026-07-29';
+  var EX_DATE = '2027-10-01';
+  var DEFAULT_START = '2026-05-11';
+  var STEX_LERNTAGE = [2, 5];
+  var SP_BLOCKS_DEFAULT = [
+    { id: 'umweltAT', title: 'Umweltrecht AT', items: [] },
+    { id: 'umweltBT', title: 'Umweltrecht BT', items: [] },
+    { id: 'klimaEnergie', title: 'Klima- und Energierecht', items: [] },
+    { id: 'infraPlanung', title: 'Infrastruktur- und Planungsrecht', items: [] }
+  ];
 
-document.getElementById('lk-new').onclick = function() {
-  const id = newId('lk');
-  state.lk[id] = { norm:'', rechtsfolge:'', tatbestand:'', notizen:'', createdAt: Date.now(), updatedAt: Date.now() };
-  currentLkId = id; scheduleCloudSave(); renderLk();
-  setTimeout(() => { const inp = document.querySelector('#lk-detail input[type="text"]'); if (inp) inp.focus(); }, 50);
-};
-document.getElementById('lk-search').oninput = function(e) { lkSearchTerm = e.target.value; renderLkList(); };
-document.getElementById('lk-sort').onchange = function(e) { lkSortBy = e.target.value; renderLkList(); };
+  function defaultSpBlocks() { return SP_BLOCKS_DEFAULT.map(function(b) { return {id: b.id, title: b.title, items: []}; }); }
+  function defaultLfBlocks() { return SP_BLOCKS_DEFAULT.map(function(b) { return {id: b.id, title: b.title, items: []}; }); }
 
-document.getElementById('start-date').onchange = function(e) { state.startDate = e.target.value; scheduleCloudSave(); renderAll(); };
-document.getElementById('reset-btn').onclick = function() { if (confirm('Wirklich allen 100-Tage-Fortschritt zurücksetzen?')) { state.done = {}; scheduleCloudSave(); renderAll(); } };
-document.getElementById('export-btn').onclick = function() {
-  const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href=url; a.download='examen-backup-'+todayISO()+'.json'; a.click();
-  URL.revokeObjectURL(url);
-};
+  function emptyState() {
+    return { startDate: DEFAULT_START, done: {}, notes: {}, lk: {}, sp: defaultSpBlocks(), lf: defaultLfBlocks() };
+  }
+  function normalizeState(s) {
+    if (!s) return emptyState();
+    return {
+      startDate: s.startDate || DEFAULT_START,
+      done: s.done || {}, notes: s.notes || {}, lk: s.lk || {},
+      sp: s.sp || defaultSpBlocks(),
+      lf: s.lf || defaultLfBlocks()
+    };
+  }
 
-// Initial: Auth-Status prüfen
-(async () => {
-  const { data } = await supabase.auth.getSession();
-  if (data.session && data.session.user) {
-    user = data.session.user;
+  // === Globaler Zustand ===
+  var state = emptyState();
+  var currentFilter = 'all';
+  var currentLkId = null;
+  var lkSearchTerm = '';
+  var lkSortBy = 'norm';
+  var saveTimer = null;
+  var lfMode = 'lesen';
+  var lfRevealed = {};
+  var lfEditing = null;
+
+  // === Status anzeigen ===
+  function setSyncStatus(status, text) {
+    var el = document.getElementById('sync-status');
+    if (!el) return;
+    el.className = 'sync-status ' + status;
+    el.textContent = text;
+  }
+
+  // === Cloud-Sync ===
+  function loadFromCloud() {
+    var auth = authHeaders();
+    if (!auth) return Promise.resolve(null);
+    setSyncStatus('syncing', 'Lade...');
+    return api.getData(auth.token, auth.userId).then(function(r) {
+      if (!r.ok) {
+        console.error('Cloud-Lesen fehlgeschlagen, Status', r.status, r.data);
+        setSyncStatus('error', 'Fehler');
+        return null;
+      }
+      setSyncStatus('synced', 'Synchronisiert');
+      if (Array.isArray(r.data) && r.data.length > 0 && r.data[0].data) return r.data[0].data;
+      return null;
+    });
+  }
+  function saveToCloud() {
+    var auth = authHeaders();
+    if (!auth) return Promise.resolve();
+    setSyncStatus('syncing', 'Speichere...');
+    return api.setData(auth.token, auth.userId, state).then(function(r) {
+      if (!r.ok) {
+        console.error('Cloud-Speichern fehlgeschlagen, Status', r.status);
+        setSyncStatus('error', 'Fehler');
+      } else {
+        setSyncStatus('synced', 'Synchronisiert');
+      }
+    });
+  }
+  function scheduleCloudSave() {
+    if (saveTimer) clearTimeout(saveTimer);
+    setSyncStatus('syncing', 'Speichere...');
+    saveTimer = setTimeout(function() { saveToCloud(); }, 800);
+  }
+
+  // === Migration alte lokale Daten ===
+  function hasLocalLegacyData() {
+    try {
+      var raw = localStorage.getItem(LEGACY_STORAGE_KEY);
+      if (!raw) return false;
+      var p = JSON.parse(raw);
+      var hasLk = p.lk && Object.keys(p.lk).length > 0;
+      var hasDone = p.done && Object.keys(p.done).length > 0;
+      var hasSp = p.sp && p.sp.some(function(b) { return b.items && b.items.length > 0; });
+      var hasLf = p.lf && p.lf.some(function(b) { return b.items && b.items.length > 0; });
+      return hasLk || hasDone || hasSp || hasLf;
+    } catch (e) { return false; }
+  }
+  function getLocalLegacyData() {
+    try { var raw = localStorage.getItem(LEGACY_STORAGE_KEY); return raw ? normalizeState(JSON.parse(raw)) : null; }
+    catch (e) { return null; }
+  }
+  function showMigrationBanner() {
+    var banner = document.getElementById('migration-banner');
+    banner.className = 'migration-banner';
+    banner.innerHTML = '';
+    var txt = document.createElement('div');
+    txt.style.flex = '1';
+    txt.innerHTML = '<strong>Lokale Daten gefunden!</strong> Sie haben Daten im Browser. In Cloud übertragen?';
+    banner.appendChild(txt);
+    var btn = document.createElement('button');
+    btn.textContent = 'Lokale Daten in Cloud kopieren';
+    btn.onclick = function() {
+      btn.disabled = true; btn.textContent = 'Übertrage...';
+      var legacy = getLocalLegacyData();
+      if (legacy) {
+        state = legacy;
+        saveToCloud().then(function() {
+          banner.classList.add('hidden');
+          renderAll();
+          alert('Daten erfolgreich in die Cloud übertragen!');
+        });
+      }
+    };
+    var dismiss = document.createElement('button');
+    dismiss.textContent = 'Mit leerem Cloud-Stand starten';
+    dismiss.onclick = function() { banner.classList.add('hidden'); };
+    banner.appendChild(btn); banner.appendChild(dismiss);
+  }
+
+  // === Auth UI ===
+  var authMode = 'login';
+  function showLoadingScreen(show) {
+    document.getElementById('loading-screen').classList.toggle('hidden', !show);
+  }
+  function showAuthScreen() {
+    showLoadingScreen(false);
+    document.getElementById('auth-screen').classList.remove('hidden');
+    document.getElementById('main-app').classList.add('hidden');
+  }
+  function showApp() {
+    showLoadingScreen(false);
+    document.getElementById('auth-screen').classList.add('hidden');
+    document.getElementById('main-app').classList.remove('hidden');
+  }
+  function setAuthMessage(text, type) {
+    var el = document.getElementById('auth-message');
+    if (!text) { el.innerHTML = ''; return; }
+    el.innerHTML = '<div class="auth-message '+(type||'info')+'">'+text+'</div>';
+  }
+
+  // === Hilfsfunktionen ===
+  function todayISO() { var d = new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+  function daysBetween(a,b) { return Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/86400000); }
+  function dateForDay(tag) { var d = new Date(state.startDate+'T00:00:00'); d.setDate(d.getDate()+(tag-1)); return d.toISOString().slice(0,10); }
+  function formatDateDE(iso) { return new Date(iso+'T00:00:00').toLocaleDateString('de-DE', {day:'2-digit',month:'2-digit',year:'numeric'}); }
+  function weekdayDE(iso) { var wd = new Date(iso+'T00:00:00').getDay(); return ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'][wd]; }
+  function currentDayNumber() { var o = daysBetween(state.startDate, todayISO())+1; if (o<1) return 0; if (o>100) return 101; return o; }
+  function countDone() { return Object.values(state.done).filter(function(v) { return v; }).length; }
+  function nextOpenPlanDay() { for (var i=0; i<PLAN.length; i++) if (!state.done[PLAN[i].tag]) return PLAN[i]; return null; }
+  function newId(prefix) { return prefix+'_'+Date.now()+'_'+Math.random().toString(36).slice(2,7); }
+  function htmlToText(html) { if (!html) return ''; var tmp = document.createElement('div'); tmp.innerHTML = html; return tmp.textContent || ''; }
+
+  // === HTML Sanitizer ===
+  function sanitizeHtml(html) {
+    if (!html) return '';
+    var ALLOWED_TAGS = ['P','BR','STRONG','B','EM','I','U','UL','OL','LI','TABLE','THEAD','TBODY','TR','TD','TH','DIV','SPAN'];
+    var ALLOWED_ATTRS_BY_TAG = { 'TD': ['colspan','rowspan'], 'TH': ['colspan','rowspan'] };
+    var tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    tmp.innerHTML = tmp.innerHTML
+      .replace(/<\/?o:p[^>]*>/gi, '').replace(/<\/?w:[a-z]+[^>]*>/gi, '').replace(/<\/?m:[a-z]+[^>]*>/gi, '')
+      .replace(/<!--\[if[\s\S]*?endif\]-->/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '')
+      .replace(/<meta[^>]*>/gi, '').replace(/<link[^>]*>/gi, '')
+      .replace(/\sclass="[^"]*"/gi, '').replace(/\sstyle="[^"]*"/gi, '')
+      .replace(/\slang="[^"]*"/gi, '').replace(/\sxml:lang="[^"]*"/gi, '')
+      .replace(/\sxmlns[^=]*="[^"]*"/gi, '');
+    function clean(node) {
+      var children = Array.from(node.childNodes);
+      children.forEach(function(child) {
+        if (child.nodeType === 1) {
+          var tag = child.tagName;
+          if (ALLOWED_TAGS.indexOf(tag) === -1) {
+            var parent = child.parentNode;
+            while (child.firstChild) parent.insertBefore(child.firstChild, child);
+            parent.removeChild(child);
+          } else {
+            var allowed = ALLOWED_ATTRS_BY_TAG[tag] || [];
+            Array.from(child.attributes).forEach(function(attr) { if (allowed.indexOf(attr.name) === -1) child.removeAttribute(attr.name); });
+            if ((tag === 'DIV' || tag === 'SPAN') && child.attributes.length === 0) {
+              var parent2 = child.parentNode;
+              while (child.firstChild) parent2.insertBefore(child.firstChild, child);
+              parent2.removeChild(child); return;
+            }
+            clean(child);
+          }
+        } else if (child.nodeType === 8) { child.parentNode.removeChild(child); }
+      });
+    }
+    clean(tmp);
+    return tmp.innerHTML;
+  }
+
+  // === Rich-Text-Editor ===
+  function createRTE(initialHtml, placeholder, onChange) {
+    var wrap = document.createElement('div'); wrap.className = 'rte-wrap';
+    var tb = document.createElement('div'); tb.className = 'rte-toolbar';
+    var editor = document.createElement('div');
+    editor.className = 'rte-content'; editor.contentEditable = 'true'; editor.spellcheck = true;
+    editor.setAttribute('data-placeholder', placeholder || '');
+    editor.innerHTML = initialHtml || '';
+    function exec(cmd, val) { editor.focus(); try { document.execCommand(cmd, false, val || null); } catch(e) {} onChange(editor.innerHTML); }
+    function tool(label, title, cmd, cls) {
+      var b = document.createElement('button'); b.className = 'rte-tool' + (cls ? ' '+cls : ''); b.type = 'button';
+      b.textContent = label; b.title = title;
+      b.onmousedown = function(e) { e.preventDefault(); };
+      b.onclick = function() { exec(cmd); }; return b;
+    }
+    function sep() { var s = document.createElement('div'); s.className='rte-tool-sep'; return s; }
+    tb.appendChild(tool('F', 'Fett', 'bold', 'bold'));
+    tb.appendChild(tool('K', 'Kursiv', 'italic', 'italic'));
+    tb.appendChild(tool('U', 'Unterstrichen', 'underline', 'underline'));
+    tb.appendChild(sep());
+    tb.appendChild(tool('• Liste', 'Aufzählung', 'insertUnorderedList'));
+    tb.appendChild(tool('1. Liste', 'Nummeriert', 'insertOrderedList'));
+    tb.appendChild(sep());
+    var tblBtn = document.createElement('button');
+    tblBtn.className = 'rte-tool'; tblBtn.type = 'button'; tblBtn.textContent = '⊞ Tabelle';
+    tblBtn.onmousedown = function(e) { e.preventDefault(); };
+    tblBtn.onclick = function() {
+      var r = parseInt(prompt('Anzahl Zeilen (inkl. Kopfzeile):', '3'), 10);
+      var c = parseInt(prompt('Anzahl Spalten:', '2'), 10);
+      if (!r || !c || r < 1 || c < 1) return;
+      var html = '<table><thead><tr>';
+      for (var i=0;i<c;i++) html += '<th>&nbsp;</th>';
+      html += '</tr></thead><tbody>';
+      for (var j=0;j<r-1;j++) { html += '<tr>'; for (var k=0;k<c;k++) html += '<td>&nbsp;</td>'; html += '</tr>'; }
+      html += '</tbody></table><p>&nbsp;</p>';
+      exec('insertHTML', html);
+    };
+    tb.appendChild(tblBtn);
+    function makeTblBtn(label, title, action) {
+      var b = document.createElement('button'); b.className = 'rte-tool'; b.type = 'button'; b.textContent = label; b.title = title;
+      b.onmousedown = function(e) { e.preventDefault(); };
+      b.onclick = function() { tableEdit(action); };
+      return b;
+    }
+    tb.appendChild(makeTblBtn('+Z', 'Zeile darunter', 'rowAdd'));
+    tb.appendChild(makeTblBtn('−Z', 'Zeile löschen', 'rowDel'));
+    tb.appendChild(makeTblBtn('+S', 'Spalte rechts', 'colAdd'));
+    tb.appendChild(makeTblBtn('−S', 'Spalte löschen', 'colDel'));
+    tb.appendChild(sep());
+    var clearBtn = document.createElement('button');
+    clearBtn.className = 'rte-tool'; clearBtn.type = 'button'; clearBtn.textContent = '⌫ Format';
+    clearBtn.onmousedown = function(e) { e.preventDefault(); };
+    clearBtn.onclick = function() { exec('removeFormat'); };
+    tb.appendChild(clearBtn);
+    function getCellAtSelection() {
+      var sel = window.getSelection(); if (!sel.rangeCount) return null;
+      var n = sel.anchorNode;
+      while (n && n !== editor) { if (n.nodeType === 1 && (n.tagName === 'TD' || n.tagName === 'TH')) return n; n = n.parentNode; }
+      return null;
+    }
+    function tableEdit(action) {
+      var cell = getCellAtSelection();
+      if (!cell) { alert('Cursor zuerst in eine Tabellenzelle setzen.'); return; }
+      var row = cell.parentNode; var table = cell.closest('table'); if (!table) return;
+      if (action === 'rowAdd') {
+        var newRow = document.createElement('tr'); var len = row.children.length;
+        for (var i=0; i<len; i++) { var td = document.createElement('td'); td.innerHTML = '&nbsp;'; newRow.appendChild(td); }
+        if (row.nextSibling) row.parentNode.insertBefore(newRow, row.nextSibling); else row.parentNode.appendChild(newRow);
+      } else if (action === 'rowDel') {
+        if (row.parentNode.children.length <= 1) { if (confirm('Letzte Zeile entfernt ganze Tabelle. OK?')) table.parentNode.removeChild(table); }
+        else row.parentNode.removeChild(row);
+      } else if (action === 'colAdd') {
+        var idx = Array.from(row.children).indexOf(cell);
+        Array.from(table.querySelectorAll('tr')).forEach(function(r) {
+          var cellTag = r.children[0] && r.children[0].tagName === 'TH' ? 'th' : 'td';
+          var nc = document.createElement(cellTag); nc.innerHTML = '&nbsp;';
+          if (r.children[idx+1]) r.insertBefore(nc, r.children[idx+1]); else r.appendChild(nc);
+        });
+      } else if (action === 'colDel') {
+        var idx2 = Array.from(row.children).indexOf(cell);
+        if (row.children.length <= 1) { if (confirm('Letzte Spalte entfernt ganze Tabelle. OK?')) table.parentNode.removeChild(table); }
+        else Array.from(table.querySelectorAll('tr')).forEach(function(r) { if (r.children[idx2]) r.removeChild(r.children[idx2]); });
+      }
+      onChange(editor.innerHTML);
+    }
+    editor.addEventListener('paste', function(e) {
+      var html = e.clipboardData.getData('text/html');
+      var text = e.clipboardData.getData('text/plain');
+      if (html && html.length > 0) {
+        e.preventDefault();
+        document.execCommand('insertHTML', false, sanitizeHtml(html));
+        onChange(editor.innerHTML);
+      } else if (text) {
+        e.preventDefault();
+        document.execCommand('insertText', false, text);
+        onChange(editor.innerHTML);
+      }
+    });
+    editor.addEventListener('input', function() { onChange(editor.innerHTML); });
+    wrap.appendChild(tb); wrap.appendChild(editor);
+    return wrap;
+  }
+
+  // === Render-Funktionen ===
+  function tempoText() {
+    var today = todayISO(); var start = state.startDate;
+    var elapsed = daysBetween(start, today) + 1; var done = countDone();
+    if (elapsed < 1) return 'Lernplan startet am ' + formatDateDE(start) + '.';
+    if (done === 0) return 'Noch keine Tage abgeschlossen.';
+    var rate = done / elapsed; if (rate <= 0) return '';
+    var remaining = 100 - done; var daysNeeded = Math.ceil(remaining / rate);
+    var finish = new Date(today+'T00:00:00'); finish.setDate(finish.getDate() + daysNeeded);
+    return 'Bei aktueller Geschwindigkeit (ø ' + rate.toFixed(2) + ' Tage/Kalendertag) erreichen Sie Tag 100 am ' + finish.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}) + '.';
+  }
+  function renderDashboard() {
+    var today = todayISO(); var day = currentDayNumber(); var done = countDone();
+    var sp = daysBetween(today, SP_DATE);
+    document.getElementById('stat-sp').textContent = sp>0 ? sp+' Tage' : (sp===0 ? 'heute!' : 'vorbei');
+    var dayLabel;
+    if (day===0) dayLabel = 'in '+daysBetween(today, state.startDate)+'T';
+    else if (day===101) dayLabel = 'beendet';
+    else dayLabel = day+' / 100';
+    document.getElementById('stat-day').textContent = dayLabel;
+    document.getElementById('stat-done').textContent = done+' / 100';
+    var ex = daysBetween(today, EX_DATE);
+    document.getElementById('stat-ex').textContent = ex>0 ? Math.round(ex/30)+' Mon.' : 'vorbei';
+    document.getElementById('progress-pct').textContent = done+'%';
+    document.getElementById('progress-bar').style.width = done+'%';
+    document.getElementById('today-date').textContent = formatDateDE(today);
+    document.getElementById('today-weekday').textContent = weekdayDE(today);
+    renderTodayCard(today);
+    document.getElementById('tempo-hint').textContent = tempoText();
+    document.getElementById('start-date').value = state.startDate;
+  }
+  function renderTodayCard(today) {
+    var wd = new Date(today+'T00:00:00').getDay();
+    var titleEl = document.getElementById('today-title');
+    var topicEl = document.getElementById('today-topic');
+    var actionsEl = document.getElementById('today-actions');
+    var hintEl = document.getElementById('today-hint');
+    actionsEl.innerHTML = ''; hintEl.textContent = '';
+    var day = currentDayNumber();
+    var isStexLerntag = STEX_LERNTAGE.indexOf(wd) !== -1;
+    if (wd === 1) { titleEl.textContent = 'Examenskurs Zivilrecht'; topicEl.textContent = '12–16 Uhr'; return; }
+    if (wd === 3) { titleEl.textContent = 'Lehrstuhl + Seminar ÖR'; topicEl.textContent = '10–12:30 Lehrstuhl · 14–16 Seminar'; return; }
+    if (wd === 4) { titleEl.textContent = 'Examenskurs Öffentliches Recht'; topicEl.textContent = '10–14 Uhr'; return; }
+    if (wd === 6) { titleEl.textContent = 'Samstagsklausur (wenn angeboten)'; topicEl.textContent = '9–14 Uhr'; return; }
+    if (wd === 0) { titleEl.textContent = 'Sonntag — Erholung'; topicEl.textContent = 'Heute keine Aufgaben.'; return; }
+    if (isStexLerntag && day >= 1 && day <= 100) {
+      var planItem = nextOpenPlanDay();
+      if (planItem) {
+        titleEl.textContent = 'Heute: 100-Tage-Plan + Schwerpunkt';
+        topicEl.textContent = 'Stex-Tag: ' + planItem.tag + ' · ' + planItem.gebiet + ' · ' + planItem.teilgebiet + ' (' + planItem.thema + ')';
+        var btn = document.createElement('button');
+        var isDone = !!state.done[planItem.tag];
+        btn.textContent = isDone ? 'Stex-Tag '+planItem.tag+' offen markieren' : 'Stex-Tag '+planItem.tag+' erledigt';
+        btn.onclick = function() { state.done[planItem.tag] = !state.done[planItem.tag]; scheduleCloudSave(); renderAll(); };
+        actionsEl.appendChild(btn);
+      }
+    }
+  }
+  function renderTracker() {
+    var list = document.getElementById('tracker-list');
+    var items = PLAN.slice();
+    if (currentFilter==='open') items = items.filter(function(p) { return !state.done[p.tag]; });
+    if (currentFilter==='done') items = items.filter(function(p) { return !!state.done[p.tag]; });
+    if (currentFilter==='today') { var next = nextOpenPlanDay(); items = next ? items.filter(function(p) { return p.tag===next.tag; }) : []; }
+    list.innerHTML = '';
+    if (items.length===0) { var e = document.createElement('p'); e.className='empty'; e.textContent='Keine Einträge.'; list.appendChild(e); return; }
+    items.forEach(function(it) {
+      var isDone = !!state.done[it.tag]; var next2 = nextOpenPlanDay();
+      var isNext = next2 && next2.tag===it.tag; var date = dateForDay(it.tag);
+      var row = document.createElement('div'); row.className = 'tracker-row'+(isNext?' today':'');
+      var cb = document.createElement('input'); cb.type='checkbox'; cb.checked=isDone;
+      cb.onchange = function() { state.done[it.tag]=cb.checked; scheduleCloudSave(); renderAll(); };
+      var tagCell = document.createElement('div'); tagCell.className='tracker-tag'; tagCell.textContent='Tag '+it.tag;
+      var dateCell = document.createElement('div'); dateCell.className='tracker-date'; dateCell.textContent=formatDateDE(date).slice(0,5);
+      var topic = document.createElement('div'); topic.className='tracker-topic'+(isDone?' done':'');
+      var teil = document.createElement('span'); teil.className='teil'; teil.textContent=it.teilgebiet+':';
+      topic.appendChild(teil); topic.appendChild(document.createTextNode(it.thema));
+      var badge = document.createElement('span'); badge.className='badge '+(BADGE_CLASS[it.gebiet]||''); badge.textContent=it.gebiet;
+      row.appendChild(cb); row.appendChild(tagCell); row.appendChild(dateCell); row.appendChild(topic); row.appendChild(badge);
+      list.appendChild(row);
+    });
+  }
+  function renderWochenplan() {
+    var list = document.getElementById('wochenplan-list'); list.innerHTML = '';
+    var todayWd = new Date(todayISO()+'T00:00:00').getDay();
+    [1,2,3,4,5,6,0].forEach(function(wd) {
+      var dp = WEEKPLAN[wd];
+      var day = document.createElement('div'); day.className = 'wp-day' + (wd===todayWd?' wp-day-today':'');
+      var left = document.createElement('div');
+      var name = document.createElement('div'); name.className='wp-day-name'; name.textContent = dp.name + (wd===todayWd?' · heute':'');
+      left.appendChild(name); day.appendChild(left);
+      var slots = document.createElement('div'); slots.className='wp-slots';
+      dp.slots.forEach(function(s) {
+        var slot = document.createElement('div'); slot.className='wp-slot';
+        var t = document.createElement('div'); t.className='wp-time'; t.textContent = s.time;
+        var a = document.createElement('div'); a.className='wp-activity'; a.textContent = s.activity;
+        var tag = document.createElement('span'); tag.className='wp-tag '+s.tag;
+        tag.textContent = ({stex:'Stex',sp:'Schwerpunkt',kurs:'Kurs',frei:'frei',pause:'Pause'})[s.tag] || s.tag;
+        slot.appendChild(t); slot.appendChild(a); slot.appendChild(tag); slots.appendChild(slot);
+      });
+      day.appendChild(slots); list.appendChild(day);
+    });
+  }
+  function renderSp() {
+    var wrap = document.getElementById('sp-blocks'); wrap.innerHTML = '';
+    state.sp.forEach(function(block) {
+      var bx = document.createElement('div'); bx.className='sp-block';
+      var head = document.createElement('div'); head.className='sp-block-header';
+      var title = document.createElement('p'); title.className='sp-block-title'; title.textContent = block.title;
+      var total = block.items.length; var fertig = block.items.filter(function(i) { return i.status==='fertig'; }).length;
+      var prog = document.createElement('span'); prog.className='sp-block-progress'; prog.textContent = total ? (fertig+' / '+total+' fertig') : 'noch keine Themen';
+      head.appendChild(title); head.appendChild(prog); bx.appendChild(head);
+      block.items.forEach(function(item, idx) {
+        var row = document.createElement('div'); row.className='sp-item';
+        var dot = document.createElement('div'); dot.className='sp-item-status '+item.status;
+        var text = document.createElement('div'); text.className='sp-item-text'+(item.status==='fertig'?' fertig':''); text.textContent = item.text;
+        var sel = document.createElement('select'); sel.className='sp-item-status-select';
+        ['offen','arbeit','fertig'].forEach(function(s) {
+          var opt = document.createElement('option'); opt.value=s; opt.textContent = ({offen:'offen',arbeit:'in Arbeit',fertig:'fertig'})[s];
+          if (item.status===s) opt.selected = true; sel.appendChild(opt);
+        });
+        sel.onchange = function() { item.status = sel.value; scheduleCloudSave(); renderSp(); };
+        var del = document.createElement('button'); del.className='small'; del.textContent='✕';
+        del.onclick = function() { if (confirm('"'+item.text+'" löschen?')) { block.items.splice(idx, 1); scheduleCloudSave(); renderSp(); } };
+        row.appendChild(dot); row.appendChild(text); row.appendChild(sel); row.appendChild(del); bx.appendChild(row);
+      });
+      var addRow = document.createElement('div'); addRow.className='sp-add-row';
+      var inp = document.createElement('input'); inp.type='text'; inp.placeholder='Neues Thema hinzufügen...';
+      var btn = document.createElement('button'); btn.className='primary small'; btn.textContent='+ Hinzufügen';
+      var addItem = function() { var t = inp.value.trim(); if (!t) return; block.items.push({ text: t, status: 'offen', createdAt: Date.now() }); inp.value = ''; scheduleCloudSave(); renderSp(); };
+      btn.onclick = addItem; inp.onkeydown = function(e) { if (e.key==='Enter') addItem(); };
+      addRow.appendChild(inp); addRow.appendChild(btn); bx.appendChild(addRow);
+      wrap.appendChild(bx);
+    });
+  }
+  function renderLfStats() {
+    var all = state.lf.reduce(function(acc, b) { return acc + b.items.length; }, 0);
+    var known = state.lf.reduce(function(acc, b) { return acc + b.items.filter(function(i) { return i.lastRating === 'known'; }).length; }, 0);
+    var unknown = state.lf.reduce(function(acc, b) { return acc + b.items.filter(function(i) { return i.lastRating === 'unknown'; }).length; }, 0);
+    document.getElementById('lf-stats').textContent = all > 0 ? all+' Fragen · '+known+' gewusst · '+unknown+' nicht gewusst' : '';
+  }
+  function renderLf() {
+    var wrap = document.getElementById('lf-blocks'); wrap.innerHTML = '';
+    document.querySelectorAll('.lf-mode-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.mode === lfMode); });
+    renderLfStats();
+    state.lf.forEach(function(block) {
+      var bx = document.createElement('div'); bx.className='lf-block';
+      var head = document.createElement('div'); head.className='lf-block-header';
+      var title = document.createElement('p'); title.className='lf-block-title'; title.textContent = block.title;
+      var total = block.items.length;
+      var stats = document.createElement('span'); stats.className='lf-block-stats';
+      stats.textContent = total ? (total+' Fragen') : 'noch keine Fragen';
+      head.appendChild(title); head.appendChild(stats); bx.appendChild(head);
+      block.items.forEach(function(item, idx) {
+        var card = document.createElement('div'); card.className='lf-card';
+        if (lfEditing === item.id) {
+          var form = document.createElement('div'); form.className='lf-edit-form';
+          var qInp = document.createElement('textarea'); qInp.value = item.question; qInp.placeholder = 'Frage';
+          form.appendChild(qInp);
+          var aLabel = document.createElement('label'); aLabel.className='lk-field-label'; aLabel.textContent = 'Antwort'; form.appendChild(aLabel);
+          var rte = createRTE(item.answer || '', 'Antwort...', function(html) { item._draftAnswer = html; });
+          form.appendChild(rte);
+          var btnRow = document.createElement('div'); btnRow.className='lf-edit-actions';
+          var save = document.createElement('button'); save.className='primary small'; save.textContent='Speichern';
+          save.onclick = function() {
+            item.question = qInp.value.trim();
+            item.answer = item._draftAnswer !== undefined ? item._draftAnswer : (item.answer || '');
+            delete item._draftAnswer; item.updatedAt = Date.now();
+            lfEditing = null; scheduleCloudSave(); renderLf();
+          };
+          var cancel = document.createElement('button'); cancel.className='small'; cancel.textContent='Abbrechen';
+          cancel.onclick = function() { delete item._draftAnswer; lfEditing = null; renderLf(); };
+          btnRow.appendChild(save); btnRow.appendChild(cancel);
+          form.appendChild(btnRow); card.appendChild(form);
+        } else {
+          var qWrap = document.createElement('div'); qWrap.className='lf-card-q';
+          var q = document.createElement('div'); q.className='lf-question'; q.textContent = item.question;
+          var acts = document.createElement('div'); acts.className='lf-card-actions';
+          var edit = document.createElement('button'); edit.className='small'; edit.textContent='Bearbeiten';
+          edit.onclick = function() { lfEditing = item.id; renderLf(); };
+          var del2 = document.createElement('button'); del2.className='small'; del2.textContent='✕';
+          del2.onclick = function() { if (confirm('Frage löschen?')) { block.items.splice(idx, 1); scheduleCloudSave(); renderLf(); } };
+          acts.appendChild(edit); acts.appendChild(del2);
+          qWrap.appendChild(q); qWrap.appendChild(acts); card.appendChild(qWrap);
+          var isRevealed = lfMode === 'lesen' || !!lfRevealed[item.id];
+          if (isRevealed) {
+            var a = document.createElement('div'); a.className='lf-answer';
+            if (item.answer && item.answer.replace(/<[^>]*>/g, '').trim()) {
+              var inner = document.createElement('div'); inner.className = 'rendered'; inner.innerHTML = item.answer;
+              a.appendChild(inner);
+            } else {
+              a.classList.add('lf-answer-empty'); a.textContent = '(noch keine Antwort)';
+            }
+            card.appendChild(a);
+          } else {
+            var reveal = document.createElement('button'); reveal.className='lf-reveal-btn small';
+            reveal.textContent = 'Antwort anzeigen';
+            reveal.onclick = function() { lfRevealed[item.id] = true; renderLf(); };
+            card.appendChild(reveal);
+          }
+          if (lfMode === 'abfragen' && isRevealed) {
+            var rate = document.createElement('div'); rate.className='lf-rate';
+            var lbl = document.createElement('span'); lbl.className='lf-rate-label'; lbl.textContent = 'Selbsteinschätzung:';
+            rate.appendChild(lbl);
+            [{key:'known',label:'gewusst',cls:'success'},{key:'unsure',label:'unsicher',cls:'warn'},{key:'unknown',label:'nicht gewusst',cls:'danger'}].forEach(function(r) {
+              var b2 = document.createElement('button');
+              b2.className = 'lf-rate-btn '+r.cls + (item.lastRating === r.key ? ' active' : '');
+              b2.textContent = r.label;
+              b2.onclick = function() {
+                item.lastRating = r.key; item.lastRatedAt = Date.now();
+                if (!item.history) item.history = [];
+                item.history.push({ rating: r.key, at: Date.now() });
+                scheduleCloudSave(); renderLf();
+              };
+              rate.appendChild(b2);
+            });
+            card.appendChild(rate);
+          }
+        }
+        bx.appendChild(card);
+      });
+      var addForm = document.createElement('div'); addForm.className='lf-add-form';
+      var qInp2 = document.createElement('textarea'); qInp2.placeholder = 'Neue Lernfrage...'; qInp2.style.minHeight = '50px';
+      addForm.appendChild(qInp2);
+      var draft = '';
+      var rte2 = createRTE('', 'Antwort (Tabellen aus Word einfügbar)...', function(html) { draft = html; });
+      addForm.appendChild(rte2);
+      var addBtn = document.createElement('button'); addBtn.className='primary small'; addBtn.textContent='+ Frage hinzufügen';
+      addBtn.onclick = function() {
+        var qv = qInp2.value.trim(); if (!qv) return;
+        block.items.push({ id: newId('lf'), question: qv, answer: draft, createdAt: Date.now(), updatedAt: Date.now(), history: [] });
+        qInp2.value = ''; scheduleCloudSave(); renderLf();
+      };
+      addForm.appendChild(addBtn); bx.appendChild(addForm);
+      wrap.appendChild(bx);
+    });
+  }
+  function getLkArray() { return Object.keys(state.lk).map(function(id) { return Object.assign({id:id}, state.lk[id]); }); }
+  function compareNorms(a,b) { return (a.norm||'').toLowerCase().localeCompare((b.norm||'').toLowerCase(), 'de', {numeric:true}); }
+  function getFilteredSorted() {
+    var items = getLkArray();
+    if (lkSearchTerm) {
+      var q = lkSearchTerm.toLowerCase();
+      items = items.filter(function(it) { return ((it.norm||'') + ' ' + htmlToText(it.rechtsfolge||'') + ' ' + htmlToText(it.tatbestand||'') + ' ' + htmlToText(it.notizen||'')).toLowerCase().includes(q); });
+    }
+    if (lkSortBy==='recent') items.sort(function(a,b) { return (b.updatedAt||0)-(a.updatedAt||0); });
+    else items.sort(compareNorms);
+    return items;
+  }
+  function renderLkList() {
+    var list = document.getElementById('lk-list');
+    var items = getFilteredSorted(); list.innerHTML = '';
+    if (items.length===0) { var e = document.createElement('p'); e.className='empty'; e.textContent = lkSearchTerm ? 'Keine Treffer.' : 'Noch keine Einträge.'; list.appendChild(e); return; }
+    items.forEach(function(it) {
+      var row = document.createElement('div'); row.className = 'lk-list-item'+(it.id===currentLkId?' active':'');
+      var norm = document.createElement('p'); norm.className='lk-list-norm'; norm.textContent = it.norm || '(Ohne Norm)';
+      var meta = document.createElement('p'); meta.className='lk-list-meta';
+      var upd = it.updatedAt ? new Date(it.updatedAt).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'}) : '';
+      meta.textContent = upd ? 'Bearbeitet '+upd : 'Neu';
+      row.appendChild(norm); row.appendChild(meta);
+      row.onclick = function() { currentLkId = it.id; renderLk(); };
+      list.appendChild(row);
+    });
+  }
+  function renderLkDetail() {
+    var detail = document.getElementById('lk-detail'); detail.innerHTML = '';
+    if (!currentLkId || !state.lk[currentLkId]) { var e = document.createElement('p'); e.className='lk-detail-empty'; e.textContent = 'Wählen Sie links eine Norm aus oder legen Sie eine neue an.'; detail.appendChild(e); return; }
+    var entry = state.lk[currentLkId];
+    var normWrap = document.createElement('div'); normWrap.className='lk-field';
+    var normLabel = document.createElement('label'); normLabel.className='lk-field-label'; normLabel.textContent = 'Norm';
+    normWrap.appendChild(normLabel);
+    var normInp = document.createElement('input'); normInp.type='text'; normInp.placeholder = 'z.B. § 107 BGB'; normInp.value = entry.norm || '';
+    normInp.oninput = function() { entry.norm = normInp.value; entry.updatedAt = Date.now(); scheduleCloudSave(); };
+    normWrap.appendChild(normInp);
+    detail.appendChild(normWrap);
+    var rteFields = [
+      {key:'rechtsfolge', label:'Rechtsfolge (RF)'},
+      {key:'tatbestand', label:'Tatbestand (TB)'},
+      {key:'notizen', label:'Auslegung, Streit, Schemata, Beispiele'}
+    ];
+    rteFields.forEach(function(f) {
+      var wrap2 = document.createElement('div'); wrap2.className='lk-field';
+      var label = document.createElement('label'); label.className='lk-field-label'; label.textContent = f.label;
+      wrap2.appendChild(label);
+      var rteX = createRTE(entry[f.key] || '', '', function(html) { entry[f.key] = html; entry.updatedAt = Date.now(); scheduleCloudSave(); });
+      wrap2.appendChild(rteX);
+      detail.appendChild(wrap2);
+    });
+    var actions = document.createElement('div'); actions.className='lk-detail-actions';
+    var del3 = document.createElement('button'); del3.className='danger'; del3.textContent='Eintrag löschen';
+    del3.onclick = function() { if (confirm('Löschen?')) { delete state.lk[currentLkId]; currentLkId = null; scheduleCloudSave(); renderLk(); } };
+    actions.appendChild(del3); detail.appendChild(actions);
+  }
+  function renderLk() { renderLkList(); renderLkDetail(); }
+  function renderAll() { renderDashboard(); renderTracker(); renderWochenplan(); renderSp(); renderLf(); renderLk(); }
+
+  function showView(name) {
+    ['dashboard','wochenplan','tracker','sp','lf','lk'].forEach(function(v) {
+      document.getElementById('view-'+v).classList.toggle('hidden', v!==name);
+      document.getElementById('tab-'+v).classList.toggle('active', v===name);
+    });
+  }
+
+  // === Event-Handler ===
+  document.querySelectorAll('.auth-tab').forEach(function(t) {
+    t.onclick = function() {
+      authMode = t.dataset.mode;
+      document.querySelectorAll('.auth-tab').forEach(function(x) { x.classList.toggle('active', x === t); });
+      document.getElementById('auth-submit').textContent = authMode === 'signup' ? 'Registrieren' : 'Anmelden';
+      setAuthMessage('');
+    };
+  });
+
+  document.getElementById('auth-submit').onclick = function() {
+    var self = this;
+    var email = document.getElementById('auth-email').value.trim();
+    var password = document.getElementById('auth-password').value;
+    if (!email || !password) { setAuthMessage('Bitte E-Mail und Passwort eingeben.', 'error'); return; }
+    if (password.length < 6) { setAuthMessage('Passwort min. 6 Zeichen.', 'error'); return; }
+    self.disabled = true; self.textContent = '...';
+    var prom = authMode === 'signup' ? api.signUp(email, password) : api.signIn(email, password);
+    prom.then(function(r) {
+      if (!r.ok) {
+        var msg = (r.data && (r.data.error_description || r.data.msg || r.data.message || r.data.error)) || 'Unbekannter Fehler';
+        setAuthMessage('Fehler: ' + msg, 'error');
+        self.disabled = false;
+        self.textContent = authMode === 'signup' ? 'Registrieren' : 'Anmelden';
+        return;
+      }
+      if (authMode === 'signup' && !r.data.access_token) {
+        setAuthMessage('Registrierung erfolgreich! Falls Sie eine Bestätigungsmail bekommen, Link anklicken. Dann zum "Anmelden"-Tab wechseln und einloggen.', 'success');
+        self.disabled = false; self.textContent = 'Registrieren';
+        return;
+      }
+      // Login erfolgreich
+      var s = {
+        access_token: r.data.access_token,
+        refresh_token: r.data.refresh_token,
+        expires_at: r.data.expires_at,
+        user: { id: r.data.user.id, email: r.data.user.email }
+      };
+      saveSession(s);
+      startApp();
+    });
+  };
+
+  document.getElementById('logout-btn').onclick = function() {
+    if (confirm('Wirklich abmelden? Daten bleiben in der Cloud.')) {
+      saveSession(null);
+      state = emptyState();
+      showAuthScreen();
+    }
+  };
+
+  document.getElementById('tab-dashboard').onclick = function() { showView('dashboard'); };
+  document.getElementById('tab-wochenplan').onclick = function() { showView('wochenplan'); renderWochenplan(); };
+  document.getElementById('tab-tracker').onclick = function() { showView('tracker'); renderTracker(); };
+  document.getElementById('tab-sp').onclick = function() { showView('sp'); renderSp(); };
+  document.getElementById('tab-lf').onclick = function() { showView('lf'); renderLf(); };
+  document.getElementById('tab-lk').onclick = function() { showView('lk'); renderLk(); };
+
+  document.querySelectorAll('.filter-btn').forEach(function(b) {
+    b.onclick = function() {
+      currentFilter = b.dataset.filter;
+      document.querySelectorAll('.filter-btn').forEach(function(x) { x.classList.remove('active'); });
+      b.classList.add('active'); renderTracker();
+    };
+  });
+  document.querySelectorAll('.lf-mode-btn').forEach(function(b) {
+    b.onclick = function() { lfMode = b.dataset.mode; lfRevealed = {}; renderLf(); };
+  });
+  document.getElementById('lk-new').onclick = function() {
+    var id = newId('lk');
+    state.lk[id] = { norm:'', rechtsfolge:'', tatbestand:'', notizen:'', createdAt: Date.now(), updatedAt: Date.now() };
+    currentLkId = id; scheduleCloudSave(); renderLk();
+    setTimeout(function() { var inp = document.querySelector('#lk-detail input[type="text"]'); if (inp) inp.focus(); }, 50);
+  };
+  document.getElementById('lk-search').oninput = function(e) { lkSearchTerm = e.target.value; renderLkList(); };
+  document.getElementById('lk-sort').onchange = function(e) { lkSortBy = e.target.value; renderLkList(); };
+  document.getElementById('start-date').onchange = function(e) { state.startDate = e.target.value; scheduleCloudSave(); renderAll(); };
+  document.getElementById('reset-btn').onclick = function() { if (confirm('Wirklich allen 100-Tage-Fortschritt zurücksetzen?')) { state.done = {}; scheduleCloudSave(); renderAll(); } };
+  document.getElementById('export-btn').onclick = function() {
+    var blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a'); a.href=url; a.download='examen-backup-'+todayISO()+'.json'; a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  function startApp() {
     showApp();
-    const cloud = await loadFromCloud();
-    if (cloud) state = normalizeState(cloud);
-    else if (hasLocalLegacyData()) showMigrationBanner();
-    renderAll();
+    loadFromCloud().then(function(cloud) {
+      if (cloud) state = normalizeState(cloud);
+      else if (hasLocalLegacyData()) showMigrationBanner();
+      renderAll();
+    });
+  }
+
+  // === Initialisierung ===
+  session = loadSession();
+  if (session && session.access_token) {
+    startApp();
   } else {
     showAuthScreen();
   }
