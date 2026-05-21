@@ -578,12 +578,49 @@
     el.textContent = text;
   }
 
-  // === Cloud-Sync ===
-  function loadFromCloud() {
+  // === Token automatisch erneuern bei 401 ===
+  var refreshInProgress = null;
+  function ensureFreshToken() {
+    if (!session || !session.refresh_token) return Promise.resolve(false);
+    if (refreshInProgress) return refreshInProgress;
+    refreshInProgress = api.refreshToken(session.refresh_token).then(function(r) {
+      refreshInProgress = null;
+      if (!r.ok || !r.data || !r.data.access_token) {
+        console.error('Token-Refresh fehlgeschlagen', r.status, r.data);
+        // Refresh-Token ungültig → Login nötig
+        saveSession(null);
+        showAuthScreen();
+        return false;
+      }
+      var newSession = {
+        access_token: r.data.access_token,
+        refresh_token: r.data.refresh_token || session.refresh_token,
+        expires_at: r.data.expires_at,
+        user: session.user
+      };
+      saveSession(newSession);
+      return true;
+    }).catch(function(e) {
+      refreshInProgress = null;
+      console.error('Token-Refresh Fehler', e);
+      return false;
+    });
+    return refreshInProgress;
+  }
+
+  // === Cloud-Sync mit automatischem Retry bei 401 ===
+  function loadFromCloud(isRetry) {
     var auth = authHeaders();
     if (!auth) return Promise.resolve(null);
     setSyncStatus('syncing', 'Lade...');
     return api.getData(auth.token, auth.userId).then(function(r) {
+      if (r.status === 401 && !isRetry) {
+        // Token abgelaufen → erneuern und nochmal versuchen
+        return ensureFreshToken().then(function(ok) {
+          if (ok) return loadFromCloud(true);
+          return null;
+        });
+      }
       if (!r.ok) {
         console.error('Cloud-Lesen fehlgeschlagen, Status', r.status, r.data);
         setSyncStatus('error', 'Fehler');
@@ -594,11 +631,16 @@
       return null;
     });
   }
-  function saveToCloud() {
+  function saveToCloud(isRetry) {
     var auth = authHeaders();
     if (!auth) return Promise.resolve();
     setSyncStatus('syncing', 'Speichere...');
     return api.setData(auth.token, auth.userId, state).then(function(r) {
+      if (r.status === 401 && !isRetry) {
+        return ensureFreshToken().then(function(ok) {
+          if (ok) return saveToCloud(true);
+        });
+      }
       if (!r.ok) {
         console.error('Cloud-Speichern fehlgeschlagen, Status', r.status);
         setSyncStatus('error', 'Fehler');
